@@ -53,11 +53,11 @@
         content: attr(data-text);
         position: absolute;
         left: 0; top: 0;
-        opacity: .35;
+        opacity: .55;
         clip-path: inset(0 0 0 0);
       }
-      .glitch::before { transform: translate(0.5px, -0.5px); color: #00ffc6; }
-      .glitch::after { transform: translate(-0.5px, 0.5px); color: #8c52ff; }
+      .glitch::before { transform: translate(1px, -1px); color: #00ffc6; }
+      .glitch::after { transform: translate(-1px, 1px); color: #8c52ff; }
       @media (min-width: 720px){ .grid{ grid-template-columns: repeat(2, 1fr); } }
       @media (min-width: 900px){ .grid.stats{ grid-template-columns: repeat(3, 1fr); } }
       @media (max-width: 520px){
