@@ -47,6 +47,10 @@ async function main() {
   }
   status.updated_at = isoNow();
 
+  // NOTE: Health fields are synced from Mac mini via sync-tidakmungkinai-status.sh
+  // Do not set: gateway_ok, agents_count_configured, last_sync_agents_at
+
+
   await fs.writeFile(statusPath, JSON.stringify(status, null, 2) + '\n', 'utf8');
 
   // also ensure agents.json exists (optional)
