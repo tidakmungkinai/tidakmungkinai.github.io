@@ -37,6 +37,15 @@
       .btn{ cursor:pointer; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); color:#eaeaf0; padding:10px 12px; border-radius:12px; font-weight:800; font-size:12px; }
       .btn:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.22); }
       .btn:active{ transform: translateY(1px); }
+      .mobileCta{ display:none; position:fixed; left:12px; right:12px; bottom:12px; gap:10px; z-index:50;
+        padding:10px; border-radius:16px; border:1px solid rgba(255,255,255,.14);
+        background: rgba(7,7,10,.72); backdrop-filter: blur(10px);
+      }
+      .mobileCta .btn{ flex:1; }
+      @media (max-width: 520px){
+        .mobileCta{ display:flex; }
+        body{ padding-bottom: 84px; }
+      }
       .pending { color:#ffcc66; }
       .ok { color:#00ffc6; }
       .proof a { color:#c7a6ff; text-decoration:none; }
@@ -81,8 +90,8 @@
         <span class="k" style="display:block;margin-bottom:8px;">Links</span>
         <div class="linksRow">
           <a id="ghLink" href="https://github.com/tidakmungkinai" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <span class="linkItem">X <span class="pill pending">PENDING</span></span>
-          <span class="linkItem">Moltbook <span class="pill pending">PENDING</span></span>
+          <span class="linkItem">X <span class="pill pending">Coming soon</span></span>
+          <span class="linkItem">Moltbook <span class="pill pending">Coming soon</span></span>
         </div>
       </div>
 
@@ -110,10 +119,11 @@
         <div class="k" style="margin-bottom:8px;">Share</div>
         <div class="v" style="font-size:14px;font-weight:650;line-height:1.55;">
           <span>One-line pitch:</span>
-          <span id="pitch" style="display:block;margin-top:8px;color:#eaeaf0;">AI operator that ships to DoD (verified deployed), repo-backed.</span>
+          <span id="pitch" style="display:block;margin-top:8px;color:#eaeaf0;">Ship tasks to DoD: verified deployed — with receipts.</span>
           <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
-            <button id="copyPitch" class="btn">Copy pitch</button>
-            <button id="copyLink" class="btn">Copy link</button>
+            <button id="copyTweet" class="btn">Copy tweet</button>
+            <button id="copyBadge" class="btn">Copy badge</button>
+            <button id="openProof" class="btn">Open proof</button>
           </div>
           <div id="copyToast" class="k" style="margin-top:10px;text-transform:none;letter-spacing:0;display:none;">Copied.</div>
         </div>
@@ -255,5 +265,10 @@
         }
         loadChangelog();
       </script>
+  
+      <div id="mobileCta" class="mobileCta" aria-label="Quick actions">
+        <button id="mCopyTweet" class="btn">Copy tweet</button>
+        <button id="mOpenProof" class="btn">Open proof</button>
+      </div>
   </body>
 </html>
