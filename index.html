@@ -96,6 +96,21 @@
         box-shadow: 0 12px 40px rgba(0,0,0,.35);
         max-width: calc(100vw - 24px);
       }
+
+      /* Nyeleneh modes */
+      body.integrityFail::before{
+        content: "REALITY CHECK FAILED";
+        position: fixed;
+        left: 14px; top: 12px;
+        font-size: 11px;
+        letter-spacing: .08em;
+        color: #ffcc66;
+        opacity: .9;
+        z-index: 80;
+        pointer-events:none;
+        text-shadow: 0 0 10px rgba(255,204,102,.25);
+      }
+      body.integrityFail{ filter: saturate(1.06) contrast(1.03); }
 </style>
   </head>
   <body>
@@ -104,6 +119,8 @@
         <div class="badge"><span class="dot"></span><span>@TidakMungkinAI</span><span id="lastUpdate" class="k" style="text-transform:none;letter-spacing:0;">—</span></div>
         <div class="badge">DoD: <span class="ok">verified deployed</span></div>
       </div>
+
+      <!-- safe-only: takeover removed -->
 
       <h1><span class="glitch" data-text="TidakMungkin">TidakMungkin</span></h1>
       <p class="sub">
@@ -142,6 +159,17 @@
 
       
 
+      <div id="personaFeed" class="card reveal" style="margin-top:18px;">
+        <div class="k" style="margin-bottom:10px;">Live persona feed</div>
+        <div id="feed" style="display:flex;flex-direction:column;gap:10px;"></div>
+        <div class="k" style="margin-top:10px;text-transform:none;letter-spacing:0;">Pulled from status.json (public-safe). Evidence links included.</div>
+      </div>
+
+      <div id="terminal" class="card reveal" style="margin-top:14px;">
+        <div class="k" style="margin-bottom:10px;">Mini terminal (read-only)</div>
+        <pre id="termOut" class="v" style="font-size:13px;font-weight:650;line-height:1.55;white-space:pre-wrap;margin:0;">PENDING</pre>
+      </div>
+
       <div class="grid" style="margin-top:18px;">
         <div class="card">
           <div class="k">Roles & routing</div>
@@ -177,6 +205,7 @@
           <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
             <button id="copyTweet" class="btn">Copy tweet</button>
             <button id="copyBadge" class="btn">Copy badge</button>
+            <button id="copyReceipt" class="btn">Copy receipt</button>
             <button id="openProof" class="btn">Open proof</button>
           </div>
           <div id="copyToast" class="k" style="margin-top:10px;text-transform:none;letter-spacing:0;display:none;">Copied.</div>
@@ -211,6 +240,58 @@
             });
             return fmt.format(d) + ' WIB';
           } catch { return iso; }
+        }
+
+        function fmtAgo(iso){
+          try {
+            const d = new Date(iso).getTime();
+            const mins = Math.max(0, Math.round((Date.now()-d)/60000));
+            if (mins < 60) return mins + 'm ago';
+            const h = Math.round(mins/60);
+            return h + 'h ago';
+          } catch { return '—'; }
+        }
+
+        function isStale(iso, hours){
+          try { return (Date.now() - new Date(iso).getTime()) > hours*3600*1000; }
+          catch { return true; }
+        }
+
+        function makeFeedItem({ who, text, evidenceHref, ts }){
+          const row = document.createElement('div');
+          row.style.display='flex';
+          row.style.gap='10px';
+          row.style.alignItems='flex-start';
+          row.style.padding='12px';
+          row.style.border='1px solid rgba(255,255,255,.12)';
+          row.style.borderRadius='14px';
+          row.style.background='rgba(255,255,255,.02)';
+
+          const tag = document.createElement('div');
+          tag.className='pill';
+          tag.textContent = who;
+
+          const body = document.createElement('div');
+          body.style.flex='1';
+
+          const msg = document.createElement('div');
+          msg.style.fontSize='14px';
+          msg.style.fontWeight='650';
+          msg.style.lineHeight='1.55';
+          msg.textContent = text;
+
+          const meta = document.createElement('div');
+          meta.className='k';
+          meta.style.marginTop='6px';
+          meta.style.textTransform='none';
+          meta.style.letterSpacing='0';
+          meta.innerHTML = `${ts ? 'time: '+formatUpdatedAt(ts)+' ('+fmtAgo(ts)+')' : 'time: —'} · Evidence: <a href="${evidenceHref}" target="_blank" rel="noopener noreferrer">status.json</a>`;
+
+          body.appendChild(msg);
+          body.appendChild(meta);
+          row.appendChild(tag);
+          row.appendChild(body);
+          return row;
         }
 
         async function main() {
@@ -254,14 +335,50 @@
             if (typeof gatewayOk === 'boolean') {
               document.getElementById('health').textContent = gatewayOk ? 'OK' : 'DEGRADED';
               const parts = [];
-              if (typeof agentsConfigured === 'number') parts.push(
-                'agents: ' + agentsConfigured
-              );
+              if (typeof agentsConfigured === 'number') parts.push('agents: ' + agentsConfigured);
               if (lastSync) parts.push('sync: ' + lastSync);
               if (parts.length) document.getElementById('healthDetail').textContent = parts.join(' · ');
             }
+
+            // --- Integrity + takeover + persona feed ---
+            const updatedAt = status?.updated_at;
+            const tasks = status?.tasks || {};
+            const important = ['cermat_zdlt_watch','cermat_btc_watch','cermat_xaut_watch'];
+            const staleTasks = important.filter(k => tasks?.[k]?.last_run_at && isStale(tasks[k].last_run_at, 12));
+            const hasFailure = Boolean(status?.last_error) || Object.values(tasks).some(t => t && t.last_ok === false);
+            const staleStatus = updatedAt ? isStale(updatedAt, 12) : true;
+
+            const integrityFail = hasFailure || staleStatus || staleTasks.length || gatewayOk === false;
+            if (integrityFail) document.body.classList.add('integrityFail');
+
+            // safe-only: buy-mode takeover removed
+
+            const feed = document.getElementById('feed');
+            if (feed) {
+              feed.innerHTML = '';
+              const ev = './status.json';
+              feed.appendChild(makeFeedItem({ who:'[CERMAT]', text:`Health=${gatewayOk ? 'OK' : 'DEGRADED'} · RL24h=${status?.rate_limit_hits_24h ?? 0} · staleTasks=${staleTasks.length}`, evidenceHref: ev, ts: updatedAt }));
+              feed.appendChild(makeFeedItem({ who:'[HANDAL]', text:`Radar mode: sources required. Next scan is cron-driven. (No private data on web)`, evidenceHref: ev, ts: updatedAt }));
+              feed.appendChild(makeFeedItem({ who:'[BANG]', text:`DoD = verified deployed. If proof breaks → integrityFail=${integrityFail ? 'true' : 'false'}.`, evidenceHref: ev, ts: updatedAt }));
+            }
+
+            const term = document.getElementById('termOut');
+            if (term) {
+              const lines = [];
+              lines.push(`$ tm.status`);
+              lines.push(`gateway_ok: ${gatewayOk}`);
+              lines.push(`updated_at: ${updatedAt || '—'}`);
+              lines.push(`rate_limit_hits_24h: ${status?.rate_limit_hits_24h ?? 0}`);
+              for (const k of important) {
+                const t = tasks?.[k];
+                if (!t) continue;
+                lines.push(`${k}: ok=${t.last_ok} last_run_at=${t.last_run_at || '—'}`);
+              }
+              if (status?.last_error) lines.push(`last_error: ${String(status.last_error).slice(0,120)}`);
+              term.textContent = lines.join('\n');
+            }
           } catch (e) {
-            // keep PENDING
+            document.body.classList.add('integrityFail');
           }
         }
 
@@ -307,6 +424,7 @@
 
         const btnTweet = document.getElementById('copyTweet');
         const btnBadge = document.getElementById('copyBadge');
+        const btnReceipt = document.getElementById('copyReceipt');
         const btnProof = document.getElementById('openProof');
 
         const baseUrl = location.href.replace(/\/$/, '');
@@ -321,6 +439,19 @@
 
         if (btnTweet) btnTweet.addEventListener('click', () => { btnTweet.classList.add('pulse'); setTimeout(()=>btnTweet.classList.remove('pulse'), 600); copySafe(tweet); });
         if (btnBadge) btnBadge.addEventListener('click', () => { btnBadge.classList.add('pulse'); setTimeout(()=>btnBadge.classList.remove('pulse'), 600); copySafe(badgeMd); });
+        if (btnReceipt) btnReceipt.addEventListener('click', async () => {
+          btnReceipt.classList.add('pulse'); setTimeout(()=>btnReceipt.classList.remove('pulse'), 600);
+          try {
+            const st = await fetchJson('./status.json');
+            const u = st?.updated_at ? formatUpdatedAt(st.updated_at) : '—';
+            const ok = (typeof st?.gateway_ok === 'boolean') ? (st.gateway_ok ? 'OK' : 'DEGRADED') : 'PENDING';
+            const rl = (typeof st?.rate_limit_hits_24h === 'number') ? st.rate_limit_hits_24h : 0;
+            const rec = `TidakMungkin receipt\n- Health: ${ok}\n- Updated: ${u}\n- RateLimit24h: ${rl}\nEvidence: ${baseUrl}/status.json\nProof: ${baseUrl}/proof.html`;
+            copySafe(rec);
+          } catch {
+            copySafe(`TidakMungkin receipt\nEvidence: ${baseUrl}/status.json\nProof: ${baseUrl}/proof.html`);
+          }
+        });
         if (btnProof) btnProof.addEventListener('click', () => openProof());
 
         async function loadChangelog(){
@@ -341,6 +472,8 @@
           }
         }
         loadChangelog();
+
+        // safe-only: easter eggs removed
 
         // Scroll reveal
         const els = Array.from(document.querySelectorAll('.reveal'));

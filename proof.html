@@ -96,6 +96,20 @@
         box-shadow: 0 12px 40px rgba(0,0,0,.35);
         max-width: calc(100vw - 24px);
       }
+      body.integrityFail::before{
+        content: "REALITY CHECK FAILED";
+        position: fixed;
+        left: 14px; top: 12px;
+        font-size: 11px;
+        letter-spacing: .08em;
+        color: #ffcc66;
+        opacity: .9;
+        z-index: 80;
+        pointer-events:none;
+        text-shadow: 0 0 10px rgba(255,204,102,.25);
+      }
+      @keyframes glitchbg{ 0%{ transform: translate(0,0);} 20%{ transform: translate(1px,-1px);} 40%{ transform: translate(-1px,1px);} 60%{ transform: translate(2px,0);} 80%{ transform: translate(-2px,0);} 100%{ transform: translate(0,0);} }
+      body.integrityFail .glitch{ animation: glitchbg .28s infinite linear; }
 </style>
   </head>
   <body>
@@ -123,6 +137,12 @@
             No backend auth. Public data + source code. Sensitive actions require approval.
           </div>
         </div>
+      </div>
+
+      <div id="flight" class="card reveal" style="margin-top:18px;">
+        <div class="k" style="margin-bottom:8px;">Flight recorder</div>
+        <div class="k" style="text-transform:none;letter-spacing:0;line-height:1.5;">Timeline of task runs + freshness. Click a row to expand raw details.</div>
+        <div id="timeline" style="margin-top:12px;display:flex;flex-direction:column;gap:10px;"></div>
       </div>
 
       <div class="card proof reveal" style="margin-top:18px;">
@@ -156,6 +176,55 @@
             });
             return fmt.format(d) + ' WIB';
           } catch { return iso; }
+        }
+
+        function isStale(iso, hours){
+          try { return (Date.now() - new Date(iso).getTime()) > hours*3600*1000; }
+          catch { return true; }
+        }
+
+        function row({name, ok, ts, detail, stale}){
+          const wrap = document.createElement('div');
+          wrap.style.border = '1px solid rgba(255,255,255,.12)';
+          wrap.style.borderRadius = '14px';
+          wrap.style.padding = '12px';
+          wrap.style.background = stale ? 'rgba(255,204,102,.05)' : 'rgba(255,255,255,.02)';
+          wrap.style.cursor = 'pointer';
+
+          const top = document.createElement('div');
+          top.style.display='flex';
+          top.style.justifyContent='space-between';
+          top.style.gap='10px';
+          top.style.alignItems='baseline';
+
+          const left = document.createElement('div');
+          left.style.fontWeight='800';
+          left.textContent = name;
+
+          const right = document.createElement('div');
+          right.className='k';
+          right.style.textTransform='none';
+          right.style.letterSpacing='0';
+          right.textContent = `${ok ? 'OK' : 'FAIL'} · ${ts ? formatUpdatedAt(ts) : '—'}${stale ? ' · STALE' : ''}`;
+
+          top.appendChild(left);
+          top.appendChild(right);
+
+          const pre = document.createElement('pre');
+          pre.style.display='none';
+          pre.style.margin='10px 0 0';
+          pre.style.whiteSpace='pre-wrap';
+          pre.style.fontSize='12px';
+          pre.style.lineHeight='1.55';
+          pre.textContent = detail;
+
+          wrap.appendChild(top);
+          wrap.appendChild(pre);
+          wrap.addEventListener('click', () => {
+            const show = pre.style.display === 'none';
+            pre.style.display = show ? 'block' : 'none';
+          });
+          return wrap;
         }
 
         async function main() {
@@ -193,7 +262,40 @@
             const updated = status?.updated_at;
             if (updated) document.getElementById('lastUpdate').textContent = 'updated: ' + formatUpdatedAt(updated);
 
+            // Flight recorder timeline
+            const tl = document.getElementById('timeline');
+            if (tl) {
+              tl.innerHTML='';
+              const tasks = status?.tasks || {};
+              const entries = Object.entries(tasks).map(([k,v]) => ({
+                name: k,
+                ok: v?.last_ok !== false,
+                ts: v?.last_run_at || null,
+                err: v?.last_error || null,
+                rl: v?.rate_limit_hits_24h || 0,
+                raw: v
+              }))
+              .sort((a,b) => (String(b.ts||'') > String(a.ts||'')) ? 1 : -1);
+
+              for (const e of entries) {
+                const stale = e.ts ? isStale(e.ts, 12) : true;
+                const detail = JSON.stringify({
+                  last_run_at: e.ts,
+                  last_ok: e.ok,
+                  last_error: e.err,
+                  rate_limit_hits_24h: e.rl,
+                  raw: e.raw
+                }, null, 2);
+                tl.appendChild(row({ name: e.name, ok: e.ok, ts: e.ts, detail, stale }));
+              }
+            }
+
+            // Integrity CRT/glitch
             const gatewayOk = status?.gateway_ok;
+            const staleStatus = updated ? isStale(updated, 12) : true;
+            const hasFailure = Boolean(status?.last_error) || Object.values(status?.tasks || {}).some(t => t && t.last_ok === false);
+            if (gatewayOk === false || staleStatus || hasFailure) document.body.classList.add('integrityFail');
+
             const agentsConfigured = status?.agents_count_configured;
             const lastSync = status?.last_sync_agents_at;
             if (typeof gatewayOk === 'boolean') {
