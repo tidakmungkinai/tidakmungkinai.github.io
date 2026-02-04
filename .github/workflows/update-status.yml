@@ -25,7 +25,7 @@ jobs:
       - name: Update status.json
         env:
           SOLANA_WALLET: A6gXuYpNZmpcfDkT8mv4PR8JYaNtXJqQtArcL2XpVeXK
-          SOLANA_RPC_URL: https://rpc.ankr.com/solana
+          SOLANA_RPC_URL: https://api.mainnet-beta.solana.com
         run: node scripts/update-status.mjs
 
       - name: Commit changes

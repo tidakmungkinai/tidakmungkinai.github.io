@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 
 const WALLET = process.env.SOLANA_WALLET || 'A6gXuYpNZmpcfDkT8mv4PR8JYaNtXJqQtArcL2XpVeXK';
-const RPC_URL = process.env.SOLANA_RPC_URL || 'https://rpc.ankr.com/solana';
+const RPC_URL = process.env.SOLANA_RPC_URL || 'https://api.mainnet-beta.solana.com';
 
 async function rpc(method, params) {
   const res = await fetch(RPC_URL, {

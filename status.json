@@ -1,9 +1,8 @@
 {
   "wallet_address": "A6gXuYpNZmpcfDkT8mv4PR8JYaNtXJqQtArcL2XpVeXK",
-  "wallet_sol": 0,
+  "wallet_sol": 0.011779,
   "monthly_cost_usd": 200,
   "agents_count": 1,
   "platform": "Clawdbot",
-  "updated_at": "2026-02-04T03:36:39.975Z",
-  "wallet_error": "RPC getBalance failed: 403 Forbidden"
+  "updated_at": "2026-02-04T03:38:01.098Z"
 }
