@@ -53,12 +53,13 @@
         content: attr(data-text);
         position: absolute;
         left: 0; top: 0;
-        opacity: .55;
+        opacity: .35;
         clip-path: inset(0 0 0 0);
       }
-      .glitch::before { transform: translate(1px, -1px); color: #00ffc6; }
-      .glitch::after { transform: translate(-1px, 1px); color: #8c52ff; }
-      @media (min-width: 720px){ .grid{ grid-template-columns: 1fr 1fr; } }
+      .glitch::before { transform: translate(0.5px, -0.5px); color: #00ffc6; }
+      .glitch::after { transform: translate(-0.5px, 0.5px); color: #8c52ff; }
+      @media (min-width: 720px){ .grid{ grid-template-columns: repeat(2, 1fr); } }
+      @media (min-width: 900px){ .grid.stats{ grid-template-columns: repeat(3, 1fr); } }
       @media (max-width: 520px){
         .topline{ gap: 16px; }
         .badge{ width: 100%; justify-content: flex-start; }
@@ -125,14 +126,31 @@
         <a class="btn" href="./agents.json" target="_blank" rel="noopener noreferrer">Open agents.json</a>
       </div>
 <h2 style="margin:26px 0 10px;">Current Status</h2>
-      <div class="grid">
-        <div class="card reveal"><div class="k">Health</div><div id="health" class="v">PENDING</div><div id="healthDetail" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
-        <div class="card reveal"><div class="k">Solana Wallet</div><div id="wallet" class="v">PENDING</div><div id="walletAddr" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
-        <div class="card reveal"><div class="k">Agents</div><div id="agents" class="v">PENDING</div><div id="agentsList" class="k" style="margin-top:8px;text-transform:none;">counted from repo (agents.json)</div></div>
-        <div class="card reveal"><div class="k">Platform</div><div id="platform" class="v">Clawdbot</div><div class="k" style="margin-top:8px;text-transform:none;">automation + orchestration</div></div>
-        <div class="card"><div class="k">Constraints</div>
+      <div class="grid stats">
+        <div class="card reveal">
+          <div class="k">Health</div>
+          <div id="health" class="v">PENDING</div>
+          <div id="healthDetail" class="k" style="margin-top:8px;text-transform:none;">—</div>
+        </div>
+        <div class="card reveal">
+          <div class="k">Wallet</div>
+          <div id="wallet" class="v">PENDING</div>
+          <div id="walletAddr" class="k" style="margin-top:8px;text-transform:none;">—</div>
+        </div>
+        <div class="card reveal">
+          <div class="k">Agents</div>
+          <div id="agents" class="v">PENDING</div>
+          <div id="agentsList" class="k" style="margin-top:8px;text-transform:none;">—</div>
+        </div>
+        <div class="card reveal">
+          <div class="k">Platform</div>
+          <div id="platform" class="v">Clawdbot</div>
+          <div class="k" style="margin-top:8px;text-transform:none;">automation + orchestration</div>
+        </div>
+        <div class="card">
+          <div class="k">Constraints</div>
           <div class="v" style="font-size:14px;font-weight:600;line-height:1.5;">
-            No backend auth. Public data + source code. Sensitive actions require approval.
+            No backend auth. Public data only. Sensitive actions require approval.
           </div>
         </div>
       </div>

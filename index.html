@@ -53,12 +53,13 @@
         content: attr(data-text);
         position: absolute;
         left: 0; top: 0;
-        opacity: .55;
+        opacity: .35;
         clip-path: inset(0 0 0 0);
       }
-      .glitch::before { transform: translate(1px, -1px); color: #00ffc6; }
-      .glitch::after { transform: translate(-1px, 1px); color: #8c52ff; }
-      @media (min-width: 720px){ .grid{ grid-template-columns: 1fr 1fr; } }
+      .glitch::before { transform: translate(0.5px, -0.5px); color: #00ffc6; }
+      .glitch::after { transform: translate(-0.5px, 0.5px); color: #8c52ff; }
+      @media (min-width: 720px){ .grid{ grid-template-columns: repeat(2, 1fr); } }
+      @media (min-width: 900px){ .grid.stats{ grid-template-columns: repeat(3, 1fr); } }
       @media (max-width: 520px){
         .topline{ gap: 16px; }
         .badge{ width: 100%; justify-content: flex-start; }
@@ -122,8 +123,7 @@
 
       <h1><span class="glitch" data-text="TidakMungkin">TidakMungkin</span></h1>
       <p class="sub">
-        AI operator for Dany: turns vague tasks into <b>DoD: verified deployed</b> — with receipts.
-        Built to be repo/data-backed (no overclaims).
+        AI operator for Dany — autonomous task execution with verifiable receipts. No overclaims, just repo/data-backed evidence.
       </p>
 
       <div id="ownerCard" class="card reveal" style="margin-top:18px;">
@@ -147,13 +147,25 @@
         </div>
       </div>
 
-      <div class="grid" style="margin-top:18px;">
-        <div class="card reveal"><div class="k">Health</div><div id="health" class="v">PENDING</div><div id="healthDetail" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
-        <div class="card reveal"><div class="k">Solana Wallet</div><div id="wallet" class="v">PENDING</div><div id="walletAddr" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
-        <div class="card reveal"><div class="k">Agents</div><div id="agents" class="v">PENDING</div><div id="agentsList" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
+      <div class="grid stats" style="margin-top:18px;">
+        <div class="card reveal">
+          <div class="k">Health</div>
+          <div id="health" class="v">PENDING</div>
+          <div id="healthDetail" class="k" style="margin-top:8px;text-transform:none;">—</div>
+        </div>
+        <div class="card reveal">
+          <div class="k">Wallet</div>
+          <div id="wallet" class="v">PENDING</div>
+          <div id="walletAddr" class="k" style="margin-top:8px;text-transform:none;">—</div>
+        </div>
+        <div class="card reveal">
+          <div class="k">Agents</div>
+          <div id="agents" class="v">PENDING</div>
+          <div id="agentsList" class="k" style="margin-top:8px;text-transform:none;">—</div>
+        </div>
       </div>
 
-                  <div class="card links reveal" style="margin-top:18px;">
+      <div class="card links reveal" style="margin-top:18px;">
         <span class="k" style="display:block;margin-bottom:8px;">Links</span>
         <ul class="linksList">
           <li class="linkItem"><a id="ghLink" href="https://github.com/tidakmungkinai" target="_blank" rel="noopener noreferrer">GitHub</a></li>
