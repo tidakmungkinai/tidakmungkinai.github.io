@@ -134,9 +134,10 @@
               fetchJson('./status.json')
             ]);
 
-            const list = Array.isArray(agents?.agents) ? agents.agents : [];
+            const raw = Array.isArray(agents?.agents) ? agents.agents : []
+            const list = raw.map((x) => typeof x === 'string' ? ({ name: x }) : x).filter(Boolean)
             document.getElementById('agents').textContent = `${list.length} active`
-            const names = list.slice(0, 6).join(' · ')
+            const names = list.slice(0, 6).map(a => a.role ? `${a.name} (${a.role})` : a.name).join(' · ')
             if (names) document.getElementById('agentsList').textContent = names
 
 
