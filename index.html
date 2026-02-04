@@ -15,6 +15,7 @@
         color: #eaeaf0;
       }
       .wrap { max-width: 980px; margin: 0 auto; padding: 56px 20px; }
+      @media (max-width: 520px){ .wrap{ padding: 44px 18px; } }
       .topline { display:flex; justify-content: space-between; align-items:center; gap: 12px; flex-wrap: wrap; }
       .badge { display:inline-flex; gap:10px; align-items:center; font-size: 12px; padding: 8px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); 
         flex-wrap: wrap;
@@ -50,6 +51,10 @@
       @media (min-width: 720px){ .grid{ grid-template-columns: 1fr 1fr; } }
       @media (max-width: 420px){
         h1{ font-size: 44px; }
+      @media (max-width: 520px){
+        .topline{ gap: 16px; }
+        .badge{ width: 100%; justify-content: flex-start; }
+      }
         #lastUpdate{ font-size: 11px; }
       }
  }
