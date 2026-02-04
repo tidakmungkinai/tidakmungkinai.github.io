@@ -254,6 +254,9 @@
     // NOTE: Public-safe diagram. No secrets/tokens/hosts.
     const nGateway = node({ name: 'OPENCLAW GATEWAY', color: CYAN, pos: [0, 6, 0], size: 1.4, primary: true });
 
+    // Persona positioning (explicit)
+    const nBang = node({ name: '[BANG] LEAD', color: CYAN, pos: [0, 9.2, 0], size: 0.7 });
+
     // Left cluster: Automation + scripts
     const nCron = node({ name: 'CRON SCHEDULER', color: PURPLE, pos: [-8, 4, 0], size: 0.9 });
     const nRunner = node({ name: 'task-runner.sh', color: MUTED, pos: [-12, 2.2, 0], size: 0.75 });
@@ -296,9 +299,16 @@
     const nTelegram = node({ name: 'Telegram', color: CYAN, pos: [-2.5, -3.2, -10], size: 0.6 });
     const nWhatsApp = node({ name: 'WhatsApp', color: CYAN, pos: [-2.5, -3.2, 10], size: 0.6 });
 
+    // Cluster labels (content-only; no styling changes)
+    const labelRuntime = makeLabel('CLUSTER: RUNTIME', true); labelRuntime.position.set(-6, 7.6, 0); scene.add(labelRuntime);
+    const labelData = makeLabel('CLUSTER: DATA', false); labelData.position.set(-24, -2.2, 0); scene.add(labelData);
+    const labelQuality = makeLabel('CLUSTER: QUALITY/RAG', false); labelQuality.position.set(12, 6.6, 0); scene.add(labelQuality);
+    const labelPublish = makeLabel('CLUSTER: PUBLISH + DELIVERY', false); labelPublish.position.set(9, 1.4, 8.2); scene.add(labelPublish);
+
     // Links (data flows)
     const links = [
       // orchestration
+      link(nBang, nGateway, CYAN),
       link(nGateway, nCron, PURPLE),
       link(nCron, nRunner, MUTED),
 
