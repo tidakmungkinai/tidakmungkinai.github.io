@@ -62,6 +62,15 @@
   </style>
 </head>
 <body>
+  <!-- Import Map for Three.js module resolution -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
   <div class="hud">
     <a class="btn" href="./">← Home</a>
     <a class="btn" href="./proof.html">Proof</a>
@@ -98,8 +107,8 @@
       throw new Error('WebGL not supported');
     }
 
-    import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
-    import { OrbitControls } from 'https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
     const el = document.getElementById('canvas');
 

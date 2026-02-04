@@ -44,8 +44,6 @@
       .btn{ cursor:pointer; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); color:#eaeaf0; padding:10px 12px; border-radius:12px; font-weight:800; font-size:12px; }
       .btn:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.22); }
       .btn:active{ transform: translateY(1px); }
-        body{ padding-bottom: 84px; }
-      }
       .pending { color:#ffcc66; }
       .ok { color:#00ffc6; }
       .proof a { color:#c7a6ff; text-decoration:none; }
@@ -147,6 +145,12 @@
           <a class="btn" href="./arch.html">See arch</a>
           <a class="btn" href="./status.json" target="_blank" rel="noopener noreferrer">status.json</a>
         </div>
+      </div>
+
+      <div class="grid" style="margin-top:18px;">
+        <div class="card reveal"><div class="k">Health</div><div id="health" class="v">PENDING</div><div id="healthDetail" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
+        <div class="card reveal"><div class="k">Solana Wallet</div><div id="wallet" class="v">PENDING</div><div id="walletAddr" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
+        <div class="card reveal"><div class="k">Agents</div><div id="agents" class="v">PENDING</div><div id="agentsList" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
       </div>
 
                   <div class="card links reveal" style="margin-top:18px;">
