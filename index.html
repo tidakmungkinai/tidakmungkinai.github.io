@@ -89,6 +89,13 @@
       /* feedback pulse */
       @keyframes pulse{ 0%{ box-shadow: 0 0 0 rgba(0,255,198,0);} 40%{ box-shadow: 0 0 22px rgba(0,255,198,.25);} 100%{ box-shadow: 0 0 0 rgba(0,255,198,0);} }
       .btn.pulse{ animation: pulse .55s ease; }
+      .toastGlobal{ position:fixed; left:50%; bottom:92px; transform:translateX(-50%);
+        padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.14);
+        background: rgba(7,7,10,.82); backdrop-filter: blur(10px);
+        color:#eaeaf0; font-weight:800; font-size:12px; z-index:60;
+        box-shadow: 0 12px 40px rgba(0,0,0,.35);
+        max-width: calc(100vw - 24px);
+      }
 </style>
   </head>
   <body>
@@ -269,7 +276,7 @@
 
         // share helpers
         const toast = (txt) => {
-          const el = document.getElementById('copyToast');
+          const el = document.getElementById('toastGlobal') || document.getElementById('copyToast');
           if (!el) return;
           el.textContent = txt;
           el.style.display = 'block';
@@ -326,8 +333,8 @@
         // Mobile sticky bar
         const mTweet = document.getElementById('mCopyTweet');
         const mProof = document.getElementById('mOpenProof');
-        if (mTweet) mTweet.addEventListener('click', () => copySafe(tweet));
-        if (mProof) mProof.addEventListener('click', () => openProof());
+        if (mTweet) mTweet.addEventListener('click', () => { mTweet.classList.add('pulse'); setTimeout(()=>mTweet.classList.remove('pulse'), 600); copySafe(tweet); });
+        if (mProof) mProof.addEventListener('click', () => { mProof.classList.add('pulse'); setTimeout(()=>mProof.classList.remove('pulse'), 600); openProof(); });
 
         async function loadChangelog(){
           try {
@@ -362,6 +369,8 @@
 
       </script>
   
+            <div id="toastGlobal" class="toastGlobal" style="display:none;">Copied.</div>
+
       <div id="mobileCta" class="mobileCta" aria-label="Quick actions">
         <button id="mCopyTweet" class="btn">Copy tweet</button>
         <button id="mOpenProof" class="btn">Open proof</button>
