@@ -251,36 +251,95 @@
     }
 
     // --- Graph Layout (cleaner, grouped) ---
-    const nGateway = node({ name: 'GATEWAY', color: CYAN, pos: [0, 5, 0], size: 1.4, primary: true });
+    // NOTE: Public-safe diagram. No secrets/tokens/hosts.
+    const nGateway = node({ name: 'OPENCLAW GATEWAY', color: CYAN, pos: [0, 6, 0], size: 1.4, primary: true });
 
-    // Left cluster: Automation
-    const nCron = node({ name: 'CRON', color: PURPLE, pos: [-7, 3, 0], size: 0.9 });
-    const nRunner = node({ name: 'RUNNER', color: MUTED, pos: [-11, 1, 0], size: 0.7 });
-    const nCermat = node({ name: 'CERMAT', color: CYAN, pos: [-14, -1, -2], size: 0.65 });
-    const nHandal = node({ name: 'HANDAL', color: CYAN, pos: [-14, -1, 2], size: 0.65 });
+    // Left cluster: Automation + scripts
+    const nCron = node({ name: 'CRON SCHEDULER', color: PURPLE, pos: [-8, 4, 0], size: 0.9 });
+    const nRunner = node({ name: 'task-runner.sh', color: MUTED, pos: [-12, 2.2, 0], size: 0.75 });
 
-    // Right cluster: Memory/RAG
-    const nQmd = node({ name: 'QMD', color: CYAN, pos: [8, 3, -3], size: 0.8 });
-    const nTitan = node({ name: 'TITAN', color: PURPLE, pos: [8, 3, 3], size: 0.8 });
+    const nCermat = node({ name: '[CERMAT] WATCHERS', color: CYAN, pos: [-16, 0.5, -3], size: 0.7 });
+    const nHandal = node({ name: '[HANDAL] RADAR', color: CYAN, pos: [-16, 0.5, 3], size: 0.7 });
 
-    // Bottom: Output
-    const nStatus = node({ name: 'STATUS', color: MUTED, pos: [3, 0, 0], size: 0.7 });
-    const nGhPages = node({ name: 'DEPLOY', color: CYAN, pos: [10, -1, 0], size: 0.75 });
+    // Watchers (file-level)
+    const nZDLT = node({ name: 'zdlt-watch.mjs', color: CYAN, pos: [-21, -1.8, -5], size: 0.55 });
+    const nBTC = node({ name: 'dca-watch (BTC)', color: CYAN, pos: [-21, -1.8, -2.3], size: 0.55 });
+    const nXAUT = node({ name: 'dca-watch (XAUT)', color: CYAN, pos: [-21, -1.8, 0.4], size: 0.55 });
+    const nGate = node({ name: 'handal-radar-gate.mjs', color: MUTED, pos: [-21, -1.8, 3.2], size: 0.55 });
+    const nXWatch = node({ name: 'watch-molopaco-x.sh', color: MUTED, pos: [-21, -1.8, 5.6], size: 0.55 });
+
+    // Data sources
+    const nDex = node({ name: 'DexScreener (liq/vol)', color: 0xffcc66, pos: [-26, -4.8, -6], size: 0.52 });
+    const nCG = node({ name: 'CoinGecko (series/TA)', color: 0xffcc66, pos: [-26, -4.8, -1.5], size: 0.52 });
+    const nX = node({ name: 'X (social signals)', color: 0xffcc66, pos: [-26, -4.8, 5.2], size: 0.52 });
+
+    // Right cluster: RAG + Quality gates
+    const nPolicy = node({ name: 'POLICY_RAG.md', color: PURPLE, pos: [8, 5, -6], size: 0.7 });
+    const nValidate = node({ name: 'rag-validate', color: PURPLE, pos: [8, 2.5, -6], size: 0.7 });
+
+    const nQmd = node({ name: 'QMD (workspace search)', color: CYAN, pos: [10, 4, -2.2], size: 0.8 });
+    const nPack = node({ name: 'rag-pack.sh', color: MUTED, pos: [14, 2.2, -2.2], size: 0.6 });
+
+    const nTitan = node({ name: 'Titan Memory (MCP)', color: PURPLE, pos: [10, 4, 3.2], size: 0.8 });
+    const nCurated = node({ name: 'MEMORY.md (curated)', color: MUTED, pos: [14, 2.2, 3.2], size: 0.6 });
+
+    // Operations
+    const nHeartbeat = node({ name: 'HEARTBEAT.md', color: MUTED, pos: [0, 1.5, 9], size: 0.65 });
+
+    // Publishing / proof
+    const nStatus = node({ name: 'status.json', color: MUTED, pos: [4, 0, 0], size: 0.7 });
+    const nProof = node({ name: 'proof.html', color: MUTED, pos: [7, -2, -1.8], size: 0.65 });
+    const nAgents = node({ name: 'agents.json', color: MUTED, pos: [7, -2, 1.8], size: 0.65 });
+    const nDeploy = node({ name: 'GitHub Pages', color: CYAN, pos: [12, -1, 0], size: 0.75 });
 
     // Delivery channels
-    const nTelegram = node({ name: 'TG', color: CYAN, pos: [-3, -3, -8], size: 0.6 });
-    const nWhatsApp = node({ name: 'WA', color: CYAN, pos: [-3, -3, 8], size: 0.6 });
+    const nTelegram = node({ name: 'Telegram', color: CYAN, pos: [-2.5, -3.2, -10], size: 0.6 });
+    const nWhatsApp = node({ name: 'WhatsApp', color: CYAN, pos: [-2.5, -3.2, 10], size: 0.6 });
 
     // Links (data flows)
     const links = [
+      // orchestration
       link(nGateway, nCron, PURPLE),
       link(nCron, nRunner, MUTED),
+
+      // persona pipelines
       link(nRunner, nCermat, CYAN),
       link(nRunner, nHandal, CYAN),
-      link(nGateway, nQmd, CYAN),
+
+      // watcher fan-out
+      link(nCermat, nZDLT, CYAN),
+      link(nCermat, nBTC, CYAN),
+      link(nCermat, nXAUT, CYAN),
+      link(nHandal, nGate, MUTED),
+      link(nHandal, nXWatch, MUTED),
+
+      // data sources
+      link(nZDLT, nDex, 0xffcc66),
+      link(nZDLT, nCG, 0xffcc66),
+      link(nBTC, nCG, 0xffcc66),
+      link(nXAUT, nCG, 0xffcc66),
+      link(nXWatch, nX, 0xffcc66),
+
+      // quality gates + retrieval
+      link(nGateway, nPolicy, PURPLE),
+      link(nPolicy, nValidate, PURPLE),
+      link(nValidate, nQmd, CYAN),
+      link(nQmd, nPack, MUTED),
       link(nGateway, nTitan, PURPLE),
+      link(nTitan, nCurated, MUTED),
+
+      // ops
+      link(nGateway, nHeartbeat, MUTED),
+
+      // publish/proof
       link(nGateway, nStatus, MUTED),
-      link(nStatus, nGhPages, CYAN),
+      link(nStatus, nProof, MUTED),
+      link(nStatus, nAgents, MUTED),
+      link(nProof, nDeploy, CYAN),
+      link(nAgents, nDeploy, CYAN),
+      link(nStatus, nDeploy, CYAN),
+
+      // delivery
       link(nGateway, nTelegram, CYAN),
       link(nGateway, nWhatsApp, CYAN),
     ];
