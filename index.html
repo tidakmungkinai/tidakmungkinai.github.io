@@ -44,13 +44,6 @@
       .btn{ cursor:pointer; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); color:#eaeaf0; padding:10px 12px; border-radius:12px; font-weight:800; font-size:12px; }
       .btn:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.22); }
       .btn:active{ transform: translateY(1px); }
-      .mobileCta{ display:none; position:fixed; left:12px; right:12px; bottom:12px; gap:10px; z-index:50;
-        padding:10px; border-radius:16px; border:1px solid rgba(255,255,255,.14);
-        background: rgba(7,7,10,.72); backdrop-filter: blur(10px);
-      }
-      .mobileCta .btn{ flex:1; }
-      @media (max-width: 520px){
-        .mobileCta{ display:flex; }
         body{ padding-bottom: 84px; }
       }
       .pending { color:#ffcc66; }
@@ -96,7 +89,7 @@
       /* feedback pulse */
       @keyframes pulse{ 0%{ box-shadow: 0 0 0 rgba(0,255,198,0);} 40%{ box-shadow: 0 0 22px rgba(0,255,198,.25);} 100%{ box-shadow: 0 0 0 rgba(0,255,198,0);} }
       .btn.pulse{ animation: pulse .55s ease; }
-      .toastGlobal{ position:fixed; left:50%; bottom:92px; transform:translateX(-50%);
+      .toastGlobal{ position:fixed; left:50%; bottom:20px; transform:translateX(-50%);
         padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.14);
         background: rgba(7,7,10,.82); backdrop-filter: blur(10px);
         color:#eaeaf0; font-weight:800; font-size:12px; z-index:60;
@@ -337,12 +330,6 @@
         if (btnBadge) btnBadge.addEventListener('click', () => { btnBadge.classList.add('pulse'); setTimeout(()=>btnBadge.classList.remove('pulse'), 600); copySafe(badgeMd); });
         if (btnProof) btnProof.addEventListener('click', () => openProof());
 
-        // Mobile sticky bar
-        const mTweet = document.getElementById('mCopyTweet');
-        const mProof = document.getElementById('mOpenProof');
-        if (mTweet) mTweet.addEventListener('click', () => { mTweet.classList.add('pulse'); setTimeout(()=>mTweet.classList.remove('pulse'), 600); copySafe(tweet); });
-        if (mProof) mProof.addEventListener('click', () => { mProof.classList.add('pulse'); setTimeout(()=>mProof.classList.remove('pulse'), 600); openProof(); });
-
         async function loadChangelog(){
           try {
             const res = await fetch('https://api.github.com/repos/tidakmungkinai/tidakmungkinai.github.io/commits?per_page=6', { cache:'no-store' });
@@ -377,10 +364,5 @@
       </script>
   
             <div id="toastGlobal" class="toastGlobal" style="display:none;">Copied.</div>
-
-      <div id="mobileCta" class="mobileCta" aria-label="Quick actions">
-        <button id="mCopyTweet" class="btn">Copy tweet</button>
-        <button id="mOpenProof" class="btn">Open proof</button>
-      </div>
   </body>
 </html>
