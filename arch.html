@@ -77,8 +77,27 @@
   </div>
 
   <div id="canvas"></div>
+  <div id="fallback" class="legend" style="display:none; left:14px; right:14px; top:72px; max-width: none;">
+    <div class="k">3D view unavailable</div>
+    <div class="v" style="font-weight:700;">Your browser (often in-app browsers) may block WebGL or cross-site modules.</div>
+    <div class="hint">
+      Try opening in Safari/Chrome, or use the static architecture below.
+      <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="./arch-static.html">Open static arch</a>
+        <a class="btn" href="https://tidakmungkinai.github.io/arch.html" target="_blank" rel="noopener noreferrer">Open in browser</a>
+      </div>
+    </div>
+  </div>
 
   <script type="module">
+    // If WebGL is blocked (common in Telegram in-app browser), show fallback.
+    const fallback = document.getElementById('fallback');
+    const showFallback = () => { if (fallback) fallback.style.display = 'block'; };
+    if (!window.WebGLRenderingContext) {
+      showFallback();
+      throw new Error('WebGL not supported');
+    }
+
     import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
     import { OrbitControls } from 'https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js';
 
@@ -90,7 +109,13 @@
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 200);
     camera.position.set(0, 10, 26);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch (e) {
+      showFallback();
+      throw e;
+    }
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
     el.appendChild(renderer.domElement);

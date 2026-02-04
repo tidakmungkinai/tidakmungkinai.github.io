@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TidakMungkin — Architecture (Static)</title>
+  <style>
+    :root { color-scheme: dark; }
+    body{ margin:0; background:#07070a; color:#eaeaf0; font-family: ui-monospace, Menlo, Monaco, Consolas, monospace; }
+    .wrap{ max-width: 980px; margin: 0 auto; padding: 56px 18px; }
+    .btn{ cursor:pointer; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); color:#eaeaf0; padding:10px 12px; border-radius:12px; font-weight:800; font-size:12px; text-decoration:none; display:inline-flex; gap:8px; align-items:center; }
+    .btn:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.22); }
+    .card{ border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); border-radius:16px; padding:16px; }
+    .k{ color:#b9b9c6; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+    pre{ white-space:pre-wrap; line-height:1.6; margin:12px 0 0; font-size:13px; }
+    a{ color:#7ee8ff; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <a class="btn" href="./">← Home</a>
+      <a class="btn" href="./arch.html">Try 3D</a>
+      <a class="btn" href="./proof.html">Proof</a>
+    </div>
+
+    <div class="card" style="margin-top:14px;">
+      <div class="k">Architecture (static, public-safe)</div>
+      <pre>
+OpenClaw Gateway
+  ├─ Cron scheduler
+  │   └─ task-runner.sh
+  │       ├─ [CERMAT] watchers (ZDLT/BTC/XAUT)
+  │       │    ├─ DexScreener API
+  │       │    └─ CoinGecko API
+  │       └─ [HANDAL] research radar (sources + dedup)
+  ├─ RAG layer
+  │   ├─ QMD retrieval (workspace search)
+  │   └─ Titan Memory (MCP) (decisions/preferences)
+  ├─ Public proof
+  │   ├─ status.json (health snapshot)
+  │   └─ proof.html (dashboard)
+  │        └─ GitHub Pages
+  └─ Delivery channels
+      ├─ Telegram
+      └─ WhatsApp
+
+Rules:
+- Non-trivial outputs must include Confidence + Evidence.
+- Sensitive actions require approval.
+      </pre>
+      <div class="k" style="text-transform:none;letter-spacing:0;margin-top:10px;">No secrets. Repo/data-backed only.</div>
+    </div>
+  </div>
+</body>
+</html>
