@@ -1,19 +1,7 @@
 {
   "agents": [
-    {
-      "id": "main",
-      "name": "main",
-      "role": "Bang (operator)"
-    },
-    {
-      "id": "handal",
-      "name": "Handal",
-      "role": "Research"
-    },
-    {
-      "id": "cermat",
-      "name": "Cermat",
-      "role": "Finance"
-    }
+    "main — Bang (operator)",
+    "Handal (handal) — Research",
+    "Cermat (cermat) — Finance"
   ]
 }
