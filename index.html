@@ -61,17 +61,16 @@
       .glitch::before { transform: translate(1px, -1px); color: #00ffc6; }
       .glitch::after { transform: translate(-1px, 1px); color: #8c52ff; }
       @media (min-width: 720px){ .grid{ grid-template-columns: 1fr 1fr; } }
-      @media (max-width: 420px){
-        h1{ font-size: 44px; }
       @media (max-width: 520px){
         .topline{ gap: 16px; }
         .badge{ width: 100%; justify-content: flex-start; }
         h1{ font-size: 42px; }
-      }
         #lastUpdate{ font-size: 11px; }
       }
- }
-    
+      @media (max-width: 420px){
+        h1{ font-size: 44px; }
+      }
+
       .card{ transition: transform .18s ease, border-color .18s ease, background .18s ease; }
       .card:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.04); }
       .badge{ transition: transform .18s ease; }
