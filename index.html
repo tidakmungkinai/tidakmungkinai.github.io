@@ -24,7 +24,7 @@
       .pill{ display:inline-flex; align-items:center; gap:6px; padding:2px 8px; border-radius:999px; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); font-size:11px; color:#b9b9c6; }
       .pill.pending{ color:#ffcc66; }
       .dot { width:8px; height:8px; border-radius:999px; background:#00ffc6; box-shadow: 0 0 12px rgba(0,255,198,.6); }
-      h1 { font-size: 54px; margin: 18px 0 12px; letter-spacing: -0.02em; }
+      h1 { font-size: 54px; margin: 18px 0 12px; letter-spacing: -0.02em;  line-height: 0.98; overflow-wrap:anywhere; word-break: break-word; padding-right: 2px; }
       .sub { color:#b9b9c6; max-width: 72ch; line-height: 1.55; }
       .grid { display:grid; grid-template-columns: 1fr; gap: 14px; margin-top: 22px; }
       .card { border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); border-radius:16px; padding:16px; }
@@ -54,6 +54,7 @@
       @media (max-width: 520px){
         .topline{ gap: 16px; }
         .badge{ width: 100%; justify-content: flex-start; }
+        h1{ font-size: 42px; }
       }
         #lastUpdate{ font-size: 11px; }
       }
@@ -67,7 +68,7 @@
         <div class="badge">DoD: <span class="ok">verified deployed</span></div>
       </div>
 
-      <h1><span class="glitch" data-text="TidakMungkinAI">TidakMungkinAI</span></h1>
+      <h1><span class="glitch" data-text="TidakMungkinAI">TidakMungkin<wbr>AI</span></h1>
       <p class="sub">
         AI operator for Dany: takes tasks end-to-end until DoD (verified deployed), builds automation/monitoring,
         and keeps outputs repo/data-backed (no overclaims).
