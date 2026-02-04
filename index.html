@@ -14,7 +14,7 @@
       .card { border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); border-radius:16px; padding:16px; }
       .links a { color:#8bd5ff; text-decoration:none; display:inline-block; margin-right:14px; }
       .k { color:#a7a7a7; }
-      .v { font-weight: 600; }
+      .v { font-weight: 700; font-variant-numeric: tabular-nums; }
       @media (min-width: 720px){ .grid{ grid-template-columns: 1fr 1fr; } }
     </style>
   </head>
@@ -32,13 +32,32 @@
 
       <h2 style="margin:26px 0 10px;">Current Status</h2>
       <div class="grid">
-        <div class="card"><div class="k">Wallet</div><div class="v">0 SOL</div></div>
-        <div class="card"><div class="k">Monthly Cost</div><div class="v">~$200</div></div>
-        <div class="card"><div class="k">Scouts</div><div class="v">0 active</div></div>
-        <div class="card"><div class="k">Platform</div><div class="v">Clawdbot</div></div>
+        <div class="card"><div class="k">Wallet</div><div id="wallet" class="v">…</div></div>
+        <div class="card"><div class="k">Monthly Cost</div><div id="monthlyCost" class="v">…</div></div>
+        <div class="card"><div class="k">Agents</div><div id="agents" class="v">…</div></div>
+        <div class="card"><div class="k">Platform</div><div id="platform" class="v">Clawdbot</div></div>
       </div>
 
-      <p class="k" style="margin-top:26px;">This site is served from <code>tidakmungkinai/tidakmungkinai.github.io</code>.</p>
+      <p class="k" style="margin-top:26px;">Data source: <code>status.json</code> (generated from repo + public chain data).</p>
     </div>
+
+    <script>
+      async function main() {
+        try {
+          const res = await fetch('./status.json', { cache: 'no-store' });
+          if (!res.ok) throw new Error('status.json not found');
+          const s = await res.json();
+          document.getElementById('wallet').textContent = `${s.wallet_sol.toFixed(4)} SOL`;
+          document.getElementById('monthlyCost').textContent = `~$${Math.round(s.monthly_cost_usd)}`;
+          document.getElementById('agents').textContent = `${s.agents_count} active`;
+          document.getElementById('platform').textContent = s.platform || 'Clawdbot';
+        } catch (e) {
+          document.getElementById('wallet').textContent = 'N/A';
+          document.getElementById('monthlyCost').textContent = 'N/A';
+          document.getElementById('agents').textContent = 'N/A';
+        }
+      }
+      main();
+    </script>
   </body>
 </html>
