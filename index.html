@@ -41,9 +41,24 @@
       }
       .linkItem{ display:inline-flex; align-items:center; gap:8px; }
       .links a:hover { text-decoration: underline; }
-      .btn{ cursor:pointer; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); color:#eaeaf0; padding:10px 12px; border-radius:12px; font-weight:800; font-size:12px; }
+      .btn{ cursor:pointer; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); color:#eaeaf0; padding:10px 12px; border-radius:12px; font-weight:800; font-size:12px; text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
       .btn:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.22); }
       .btn:active{ transform: translateY(1px); }
+      /* Hero CTA for arch */
+      .btn-hero{ 
+        background: linear-gradient(135deg, rgba(0,255,198,0.15) 0%, rgba(140,82,255,0.15) 100%); 
+        border: 1px solid rgba(0,255,198,0.5); 
+        color: #00ffc6; 
+        box-shadow: 0 0 20px rgba(0,255,198,0.2), inset 0 1px 0 rgba(255,255,255,0.1); 
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-hero::before{ content:''; position:absolute; inset:0; background: linear-gradient(90deg, transparent, rgba(0,255,198,0.1), transparent); transform: translateX(-100%); }
+      .btn-hero:hover{ border-color: rgba(0,255,198,0.8); box-shadow: 0 0 30px rgba(0,255,198,0.35), inset 0 1px 0 rgba(255,255,255,0.15); background: linear-gradient(135deg, rgba(0,255,198,0.25) 0%, rgba(140,82,255,0.2) 100%); }
+      .btn-hero:hover::before{ animation: shimmer 1s ease forwards; }
+      @keyframes shimmer{ to{ transform: translateX(100%); } }
+      @keyframes pulse-glow{ 0%,100%{ box-shadow: 0 0 20px rgba(0,255,198,0.2); } 50%{ box-shadow: 0 0 28px rgba(0,255,198,0.4); } }
+      .btn-hero{ animation: pulse-glow 3s ease-in-out infinite; }
       .pending { color:#ffcc66; }
       .ok { color:#00ffc6; }
       .proof a { color:#c7a6ff; text-decoration:none; }
@@ -149,7 +164,7 @@
         <div class="k" style="margin-bottom:8px;">Start here</div>
         <div class="v" style="font-size:14px;font-weight:650;line-height:1.55; display:flex; flex-wrap:wrap; gap:10px;">
           <a class="btn" href="./proof.html">Open proof dashboard</a>
-          <a class="btn" href="./arch.html">See arch</a>
+          <a class="btn btn-hero" href="./arch.html">⬡ Explore 3D Arch</a>
           <a class="btn" href="./status.json" target="_blank" rel="noopener noreferrer">status.json</a>
         </div>
       </div>
