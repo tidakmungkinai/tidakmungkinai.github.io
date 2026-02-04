@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TidakMungkin — Architecture</title>
+  <style>
+    :root { color-scheme: dark; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: #07070a;
+      color: #eaeaf0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      overflow: hidden;
+    }
+    .hud {
+      position: fixed;
+      left: 14px;
+      top: 12px;
+      z-index: 10;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn{
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color:#eaeaf0;
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:800;
+      font-size:12px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .btn:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.22); }
+    .pill{ display:inline-flex; align-items:center; gap:6px; padding:2px 8px; border-radius:999px; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); font-size:11px; color:#b9b9c6; }
+    .legend {
+      position: fixed;
+      right: 14px;
+      top: 12px;
+      z-index: 10;
+      max-width: min(440px, calc(100vw - 28px));
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      padding: 12px;
+      backdrop-filter: blur(10px);
+    }
+    .k{ color:#b9b9c6; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+    .v{ font-weight: 800; margin-top: 6px; line-height: 1.45; }
+    #canvas { position: fixed; inset: 0; }
+    .hint { color:#b9b9c6; font-size: 12px; margin-top: 8px; line-height: 1.4; }
+    @media (max-width: 520px){
+      .legend{ left: 14px; right: 14px; top: auto; bottom: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hud">
+    <a class="btn" href="./">← Home</a>
+    <a class="btn" href="./proof.html">Proof</a>
+    <span class="pill">Gesture: drag rotate · pinch/scroll zoom · right-drag pan</span>
+  </div>
+
+  <div class="legend">
+    <div class="k">Architecture (public view)</div>
+    <div class="v">OpenClaw → Cron → Scripts → status.json/proof.html → Alerts</div>
+    <div class="hint">
+      This is a high-level map (no secrets). Nodes are grouped by: runtime, data sources, RAG/memory, and delivery channels.
+    </div>
+  </div>
+
+  <div id="canvas"></div>
+
+  <script type="module">
+    import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+    import { OrbitControls } from 'https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+
+    const el = document.getElementById('canvas');
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(0x07070a, 10, 55);
+
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 200);
+    camera.position.set(0, 10, 26);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+    el.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.06;
+    controls.target.set(0, 3, 0);
+
+    // lights
+    scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+    const key = new THREE.DirectionalLight(0x88ffff, 0.75);
+    key.position.set(8, 18, 10);
+    scene.add(key);
+    const rim = new THREE.DirectionalLight(0xa78bff, 0.55);
+    rim.position.set(-10, 12, -8);
+    scene.add(rim);
+
+    function makeLabel(text) {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const pad = 14;
+      ctx.font = '700 18px ui-monospace, Menlo, Monaco, Consolas, monospace';
+      const w = Math.ceil(ctx.measureText(text).width) + pad*2;
+      const h = 42;
+      canvas.width = w;
+      canvas.height = h;
+      // bg
+      ctx.fillStyle = 'rgba(7,7,10,0.70)';
+      roundRect(ctx, 0, 0, w, h, 12);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,0.14)';
+      ctx.lineWidth = 2;
+      roundRect(ctx, 1, 1, w-2, h-2, 11);
+      ctx.stroke();
+      // text
+      ctx.fillStyle = '#eaeaf0';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(text, pad, h/2);
+
+      const tex = new THREE.CanvasTexture(canvas);
+      tex.minFilter = THREE.LinearFilter;
+      const mat = new THREE.SpriteMaterial({ map: tex, transparent: true });
+      const spr = new THREE.Sprite(mat);
+      spr.scale.set(w/35, h/35, 1);
+      return spr;
+    }
+
+    function roundRect(ctx, x, y, w, h, r){
+      const rr = Math.min(r, w/2, h/2);
+      ctx.beginPath();
+      ctx.moveTo(x+rr, y);
+      ctx.arcTo(x+w, y, x+w, y+h, rr);
+      ctx.arcTo(x+w, y+h, x, y+h, rr);
+      ctx.arcTo(x, y+h, x, y, rr);
+      ctx.arcTo(x, y, x+w, y, rr);
+      ctx.closePath();
+    }
+
+    function node({ name, color=0x00ffc6, pos=[0,0,0], size=1.2 }){
+      const g = new THREE.SphereGeometry(size, 20, 16);
+      const m = new THREE.MeshStandardMaterial({
+        color,
+        emissive: color,
+        emissiveIntensity: 0.18,
+        roughness: 0.35,
+        metalness: 0.1,
+      });
+      const mesh = new THREE.Mesh(g, m);
+      mesh.position.set(...pos);
+      scene.add(mesh);
+
+      const label = makeLabel(name);
+      label.position.set(pos[0], pos[1] + size + 0.7, pos[2]);
+      scene.add(label);
+
+      return { mesh, label };
+    }
+
+    function link(a, b, color=0x7ee8ff){
+      const pts = [a.mesh.position, b.mesh.position];
+      const geom = new THREE.BufferGeometry().setFromPoints(pts);
+      const mat = new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.65 });
+      const line = new THREE.Line(geom, mat);
+      scene.add(line);
+      return line;
+    }
+
+    // --- Graph (public-safe, detailed-ish) ---
+    const nGateway = node({ name: 'OpenClaw Gateway', color: 0x00ffc6, pos: [0, 6, 0], size: 1.35 });
+
+    const nCron = node({ name: 'Cron Scheduler', color: 0x8c52ff, pos: [-6, 4, 0], size: 1.05 });
+    const nTaskRunner = node({ name: 'task-runner.sh', color: 0xb9b9c6, pos: [-10, 2, 0], size: 0.9 });
+    const nCermat = node({ name: '[CERMAT] watchers', color: 0x7ee8ff, pos: [-12, 0, -2], size: 0.95 });
+    const nHandal = node({ name: '[HANDAL] radar', color: 0x7ee8ff, pos: [-12, 0, 2], size: 0.95 });
+
+    const nDex = node({ name: 'DexScreener API', color: 0xffcc66, pos: [-16, -3, -3], size: 0.85 });
+    const nCg = node({ name: 'CoinGecko API', color: 0xffcc66, pos: [-16, -3, 3], size: 0.85 });
+
+    const nQmd = node({ name: 'QMD retrieval', color: 0x00ffc6, pos: [8, 3, -3], size: 1.0 });
+    const nTitan = node({ name: 'Titan Memory (MCP)', color: 0x8c52ff, pos: [10, 3, 3], size: 1.0 });
+
+    const nStatus = node({ name: 'status.json', color: 0xb9b9c6, pos: [4, 0, 0], size: 0.85 });
+    const nProof = node({ name: 'proof.html', color: 0xb9b9c6, pos: [6, -2, 0], size: 0.85 });
+
+    const nGhPages = node({ name: 'GitHub Pages', color: 0x7ee8ff, pos: [12, -1, 0], size: 0.95 });
+
+    const nTelegram = node({ name: 'Telegram', color: 0x00ffc6, pos: [0, -2.5, -10], size: 0.95 });
+    const nWhats = node({ name: 'WhatsApp', color: 0x00ffc6, pos: [0, -2.5, 10], size: 0.95 });
+
+    // Links
+    link(nGateway, nCron, 0x8c52ff);
+    link(nCron, nTaskRunner, 0xb9b9c6);
+    link(nTaskRunner, nCermat, 0x7ee8ff);
+    link(nTaskRunner, nHandal, 0x7ee8ff);
+
+    link(nCermat, nDex, 0xffcc66);
+    link(nCermat, nCg, 0xffcc66);
+
+    link(nGateway, nStatus, 0xb9b9c6);
+    link(nStatus, nGhPages, 0x7ee8ff);
+    link(nProof, nGhPages, 0x7ee8ff);
+    link(nStatus, nProof, 0xb9b9c6);
+
+    link(nGateway, nTelegram, 0x00ffc6);
+    link(nGateway, nWhats, 0x00ffc6);
+
+    link(nGateway, nQmd, 0x00ffc6);
+    link(nGateway, nTitan, 0x8c52ff);
+
+    // ground grid
+    const grid = new THREE.GridHelper(60, 30, 0x222233, 0x15151f);
+    grid.position.y = -5;
+    scene.add(grid);
+
+    function onResize(){
+      camera.aspect = window.innerWidth/window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+    window.addEventListener('resize', onResize);
+
+    let t = 0;
+    function animate(){
+      t += 0.006;
+      // subtle bob for life
+      nGateway.mesh.position.y = 6 + Math.sin(t)*0.15;
+      controls.update();
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+</html>
