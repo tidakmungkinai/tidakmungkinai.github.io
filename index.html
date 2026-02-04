@@ -89,25 +89,6 @@
           if (!res.ok) throw new Error(path + ' not found');
           return res.json();
         }
-
-        async function getSolBalance(address) {
-          const payload = {
-            jsonrpc: '2.0',
-            id: 1,
-            method: 'getBalance',
-            params: [address]
-          };
-          const res = await fetch('https://api.mainnet-beta.solana.com', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-          const data = await res.json();
-          const lamports = data?.result?.value;
-          if (typeof lamports !== 'number') throw new Error('invalid balance');
-          return lamports / 1e9;
-        }
-
         async function main() {
           try {
             const [agents, status] = await Promise.all([
@@ -120,10 +101,12 @@
 
             const addr = status?.wallet_address || '';
             if (addr) {
-              document.getElementById('walletAddr').textContent = addr;
-              document.getElementById('wallet').textContent = 'FETCHING…';
-              const sol = await getSolBalance(addr);
-              document.getElementById('wallet').textContent = `${sol.toFixed(4)} SOL`;
+              document.getElementById('walletAddr').textContent = addr;              const sol = status?.wallet_sol;
+              if (typeof sol === 'number') {
+                document.getElementById('wallet').textContent = `${sol.toFixed(4)} SOL`;
+              } else {
+                document.getElementById('wallet').textContent = 'PENDING';
+              }
             }
 
             const updated = status?.updated_at;

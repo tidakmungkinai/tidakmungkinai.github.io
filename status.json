@@ -4,5 +4,6 @@
   "monthly_cost_usd": 200,
   "agents_count": 1,
   "platform": "Clawdbot",
-  "updated_at": "init"
+  "updated_at": "2026-02-04T03:29:42.765Z",
+  "wallet_error": "RPC getBalance failed: 403 Forbidden"
 }
