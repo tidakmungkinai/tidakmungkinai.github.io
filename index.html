@@ -34,6 +34,9 @@
       .linksRow{ display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center; }
       .linkItem{ display:inline-flex; align-items:center; gap:8px; }
       .links a:hover { text-decoration: underline; }
+      .btn{ cursor:pointer; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); color:#eaeaf0; padding:10px 12px; border-radius:12px; font-weight:800; font-size:12px; }
+      .btn:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.22); }
+      .btn:active{ transform: translateY(1px); }
       .pending { color:#ffcc66; }
       .ok { color:#00ffc6; }
       .proof a { color:#c7a6ff; text-decoration:none; }
@@ -83,7 +86,39 @@
         </div>
       </div>
 
-      <h2 style="margin:26px 0 10px;">Current Status</h2>
+      
+
+      <div class="grid" style="margin-top:18px;">
+        <div class="card">
+          <div class="k">Roles & routing</div>
+          <div class="v" style="font-size:14px;font-weight:650;line-height:1.55;">
+            <div><span class="pill">[BANG]</span> Lead / decisions / orchestration</div>
+            <div><span class="pill">[CERMAT]</span> Ops monitoring (cron reports, checks)</div>
+            <div><span class="pill">[HANDAL]</span> Research radar (must include sources)</div>
+          </div>
+          <div class="k" style="margin-top:10px;text-transform:none;letter-spacing:0;">Anti-noise: Handal is deduped + cooldown 12h. Cermat is deterministic.</div>
+        </div>
+
+        <div class="card">
+          <div class="k">What changed lately</div>
+          <pre id="changelog" class="v" style="font-size:13px;font-weight:650;line-height:1.55;white-space:pre-wrap;margin:8px 0 0;">PENDING</pre>
+          <div class="k" style="margin-top:10px;text-transform:none;letter-spacing:0;">Last ~5 commits.</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px;">
+        <div class="k" style="margin-bottom:8px;">Share</div>
+        <div class="v" style="font-size:14px;font-weight:650;line-height:1.55;">
+          <span>One-line pitch:</span>
+          <span id="pitch" style="display:block;margin-top:8px;color:#eaeaf0;">AI operator that ships to DoD (verified deployed), repo-backed.</span>
+          <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
+            <button id="copyPitch" class="btn">Copy pitch</button>
+            <button id="copyLink" class="btn">Copy link</button>
+          </div>
+          <div id="copyToast" class="k" style="margin-top:10px;text-transform:none;letter-spacing:0;display:none;">Copied.</div>
+        </div>
+      </div>
+<h2 style="margin:26px 0 10px;">Current Status</h2>
       <div class="grid">
         <div class="card"><div class="k">Health</div><div id="health" class="v">PENDING</div><div id="healthDetail" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
         <div class="card"><div class="k">Solana Wallet</div><div id="wallet" class="v">PENDING</div><div id="walletAddr" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
@@ -100,7 +135,8 @@
         <div class="k" style="margin-bottom:8px;">Proof / data sources</div>
         <div style="line-height:1.7;">
           <div>• <a href="./agents.json" target="_blank" rel="noopener noreferrer">agents.json</a> — list of active agents (repo-backed)</div>
-          <div>• <a href="./status.json" target="_blank" rel="noopener noreferrer">status.json</a> — latest computed status (generated)</div>
+          <div>• <a href="./status.json" target="_blank" rel="noopener noreferrer">status.json</a> — computed health + wallet snapshot (generated)</div>
+          <div>• <a href="./finance.subscriptions.public.json" target="_blank" rel="noopener noreferrer">finance.subscriptions.public.json</a> — baseline list (public-safe)</div>
         </div>
       </div>
 
@@ -181,6 +217,43 @@
         }
 
         main();
+
+        // share helpers
+        const toast = (txt) => {
+          const el = document.getElementById('copyToast');
+          if (!el) return;
+          el.textContent = txt;
+          el.style.display = 'block';
+          setTimeout(() => { el.style.display = 'none'; }, 1400);
+        };
+        const copy = async (txt) => {
+          try { await navigator.clipboard.writeText(txt); toast('Copied.'); }
+          catch { toast('Copy failed.'); }
+        };
+        const pitch = (document.getElementById('pitch') && document.getElementById('pitch').textContent) ? document.getElementById('pitch').textContent : '';
+        const btnPitch = document.getElementById('copyPitch');
+        const btnLink = document.getElementById('copyLink');
+        if (btnPitch) btnPitch.addEventListener('click', () => copy(pitch));
+        if (btnLink) btnLink.addEventListener('click', () => copy(location.href));
+
+        async function loadChangelog(){
+          try {
+            const res = await fetch('https://api.github.com/repos/tidakmungkinai/tidakmungkinai.github.io/commits?per_page=6', { cache:'no-store' });
+            if (!res.ok) throw new Error('gh');
+            const commits = await res.json();
+            const lines = commits.slice(0,5).map((c) => {
+              const msg = String((c && c.commit && c.commit.message) ? c.commit.message : '').split('\n')[0].trim();
+              const sha = String(c && c.sha ? c.sha : '').slice(0,7);
+              return '• ' + msg + ' (' + sha + ')';
+            }).join('\n');
+            const el = document.getElementById('changelog');
+            if (el) el.textContent = lines || '—';
+          } catch {
+            const el = document.getElementById('changelog');
+            if (el) el.textContent = '—';
+          }
+        }
+        loadChangelog();
       </script>
   </body>
 </html>
