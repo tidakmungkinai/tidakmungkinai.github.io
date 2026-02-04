@@ -1,5 +1,8 @@
 {
   "wallet_address": "A6gXuYpNZmpcfDkT8mv4PR8JYaNtXJqQtArcL2XpVeXK",
   "wallet_sol": 0.011779,
-  "updated_at": "2026-02-04T06:10:25.538Z"
+  "updated_at": "2026-02-04T06:10:25.538Z",
+  "gateway_ok": null,
+  "agents_count_configured": null,
+  "last_sync_agents_at": null
 }

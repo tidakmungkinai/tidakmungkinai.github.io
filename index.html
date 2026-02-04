@@ -85,6 +85,7 @@
 
       <h2 style="margin:26px 0 10px;">Current Status</h2>
       <div class="grid">
+        <div class="card"><div class="k">Health</div><div id="health" class="v">PENDING</div><div id="healthDetail" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
         <div class="card"><div class="k">Solana Wallet</div><div id="wallet" class="v">PENDING</div><div id="walletAddr" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
         <div class="card"><div class="k">Agents</div><div id="agents" class="v">PENDING</div><div id="agentsList" class="k" style="margin-top:8px;text-transform:none;">counted from repo (agents.json)</div></div>
         <div class="card"><div class="k">Platform</div><div id="platform" class="v">Clawdbot</div><div class="k" style="margin-top:8px;text-transform:none;">automation + orchestration</div></div>
@@ -161,6 +162,19 @@
 
             const updated = status?.updated_at;
             if (updated) document.getElementById('lastUpdate').textContent = 'updated: ' + formatUpdatedAt(updated);
+
+            const gatewayOk = status?.gateway_ok;
+            const agentsConfigured = status?.agents_count_configured;
+            const lastSync = status?.last_sync_agents_at;
+            if (typeof gatewayOk === 'boolean') {
+              document.getElementById('health').textContent = gatewayOk ? 'OK' : 'DEGRADED';
+              const parts = [];
+              if (typeof agentsConfigured === 'number') parts.push(
+                'agents: ' + agentsConfigured
+              );
+              if (lastSync) parts.push('sync: ' + lastSync);
+              if (parts.length) document.getElementById('healthDetail').textContent = parts.join(' · ');
+            }
           } catch (e) {
             // keep PENDING
           }
