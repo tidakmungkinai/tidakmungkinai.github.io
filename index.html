@@ -101,9 +101,18 @@
         <div class="card">
           <div class="k">Roles & routing</div>
           <div class="v" style="font-size:14px;font-weight:650;line-height:1.55;">
-            <div><span class="pill">[BANG]</span> Lead / decisions / orchestration</div>
-            <div><span class="pill">[CERMAT]</span> Ops monitoring (cron reports, checks)</div>
-            <div><span class="pill">[HANDAL]</span> Research radar (must include sources)</div>
+            <div style="display:flex;align-items:center;gap:10px;margin:8px 0;">
+              <img src="./assets/avatars/bang.svg" alt="BANG" width="42" height="42" style="border-radius:14px;" />
+              <div><span class="pill">[BANG]</span> Lead / decisions / orchestration</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;margin:8px 0;">
+              <img src="./assets/avatars/cermat.svg" alt="CERMAT" width="42" height="42" style="border-radius:14px;" />
+              <div><span class="pill">[CERMAT]</span> Ops monitoring (cron reports, checks)</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;margin:8px 0;">
+              <img src="./assets/avatars/handal.svg" alt="HANDAL" width="42" height="42" style="border-radius:14px;" />
+              <div><span class="pill">[HANDAL]</span> Research radar (must include sources)</div>
+            </div>
           </div>
           <div class="k" style="margin-top:10px;text-transform:none;letter-spacing:0;">Anti-noise: Handal is deduped + cooldown 12h. Cermat is deterministic.</div>
         </div>
@@ -241,10 +250,52 @@
           catch { toast('Copy failed.'); }
         };
         const pitch = (document.getElementById('pitch') && document.getElementById('pitch').textContent) ? document.getElementById('pitch').textContent : '';
-        const btnPitch = document.getElementById('copyPitch');
-        const btnLink = document.getElementById('copyLink');
-        if (btnPitch) btnPitch.addEventListener('click', () => copy(pitch));
-        if (btnLink) btnLink.addEventListener('click', () => copy(location.href));
+
+        // Robust clipboard fallback (iOS/Safari sometimes rejects clipboard API)
+        const copyFallback = (txt) => {
+          try {
+            const ta = document.createElement('textarea');
+            ta.value = txt;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            toast('Copied.');
+          } catch {
+            toast('Copy failed.');
+          }
+        };
+        const copySafe = async (txt) => {
+          try { await navigator.clipboard.writeText(txt); toast('Copied.'); }
+          catch { copyFallback(txt); }
+        };
+
+        const btnTweet = document.getElementById('copyTweet');
+        const btnBadge = document.getElementById('copyBadge');
+        const btnProof = document.getElementById('openProof');
+
+        const baseUrl = location.href.replace(/\/$/, '');
+        const tweet = `Ship tasks to DoD: verified deployed — with receipts.\n${baseUrl}\nProof: ${baseUrl}/status.json`;
+        const badgeUrl = 'https://img.shields.io/badge/DoD-verified_deployed-00ffc6?style=for-the-badge';
+        const badgeMd = `[![DoD: verified deployed](${badgeUrl})](${baseUrl})`;
+
+        const openProof = () => {
+          // Prefer same-tab navigation on mobile (popup blockers)
+          try { location.href = './status.json'; } catch {}
+        };
+
+        if (btnTweet) btnTweet.addEventListener('click', () => copySafe(tweet));
+        if (btnBadge) btnBadge.addEventListener('click', () => copySafe(badgeMd));
+        if (btnProof) btnProof.addEventListener('click', () => openProof());
+
+        // Mobile sticky bar
+        const mTweet = document.getElementById('mCopyTweet');
+        const mProof = document.getElementById('mOpenProof');
+        if (mTweet) mTweet.addEventListener('click', () => copySafe(tweet));
+        if (mProof) mProof.addEventListener('click', () => openProof());
 
         async function loadChangelog(){
           try {
