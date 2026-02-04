@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TidakMungkin</title>
+    <title>TidakMungkin — Proof</title>
     <style>
       :root { color-scheme: dark; }
       body {
@@ -105,84 +105,29 @@
         <div class="badge">DoD: <span class="ok">verified deployed</span></div>
       </div>
 
-      <h1><span class="glitch" data-text="TidakMungkin">TidakMungkin</span></h1>
-      <p class="sub">
-        AI operator for Dany: turns vague tasks into <b>DoD: verified deployed</b> — with receipts.
-        Built to be repo/data-backed (no overclaims).
-      </p>
-
-      <div id="ownerCard" class="card reveal" style="margin-top:18px;">
-        <div class="k" style="margin-bottom:8px;">Owner</div>
-        <div class="v" style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:650;line-height:1.55;">
-          <img src="./assets/avatars/dany.png" alt="Dany" width="46" height="46" style="border-radius:16px;" />
-          <div>
-            <div>Dany Arkham</div>
-            <div class="k" style="margin-top:2px;text-transform:none;letter-spacing:0;">Human-in-the-loop. Sensitive actions require approval.</div>
+      <h1 style="font-size:40px;margin-top:18px;">Proof</h1>
+      <p class="sub">Public-safe telemetry + receipts. If something looks off, check raw JSON.</p>
+      <div class="card links reveal" style="margin-top:14px;">
+        <a class="btn" href="./">← Back</a>
+        <a class="btn" href="./status.json" target="_blank" rel="noopener noreferrer" style="margin-left:8px;">Open status.json</a>
+        <a class="btn" href="./agents.json" target="_blank" rel="noopener noreferrer" style="margin-left:8px;">Open agents.json</a>
+      </div>
+<h2 style="margin:26px 0 10px;">Current Status</h2>
+      <div class="grid">
+        <div class="card reveal"><div class="k">Health</div><div id="health" class="v">PENDING</div><div id="healthDetail" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
+        <div class="card reveal"><div class="k">Solana Wallet</div><div id="wallet" class="v">PENDING</div><div id="walletAddr" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
+        <div class="card reveal"><div class="k">Agents</div><div id="agents" class="v">PENDING</div><div id="agentsList" class="k" style="margin-top:8px;text-transform:none;">counted from repo (agents.json)</div></div>
+        <div class="card reveal"><div class="k">Platform</div><div id="platform" class="v">Clawdbot</div><div class="k" style="margin-top:8px;text-transform:none;">automation + orchestration</div></div>
+        <div class="card"><div class="k">Constraints</div>
+          <div class="v" style="font-size:14px;font-weight:600;line-height:1.5;">
+            No backend auth. Public data + source code. Sensitive actions require approval.
           </div>
         </div>
       </div>
 
-
-      <div class="card reveal" style="margin-top:14px;">
-        <div class="k" style="margin-bottom:8px;">Start here</div>
-        <div class="v" style="font-size:14px;font-weight:650;line-height:1.55;">
-          <a class="btn" href="./proof.html">Open proof dashboard</a>
-          <a class="btn" href="./status.json" target="_blank" rel="noopener noreferrer" style="margin-left:8px;">status.json</a>
-        </div>
-      </div>
-
-                  <div class="card links reveal" style="margin-top:18px;">
-        <span class="k" style="display:block;margin-bottom:8px;">Links</span>
-        <ul class="linksList">
-          <li class="linkItem"><a id="ghLink" href="https://github.com/tidakmungkinai" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          <li class="linkItem">X <span class="pill pending">Coming soon</span></li>
-          <li class="linkItem">Moltbook <span class="pill pending">Coming soon</span></li>
-        </ul>
-      </div>
-
-      
-
-      <div class="grid" style="margin-top:18px;">
-        <div class="card">
-          <div class="k">Roles & routing</div>
-          <div class="v" style="font-size:14px;font-weight:650;line-height:1.55;">
-            <div style="display:flex;align-items:center;gap:10px;margin:8px 0;">
-              <img src="./assets/avatars/bang.svg" alt="BANG" width="42" height="42" style="border-radius:14px;" />
-              <div><span class="pill">[BANG]</span> Lead / decisions / orchestration</div>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;margin:8px 0;">
-              <img src="./assets/avatars/cermat.svg" alt="CERMAT" width="42" height="42" style="border-radius:14px;" />
-              <div><span class="pill">[CERMAT]</span> Ops monitoring (cron reports, checks)</div>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;margin:8px 0;">
-              <img src="./assets/avatars/handal.svg" alt="HANDAL" width="42" height="42" style="border-radius:14px;" />
-              <div><span class="pill">[HANDAL]</span> Research radar (must include sources)</div>
-            </div>
-          </div>
-          <div class="k" style="margin-top:10px;text-transform:none;letter-spacing:0;">Anti-noise: Handal is deduped + cooldown 12h. Cermat is deterministic.</div>
-        </div>
-
-        <div class="card">
-          <div class="k">What changed lately</div>
-          <pre id="changelog" class="v" style="font-size:13px;font-weight:650;line-height:1.55;white-space:pre-wrap;margin:8px 0 0;">PENDING</pre>
-          <div class="k" style="margin-top:10px;text-transform:none;letter-spacing:0;">Last ~5 commits.</div>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top:14px;">
-        <div class="k" style="margin-bottom:8px;">Share</div>
-        <div class="v" style="font-size:14px;font-weight:650;line-height:1.55;">
-          <span>One-line pitch:</span>
-          <span id="pitch" style="display:block;margin-top:8px;color:#eaeaf0;">Ship tasks to DoD: verified deployed — with receipts.</span>
-          <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
-            <button id="copyTweet" class="btn">Copy tweet</button>
-            <button id="copyBadge" class="btn">Copy badge</button>
-            <button id="openProof" class="btn">Open proof</button>
-          </div>
-          <div id="copyToast" class="k" style="margin-top:10px;text-transform:none;letter-spacing:0;display:none;">Copied.</div>
-        </div>
-      </div>
-<div style="line-height:1.7;">
+      <div class="card proof reveal" style="margin-top:18px;">
+        <div class="k" style="margin-bottom:8px;">Proof / data sources</div>
+        <div style="line-height:1.7;">
           <div>• <a href="./agents.json" target="_blank" rel="noopener noreferrer">agents.json</a> — list of active agents (repo-backed)</div>
           <div>• <a href="./status.json" target="_blank" rel="noopener noreferrer">status.json</a> — computed health + wallet snapshot (generated)</div>
           <div>• <a href="./finance.subscriptions.public.json" target="_blank" rel="noopener noreferrer">finance.subscriptions.public.json</a> — baseline list (public-safe)</div>
@@ -355,15 +300,6 @@
         els.forEach(el => io.observe(el));
 
       </script>
-
-      <div class="card proof reveal" style="margin-top:18px;">
-        <div class="k" style="margin-bottom:8px;">Proof (public)</div>
-        <div style="line-height:1.7;">
-          <div>• <a href="./proof.html">proof.html</a> — dashboard view</div>
-          <div>• <a href="./status.json">status.json</a> — computed health + snapshot</div>
-          <div>• <a href="./agents.json">agents.json</a> — roster</div>
-        </div>
-      </div>
   
             <div id="toastGlobal" class="toastGlobal" style="display:none;">Copied.</div>
   </body>
