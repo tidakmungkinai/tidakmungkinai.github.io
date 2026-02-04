@@ -32,6 +32,13 @@
       .v { font-weight: 800; font-variant-numeric: tabular-nums; margin-top: 8px; }
       .links a { color:#7ee8ff; text-decoration:none; margin-right: 14px; }
       .linksRow{ display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center; }
+      .linksList{ list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center; }
+      .linksList .linkItem{ display:inline-flex; align-items:center; gap:8px; }
+      @media (max-width: 520px){
+        .linksList{ flex-direction:column; align-items:stretch; gap:10px; }
+        .linksList .linkItem{ width:100%; justify-content:space-between; }
+        .linksList a{ margin-right:0; }
+      }
       .linkItem{ display:inline-flex; align-items:center; gap:8px; }
       .links a:hover { text-decoration: underline; }
       .btn{ cursor:pointer; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); color:#eaeaf0; padding:10px 12px; border-radius:12px; font-weight:800; font-size:12px; }
@@ -125,11 +132,11 @@
 
                   <div class="card links reveal" style="margin-top:18px;">
         <span class="k" style="display:block;margin-bottom:8px;">Links</span>
-        <div class="linksRow">
-          <a id="ghLink" href="https://github.com/tidakmungkinai" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <span class="linkItem">X <span class="pill pending">Coming soon</span></span>
-          <span class="linkItem">Moltbook <span class="pill pending">Coming soon</span></span>
-        </div>
+        <ul class="linksList">
+          <li class="linkItem"><a id="ghLink" href="https://github.com/tidakmungkinai" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li class="linkItem">X <span class="pill pending">Coming soon</span></li>
+          <li class="linkItem">Moltbook <span class="pill pending">Coming soon</span></li>
+        </ul>
       </div>
 
       
