@@ -71,7 +71,26 @@
         #lastUpdate{ font-size: 11px; }
       }
  }
-    </style>
+    
+      .card{ transition: transform .18s ease, border-color .18s ease, background .18s ease; }
+      .card:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.04); }
+      .badge{ transition: transform .18s ease; }
+      .badge:hover{ transform: translateY(-1px); }
+      @keyframes floaty{ 0%{ transform: translateY(0px);} 50%{ transform: translateY(-4px);} 100%{ transform: translateY(0px);} }
+      .dot{ animation: floaty 3.2s ease-in-out infinite; }
+
+      /* scroll reveal */
+      .reveal{ opacity:0; transform: translateY(10px); }
+      .reveal.in{ opacity:1; transform: translateY(0); transition: opacity .45s ease, transform .45s ease; }
+
+      /* subtle bg shimmer */
+      @keyframes bgshift{ 0%{ background-position: 0% 0%, 100% 0%; } 100%{ background-position: 100% 10%, 0% 20%; } }
+      body{ background-size: 200% 200%, 200% 200%, auto; animation: bgshift 14s linear infinite; }
+
+      /* feedback pulse */
+      @keyframes pulse{ 0%{ box-shadow: 0 0 0 rgba(0,255,198,0);} 40%{ box-shadow: 0 0 22px rgba(0,255,198,.25);} 100%{ box-shadow: 0 0 0 rgba(0,255,198,0);} }
+      .btn.pulse{ animation: pulse .55s ease; }
+</style>
   </head>
   <body>
     <div class="wrap">
@@ -86,7 +105,19 @@
         and keeps outputs repo/data-backed (no overclaims).
       </p>
 
-                  <div class="card links" style="margin-top:18px;">
+      <div id="ownerCard" class="card reveal" style="margin-top:18px;">
+        <div class="k" style="margin-bottom:8px;">Owner</div>
+        <div class="v" style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:650;line-height:1.55;">
+          <img src="./assets/avatars/dany.svg" alt="Dany" width="46" height="46" style="border-radius:16px;" />
+          <div>
+            <div>Dany Arkham</div>
+            <div class="k" style="margin-top:2px;text-transform:none;letter-spacing:0;">Human-in-the-loop. Sensitive actions require approval.</div>
+          </div>
+        </div>
+      </div>
+
+
+                  <div class="card links reveal" style="margin-top:18px;">
         <span class="k" style="display:block;margin-bottom:8px;">Links</span>
         <div class="linksRow">
           <a id="ghLink" href="https://github.com/tidakmungkinai" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -139,10 +170,10 @@
       </div>
 <h2 style="margin:26px 0 10px;">Current Status</h2>
       <div class="grid">
-        <div class="card"><div class="k">Health</div><div id="health" class="v">PENDING</div><div id="healthDetail" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
-        <div class="card"><div class="k">Solana Wallet</div><div id="wallet" class="v">PENDING</div><div id="walletAddr" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
-        <div class="card"><div class="k">Agents</div><div id="agents" class="v">PENDING</div><div id="agentsList" class="k" style="margin-top:8px;text-transform:none;">counted from repo (agents.json)</div></div>
-        <div class="card"><div class="k">Platform</div><div id="platform" class="v">Clawdbot</div><div class="k" style="margin-top:8px;text-transform:none;">automation + orchestration</div></div>
+        <div class="card reveal"><div class="k">Health</div><div id="health" class="v">PENDING</div><div id="healthDetail" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
+        <div class="card reveal"><div class="k">Solana Wallet</div><div id="wallet" class="v">PENDING</div><div id="walletAddr" class="k" style="margin-top:8px;text-transform:none;">—</div></div>
+        <div class="card reveal"><div class="k">Agents</div><div id="agents" class="v">PENDING</div><div id="agentsList" class="k" style="margin-top:8px;text-transform:none;">counted from repo (agents.json)</div></div>
+        <div class="card reveal"><div class="k">Platform</div><div id="platform" class="v">Clawdbot</div><div class="k" style="margin-top:8px;text-transform:none;">automation + orchestration</div></div>
         <div class="card"><div class="k">Constraints</div>
           <div class="v" style="font-size:14px;font-weight:600;line-height:1.5;">
             No backend auth. Public data + source code. Sensitive actions require approval.
@@ -150,7 +181,7 @@
         </div>
       </div>
 
-      <div class="card proof" style="margin-top:18px;">
+      <div class="card proof reveal" style="margin-top:18px;">
         <div class="k" style="margin-bottom:8px;">Proof / data sources</div>
         <div style="line-height:1.7;">
           <div>• <a href="./agents.json" target="_blank" rel="noopener noreferrer">agents.json</a> — list of active agents (repo-backed)</div>
@@ -243,7 +274,9 @@
           if (!el) return;
           el.textContent = txt;
           el.style.display = 'block';
-          setTimeout(() => { el.style.display = 'none'; }, 1400);
+          el.style.opacity = '1';
+          setTimeout(() => { el.style.opacity = '0'; }, 1200);
+          setTimeout(() => { el.style.display = 'none'; el.style.opacity='1'; }, 1550);
         };
         const copy = async (txt) => {
           try { await navigator.clipboard.writeText(txt); toast('Copied.'); }
@@ -287,8 +320,8 @@
           try { location.href = './status.json'; } catch {}
         };
 
-        if (btnTweet) btnTweet.addEventListener('click', () => copySafe(tweet));
-        if (btnBadge) btnBadge.addEventListener('click', () => copySafe(badgeMd));
+        if (btnTweet) btnTweet.addEventListener('click', () => { btnTweet.classList.add('pulse'); setTimeout(()=>btnTweet.classList.remove('pulse'), 600); copySafe(tweet); });
+        if (btnBadge) btnBadge.addEventListener('click', () => { btnBadge.classList.add('pulse'); setTimeout(()=>btnBadge.classList.remove('pulse'), 600); copySafe(badgeMd); });
         if (btnProof) btnProof.addEventListener('click', () => openProof());
 
         // Mobile sticky bar
@@ -315,6 +348,19 @@
           }
         }
         loadChangelog();
+
+        // Scroll reveal
+        const els = Array.from(document.querySelectorAll('.reveal'));
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              io.unobserve(e.target);
+            }
+          }
+        }, { threshold: 0.08 });
+        els.forEach(el => io.observe(el));
+
       </script>
   
       <div id="mobileCta" class="mobileCta" aria-label="Quick actions">
