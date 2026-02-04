@@ -110,7 +110,14 @@
         text-shadow: 0 0 10px rgba(255,204,102,.25);
       }
       body.integrityFail{ filter: saturate(1.06) contrast(1.03); }
+      /* Lenis smooth scroll */
+      html.lenis, html.lenis body { height: auto; }
+      .lenis.lenis-smooth { scroll-behavior: auto !important; }
+      .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+      .lenis.lenis-stopped { overflow: hidden; }
+      .lenis.lenis-scrolling { pointer-events: auto; }
 </style>
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   </head>
   <body>
     <div class="wrap">
@@ -516,5 +523,11 @@
       </div>
   
             <div id="toastGlobal" class="toastGlobal" style="display:none;">Copied.</div>
+    <script>
+      // Lenis smooth scroll init
+      const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+    </script>
   </body>
 </html>
