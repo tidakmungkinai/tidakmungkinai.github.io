@@ -247,7 +247,7 @@ Accounts:
               <div><span class="pill">[HANDAL]</span> Research radar (must include sources)</div>
             </div>
             <div style="display:flex;align-items:center;gap:10px;margin:8px 0;">
-              <div style="width:42px;height:42px;border-radius:14px;border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.03);">⚡</div>
+              <img src="./assets/avatars/gesit.svg" alt="GESIT" width="42" height="42" style="border-radius:14px;" />
               <div><span class="pill">GESIT</span> Sales/CS — WhatsApp Business frontliner</div>
             </div>
           </div>
@@ -421,8 +421,10 @@ Accounts:
             if (feed) {
               feed.innerHTML = '';
               const ev = './status.json';
+              const gesit = tasks?.gesit_inbox;
               feed.appendChild(makeFeedItem({ who:'[CERMAT]', text:`Health=${gatewayOk ? 'OK' : 'DEGRADED'} · RL24h=${status?.rate_limit_hits_24h ?? 0} · staleTasks=${staleTasks.length}`, evidenceHref: ev, ts: updatedAt }));
               feed.appendChild(makeFeedItem({ who:'[HANDAL]', text:`Radar mode: sources required. Next scan is cron-driven. (No private data on web)`, evidenceHref: ev, ts: updatedAt }));
+              feed.appendChild(makeFeedItem({ who:'GESIT', text:`Inbox: ${gesit?.last_ok ? 'READY' : 'DOWN'} · WA: https://wa.me/6285190648968`, evidenceHref: ev, ts: gesit?.last_run_at || updatedAt }));
               feed.appendChild(makeFeedItem({ who:'[BANG]', text:`DoD = verified deployed. If proof breaks → integrityFail=${integrityFail ? 'true' : 'false'}.`, evidenceHref: ev, ts: updatedAt }));
             }
 
