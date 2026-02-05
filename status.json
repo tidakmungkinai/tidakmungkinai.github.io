@@ -1,10 +1,10 @@
 {
   "wallet_address": "A6gXuYpNZmpcfDkT8mv4PR8JYaNtXJqQtArcL2XpVeXK",
   "wallet_sol": 0.011779,
-  "updated_at": "2026-02-04T23:05:07.389Z",
+  "updated_at": "2026-02-05T05:05:06.133Z",
   "gateway_ok": true,
   "agents_count_configured": 3,
-  "last_sync_agents_at": "2026-02-04T23:05:07.386Z",
+  "last_sync_agents_at": "2026-02-05T05:05:06.132Z",
   "tasks": {
     "test_echo": {
       "last_run_at": "2026-02-04T11:24:28.946216Z",
@@ -14,37 +14,44 @@
       "rate_limit_hits_24h": 0
     },
     "cermat_zdlt_watch": {
-      "last_run_at": "2026-02-04T17:01:40.724437Z",
+      "last_run_at": "2026-02-05T01:02:06.370559Z",
       "last_ok": true,
-      "last_ok_at": "2026-02-04T17:01:40.724437Z",
+      "last_ok_at": "2026-02-05T01:02:06.370559Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
     "cermat_btc_watch": {
-      "last_run_at": "2026-02-04T17:10:10.472403Z",
+      "last_run_at": "2026-02-05T01:10:06.797596Z",
       "last_ok": true,
-      "last_ok_at": "2026-02-04T17:10:10.472403Z",
+      "last_ok_at": "2026-02-05T01:10:06.797596Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
     "cermat_xaut_watch": {
-      "last_run_at": "2026-02-04T17:20:05.988077Z",
+      "last_run_at": "2026-02-05T01:20:08.533029Z",
       "last_ok": true,
-      "last_ok_at": "2026-02-04T17:20:05.988077Z",
+      "last_ok_at": "2026-02-05T01:20:08.533029Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
     "sync_status_json": {
-      "last_run_at": "2026-02-04T17:05:07.229493Z",
+      "last_run_at": "2026-02-04T23:05:08.471229Z",
       "last_ok": true,
-      "last_ok_at": "2026-02-04T17:05:07.229493Z",
+      "last_ok_at": "2026-02-04T23:05:08.471229Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
     "sync_agents_json": {
-      "last_run_at": "2026-02-04T23:00:06.022086Z",
+      "last_run_at": "2026-02-05T05:01:02.580137Z",
       "last_ok": true,
-      "last_ok_at": "2026-02-04T23:00:06.022086Z",
+      "last_ok_at": "2026-02-05T05:01:02.580137Z",
+      "last_error": null,
+      "rate_limit_hits_24h": 0
+    },
+    "sync_finance_public": {
+      "last_run_at": "2026-02-05T03:10:12.257723Z",
+      "last_ok": true,
+      "last_ok_at": "2026-02-05T03:10:12.257723Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     }
