@@ -1,10 +1,43 @@
-<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ff6b6b"/>
-      <stop offset="100%" style="stop-color:#c92a2a"/>
-    </linearGradient>
-  </defs>
-  <rect width="100" height="100" rx="20" fill="url(#bg)"/>
-  <text x="50" y="65" font-family="ui-monospace,monospace" font-size="36" fill="white" text-anchor="middle" font-weight="bold">P</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="PEDAS avatar (retro 8-bit)">
+  <rect width="256" height="256" fill="#0b0b12"/>
+  <g shape-rendering="crispEdges">
+    <g transform="translate(0,0) scale(16)">
+      <rect x="1" y="1" width="14" height="14" fill="#101026"/>
+      <rect x="2" y="2" width="12" height="12" fill="#0e0e1f"/>
+
+      <!-- hair (sharp, assertive) -->
+      <rect x="4" y="3" width="8" height="5" fill="#4a3020"/>
+      <rect x="5" y="2" width="6" height="1" fill="#4a3020"/>
+      <rect x="4" y="4" width="1" height="4" fill="#4a3020"/>
+      <rect x="11" y="4" width="1" height="4" fill="#4a3020"/>
+
+      <!-- face -->
+      <rect x="5" y="4" width="6" height="5" fill="#e8c4a8"/>
+
+      <!-- eyes (intense, critical) -->
+      <rect x="6" y="6" width="1" height="1" fill="#0b0b12"/>
+      <rect x="9" y="6" width="1" height="1" fill="#0b0b12"/>
+      <!-- burning critique spark -->
+      <rect x="5" y="5" width="1" height="1" fill="#ff6b6b"/>
+      <rect x="10" y="5" width="1" height="1" fill="#ff6b6b"/>
+
+      <!-- mouth (sharp, direct) -->
+      <rect x="7" y="8" width="2" height="1" fill="#8b4444"/>
+
+      <!-- neck -->
+      <rect x="7" y="9" width="2" height="1" fill="#d4a882"/>
+
+      <!-- jacket (sharp, no-nonsense) -->
+      <rect x="4" y="10" width="8" height="5" fill="#2d1f1f"/>
+      <rect x="6" y="10" width="4" height="1" fill="#3d2a2a"/>
+      <!-- critical accent -->
+      <rect x="8" y="11" width="1" height="3" fill="#ff6b6b"/>
+
+      <!-- warning/alert pixels -->
+      <rect x="12" y="10" width="1" height="1" fill="#ffcc00"/>
+      <rect x="13" y="9" width="1" height="1" fill="#ffcc00" opacity="0.7"/>
+    </g>
+  </g>
+
+  <text x="128" y="242" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="18" fill="#eaeaf0" opacity="0.9">PEDAS</text>
 </svg>
