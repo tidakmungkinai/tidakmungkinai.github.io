@@ -1,52 +1,8 @@
 {
   "agents": [
-    {
-      "id": "bang",
-      "name": "Bang",
-      "role": "Lead Orchestrator",
-      "photo": "🎯",
-      "status": "orchestrating",
-      "description": "Orchestrates all agents, handles triage and delegation"
-    },
-    {
-      "id": "handal",
-      "name": "Handal",
-      "role": "Research & Marketing",
-      "photo": "🔍",
-      "status": "working",
-      "description": "Crypto research, X monitoring, moon pattern signals"
-    },
-    {
-      "id": "cermat",
-      "name": "Cermat",
-      "role": "Finance & Analysis",
-      "photo": "📊",
-      "status": "working",
-      "description": "Wallet analysis, risk assessment, on-chain data"
-    },
-    {
-      "id": "gesit",
-      "name": "Gesit",
-      "role": "Sales & Lead Qualification",
-      "photo": "💼",
-      "status": "working",
-      "description": "WA outreach, lead qualification, sales"
-    },
-    {
-      "id": "astutik",
-      "name": "Astutik",
-      "role": "Software Engineering",
-      "photo": "👩‍💻",
-      "status": "evaluating",
-      "description": "Code review, architecture critique, custom development"
-    },
-    {
-      "id": "pedas",
-      "name": "Pedas",
-      "role": "Criticism & Improvement",
-      "photo": "🌶️",
-      "status": "ready",
-      "description": "Agent error detection, feedback amplification, escalation"
-    }
+    "main — Lead (orchestrator)",
+    "Handal — Research",
+    "Cermat — Finance",
+    "Gesit — Sales/CS (WhatsApp Business)"
   ]
 }
