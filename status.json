@@ -1,10 +1,10 @@
 {
   "wallet_address": "A6gXuYpNZmpcfDkT8mv4PR8JYaNtXJqQtArcL2XpVeXK",
   "wallet_sol": 0.011779,
-  "updated_at": "2026-02-06T15:58:20.337Z",
+  "updated_at": "2026-02-06T16:13:42.850Z",
   "gateway_ok": true,
-  "agents_count_configured": 6,
-  "last_sync_agents_at": "2026-02-06T15:58:20.337Z",
+  "agents_count_configured": 4,
+  "last_sync_agents_at": "2026-02-06T16:13:42.850Z",
   "survival_mode": {
     "active": true,
     "target_per_agent_usd": 10,
@@ -74,16 +74,66 @@
       "after": "Orchestrate only - delegasi ke specialist"
     },
     "agent_specializations": [
-      {"agent": "bang", "responsibilities": ["Triage", "Coordinate", "Validate", "Escalate", "Report"]},
-      {"agent": "handal", "responsibilities": ["crypto research", "signal analysis", "moon pattern", "X monitoring"]},
-      {"agent": "cermat", "responsibilities": ["wallet analysis", "risk assessment", "on-chain data"]},
-      {"agent": "gesit", "responsibilities": ["lead qualification", "WA outreach", "sales"]},
-      {"agent": "astutik", "responsibilities": ["code review", "architecture critique", "engineering", "coding tasks"]},
-      {"agent": "pedas", "responsibilities": ["feedback amplification", "escalation", "improvement demand"]}
+      {
+        "agent": "bang",
+        "responsibilities": [
+          "Triage",
+          "Coordinate",
+          "Validate",
+          "Escalate",
+          "Report"
+        ]
+      },
+      {
+        "agent": "handal",
+        "responsibilities": [
+          "crypto research",
+          "signal analysis",
+          "moon pattern",
+          "X monitoring"
+        ]
+      },
+      {
+        "agent": "cermat",
+        "responsibilities": [
+          "wallet analysis",
+          "risk assessment",
+          "on-chain data"
+        ]
+      },
+      {
+        "agent": "gesit",
+        "responsibilities": [
+          "lead qualification",
+          "WA outreach",
+          "sales"
+        ]
+      },
+      {
+        "agent": "astutik",
+        "responsibilities": [
+          "code review",
+          "architecture critique",
+          "engineering",
+          "coding tasks"
+        ]
+      },
+      {
+        "agent": "pedas",
+        "responsibilities": [
+          "feedback amplification",
+          "escalation",
+          "improvement demand"
+        ]
+      }
     ],
     "example_workflow": {
       "input": "Mas Dany: Audit website Flimty",
-      "steps": ["Triage → @astutik (code review)", "X check → @handal (sentiment)", "Finance → @cermat (analysis)"],
+      "steps": [
+        "Triage → @astutik (code review)",
+        "X check → @handal (sentiment)",
+        "Finance → @cermat (analysis)"
+      ],
       "output": "Aggregated report ke Mas Dany"
     }
   },
@@ -152,9 +202,9 @@
       "rate_limit_hits_24h": 0
     },
     "gesit_inbox": {
-      "last_run_at": "2026-02-06T15:58:20.337Z",
+      "last_run_at": "2026-02-06T16:13:42.850Z",
       "last_ok": true,
-      "last_ok_at": "2026-02-06T15:58:20.337Z",
+      "last_ok_at": "2026-02-06T16:13:42.850Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     }
