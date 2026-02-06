@@ -3,7 +3,7 @@
   "wallet_sol": 0.011779,
   "updated_at": "2026-02-06T16:28:57.185Z",
   "gateway_ok": true,
-  "agents_count_configured": 4,
+  "agents_count_configured": 6,
   "last_sync_agents_at": "2026-02-06T16:28:57.185Z",
   "survival_mode": {
     "active": true,
