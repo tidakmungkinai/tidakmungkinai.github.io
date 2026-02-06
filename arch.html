@@ -261,8 +261,12 @@
     const nCron = node({ name: 'CRON SCHEDULER', color: PURPLE, pos: [-8, 4, 0], size: 0.9 });
     const nRunner = node({ name: 'task-runner.sh', color: MUTED, pos: [-12, 2.2, 0], size: 0.75 });
 
-    const nCermat = node({ name: '[CERMAT] WATCHERS', color: CYAN, pos: [-16, 0.5, -3], size: 0.7 });
-    const nHandal = node({ name: '[HANDAL] RADAR', color: CYAN, pos: [-16, 0.5, 3], size: 0.7 });
+    // Engineering & Quality cluster
+    const nAstutik = node({ name: '[ASTUTIK] ENGINEERING', color: CYAN, pos: [-16, 4, -3], size: 0.7 });
+    const nPedas = node({ name: '[PEDAS] CRITICISM', color: CYAN, pos: [-16, 4, 3], size: 0.7 });
+
+    const nCermat = node({ name: '[CERMAT] WATCHERS', color: CYAN, pos: [-16, 0.5, -6], size: 0.7 });
+    const nHandal = node({ name: '[HANDAL] RADAR', color: CYAN, pos: [-16, 0.5, 6], size: 0.7 });
 
     // Watchers (file-level)
     const nZDLT = node({ name: 'zdlt-watch.mjs', color: CYAN, pos: [-21, -1.8, -5], size: 0.55 });
@@ -315,8 +319,14 @@
       link(nCron, nRunner, MUTED),
 
       // persona pipelines
+      link(nRunner, nAstutik, CYAN),
+      link(nRunner, nPedas, CYAN),
       link(nRunner, nCermat, CYAN),
       link(nRunner, nHandal, CYAN),
+
+      // engineering + criticism fan-out
+      link(nAstutik, nPolicy, PURPLE),
+      link(nPedas, nValidate, PURPLE),
 
       // watcher fan-out
       link(nCermat, nZDLT, CYAN),
