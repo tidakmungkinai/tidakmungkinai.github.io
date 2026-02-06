@@ -3,7 +3,7 @@
   "wallet_sol": 0.011779,
   "updated_at": "2026-02-06T15:58:20.337Z",
   "gateway_ok": true,
-  "agents_count_configured": 4,
+  "agents_count_configured": 6,
   "last_sync_agents_at": "2026-02-06T15:58:20.337Z",
   "survival_mode": {
     "active": true,
@@ -58,7 +58,7 @@
     ]
   },
   "autonomous_system": {
-    "cron_jobs_active": 18,
+    "cron_jobs_active": 20,
     "daily_standup": "09:00 WIB",
     "revenue_check": "20:00 WIB",
     "features": [
@@ -67,6 +67,25 @@
       "survival-mode encoded in prompts",
       "daily accountability reporting"
     ]
+  },
+  "orchestration_model": {
+    "paradigm_shift": {
+      "before": "Coding langsung",
+      "after": "Orchestrate only - delegasi ke specialist"
+    },
+    "agent_specializations": [
+      {"agent": "bang", "responsibilities": ["Triage", "Coordinate", "Validate", "Escalate", "Report"]},
+      {"agent": "handal", "responsibilities": ["crypto research", "signal analysis", "moon pattern", "X monitoring"]},
+      {"agent": "cermat", "responsibilities": ["wallet analysis", "risk assessment", "on-chain data"]},
+      {"agent": "gesit", "responsibilities": ["lead qualification", "WA outreach", "sales"]},
+      {"agent": "astutik", "responsibilities": ["code review", "architecture critique", "engineering", "coding tasks"]},
+      {"agent": "pedas", "responsibilities": ["feedback amplification", "escalation", "improvement demand"]}
+    ],
+    "example_workflow": {
+      "input": "Mas Dany: Audit website Flimty",
+      "steps": ["Triage → @astutik (code review)", "X check → @handal (sentiment)", "Finance → @cermat (analysis)"],
+      "output": "Aggregated report ke Mas Dany"
+    }
   },
   "revenue_streams": {
     "active": [
