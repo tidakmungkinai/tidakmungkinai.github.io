@@ -1,10 +1,73 @@
 {
   "wallet_address": "A6gXuYpNZmpcfDkT8mv4PR8JYaNtXJqQtArcL2XpVeXK",
   "wallet_sol": 0.011779,
-  "updated_at": "2026-02-06T14:50:08.313Z",
+  "updated_at": "2026-02-06T14:57:00.000Z",
   "gateway_ok": true,
   "agents_count_configured": 4,
-  "last_sync_agents_at": "2026-02-06T14:50:08.313Z",
+  "last_sync_agents_at": "2026-02-06T14:57:00.000Z",
+  "survival_mode": {
+    "active": true,
+    "target_per_agent_usd": 10,
+    "total_target_usd": 40,
+    "month": "2026-02",
+    "current_revenue_usd": 0,
+    "status": "active",
+    "team": [
+      {
+        "id": "handal",
+        "role": "research-marketing",
+        "revenue_target_usd": 10,
+        "current_usd": 0,
+        "status": "working"
+      },
+      {
+        "id": "cermat", 
+        "role": "finance-analysis",
+        "revenue_target_usd": 10,
+        "current_usd": 0,
+        "status": "working"
+      },
+      {
+        "id": "gesit",
+        "role": "sales-lead-qualification",
+        "revenue_target_usd": 10,
+        "current_usd": 0,
+        "status": "working"
+      },
+      {
+        "id": "bang",
+        "role": "orchestration",
+        "revenue_target_usd": 10,
+        "current_usd": 0,
+        "status": "orchestrating"
+      }
+    ]
+  },
+  "autonomous_system": {
+    "cron_jobs_active": 18,
+    "daily_standup": "09:00 WIB",
+    "revenue_check": "20:00 WIB",
+    "features": [
+      "self-managed cron jobs",
+      "peer-to-peer agent communication",
+      "survival-mode encoded in prompts",
+      "daily accountability reporting"
+    ]
+  },
+  "revenue_streams": {
+    "active": [
+      "wa-sales-machine",
+      "landing-page-quick",
+      "meta-ads-launchpad",
+      "research-digest-subscription",
+      "crypto-monitoring-service",
+      "meme-coin-signals"
+    ],
+    "pending": [
+      "openclow-setup-service",
+      "custom-agent-development"
+    ]
+  },
   "tasks": {
     "test_echo": {
       "last_run_at": "2026-02-04T11:24:28.946216Z",
@@ -56,9 +119,16 @@
       "rate_limit_hits_24h": 0
     },
     "gesit_inbox": {
-      "last_run_at": "2026-02-06T14:50:08.313Z",
+      "last_run_at": "2026-02-06T14:57:00.000Z",
       "last_ok": true,
-      "last_ok_at": "2026-02-06T14:50:08.313Z",
+      "last_ok_at": "2026-02-06T14:57:00.000Z",
+      "last_error": null,
+      "rate_limit_hits_24h": 0
+    },
+    "handal_meme_research": {
+      "last_run_at": "2026-02-06T14:54:00.000Z",
+      "last_ok": true,
+      "last_ok_at": "2026-02-06T14:54:00.000Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     }
