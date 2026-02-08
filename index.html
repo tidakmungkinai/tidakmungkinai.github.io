@@ -159,6 +159,21 @@
         box-shadow: 0 0 15px rgba(140, 82, 255, 0.15);
       }
 
+      /* Card variant for products with buttons */
+      .card-product {
+        gap: 24px; /* Force minimum spacing between content and button */
+      }
+
+      /* Price tag styling */
+      .price {
+        display: block;
+        margin-top: 16px;
+        font-size: 16px;
+        font-weight: 700;
+        color: #00ffc6;
+        text-shadow: 0 0 10px rgba(0, 255, 198, 0.3);
+      }
+
       .badge{ transition: transform .18s ease; }
       .badge:hover{ transform: translateY(-1px); }
       @keyframes floaty{ 0%{ transform: translateY(0px);} 50%{ transform: translateY(-4px);} 100%{ transform: translateY(0px);} }
@@ -252,7 +267,7 @@
       <!-- SERVICES V2 (TRIPWIRE) -->
       <h2 class="reveal">⚡️ Quick Wins (Sprint Products)</h2>
       <div class="grid cols-3">
-        <div class="card reveal">
+        <div class="card card-product reveal">
           <div>
             <div class="k">Project</div>
             <div class="v">Landing Page Sprint</div>
@@ -261,7 +276,7 @@
           </div>
           <a class="btn btn-action" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20mau%20tanya%20Landing%20Page%20Sprint.">Order Now</a>
         </div>
-        <div class="card reveal">
+        <div class="card card-product reveal">
           <div>
             <div class="k">System</div>
             <div class="v">WA Sales Machine</div>
@@ -270,7 +285,7 @@
           </div>
           <a class="btn btn-action" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20mau%20setup%20WA%20Sales%20Machine.">Order Now</a>
         </div>
-         <div class="card reveal">
+         <div class="card card-product reveal">
           <div>
             <div class="k">Ads</div>
             <div class="v">Meta Ads Launchpad</div>
@@ -284,7 +299,7 @@
       <!-- SERVICES V1 (CORE) -->
       <h2 class="reveal">🚀 Core Growth Systems</h2>
       <div class="grid">
-        <div class="card reveal">
+        <div class="card card-product reveal">
           <div>
             <div class="k">Audit & Strategy</div>
             <div class="v">Growth Audit Sprint</div>
@@ -298,7 +313,7 @@
           </div>
           <a class="btn btn-action btn-consult" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20saya%20tertarik%20Growth%20Audit%20Sprint.">Consult First</a>
         </div>
-        <div class="card reveal">
+        <div class="card card-product reveal">
           <div>
             <div class="k">Project Build</div>
             <div class="v">Ads + Funnel Build</div>
