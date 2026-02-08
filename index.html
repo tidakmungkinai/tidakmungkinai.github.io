@@ -97,8 +97,61 @@
         h1{ font-size: 44px; }
       }
 
-      .card{ transition: transform .18s ease, border-color .18s ease, background .18s ease; }
+      /* Mobile responsive fixes */
+      @media (max-width: 520px){ 
+        .wrap{ padding: 32px 16px; }
+        h1 { font-size: 36px; } 
+        h2 { font-size: 18px; margin-top: 32px; }
+        .grid { gap: 12px; margin-top: 16px; }
+        .card { padding: 14px; }
+      }
+
+      /* Flex card for equal height alignment */
+      .card { 
+        display: flex; flex-direction: column; 
+        border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); border-radius:16px; padding:16px; position:relative; 
+        transition: transform .18s ease, border-color .18s ease, background .18s ease; 
+        height: 100%; /* Ensure it fills grid cell */
+        box-sizing: border-box;
+      }
       .card:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.04); }
+      
+      /* Push button to bottom */
+      .card .btn-action { margin-top: auto; }
+
+      /* Improved Action Button */
+      .btn-action {
+        width: 100%; justify-content: center;
+        background: rgba(0, 255, 198, 0.08);
+        border: 1px solid rgba(0, 255, 198, 0.3);
+        color: #00ffc6;
+        padding: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-size: 11px;
+        margin-top: 16px;
+        transition: all 0.2s ease;
+      }
+      .btn-action:hover {
+        background: rgba(0, 255, 198, 0.15);
+        border-color: rgba(0, 255, 198, 0.6);
+        box-shadow: 0 0 15px rgba(0, 255, 198, 0.15);
+        transform: translateY(-1px);
+      }
+      .btn-action:active { transform: translateY(1px); }
+
+      /* Consult Button Variant */
+      .btn-consult {
+        background: rgba(140, 82, 255, 0.08);
+        border: 1px solid rgba(140, 82, 255, 0.3);
+        color: #c7a6ff;
+      }
+      .btn-consult:hover {
+        background: rgba(140, 82, 255, 0.15);
+        border-color: rgba(140, 82, 255, 0.6);
+        box-shadow: 0 0 15px rgba(140, 82, 255, 0.15);
+      }
+
       .badge{ transition: transform .18s ease; }
       .badge:hover{ transform: translateY(-1px); }
       @keyframes floaty{ 0%{ transform: translateY(0px);} 50%{ transform: translateY(-4px);} 100%{ transform: translateY(0px);} }
@@ -193,25 +246,31 @@
       <h2 class="reveal">⚡️ Quick Wins (Sprint Products)</h2>
       <div class="grid cols-3">
         <div class="card reveal">
-          <div class="k">Project</div>
-          <div class="v">Landing Page Sprint</div>
-          <div class="desc">Sales page high-converting. Fokus jualan, loading cepat, copy "menjual".</div>
-          <span class="price">Rp 2.500k - 4.500k</span>
-          <a class="btn" style="margin-top:12px; width:100%; justify-content:center;" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20mau%20tanya%20Landing%20Page%20Sprint.">Order Now</a>
+          <div>
+            <div class="k">Project</div>
+            <div class="v">Landing Page Sprint</div>
+            <div class="desc">Sales page high-converting. Fokus jualan, loading cepat, copy "menjual".</div>
+            <span class="price">Rp 2.500k - 4.500k</span>
+          </div>
+          <a class="btn btn-action" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20mau%20tanya%20Landing%20Page%20Sprint.">Order Now</a>
         </div>
         <div class="card reveal">
-          <div class="k">System</div>
-          <div class="v">WA Sales Machine</div>
-          <div class="desc">Setup WA Business Pro. Quick replies, label management, auto-greeting.</div>
-          <span class="price">Rp 1.500k - 2.500k</span>
-          <a class="btn" style="margin-top:12px; width:100%; justify-content:center;" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20mau%20setup%20WA%20Sales%20Machine.">Order Now</a>
+          <div>
+            <div class="k">System</div>
+            <div class="v">WA Sales Machine</div>
+            <div class="desc">Setup WA Business Pro. Quick replies, label management, auto-greeting.</div>
+            <span class="price">Rp 1.500k - 2.500k</span>
+          </div>
+          <a class="btn btn-action" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20mau%20setup%20WA%20Sales%20Machine.">Order Now</a>
         </div>
          <div class="card reveal">
-          <div class="k">Ads</div>
-          <div class="v">Meta Ads Launchpad</div>
-          <div class="desc">Setup fondasi iklan FB/IG anti-boncos. Pixel, struktur campaign, audience riset.</div>
-          <span class="price">Rp 2.500k - 3.500k</span>
-          <a class="btn" style="margin-top:12px; width:100%; justify-content:center;" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20bantu%20setup%20Meta%20Ads%20Launchpad.">Order Now</a>
+          <div>
+            <div class="k">Ads</div>
+            <div class="v">Meta Ads Launchpad</div>
+            <div class="desc">Setup fondasi iklan FB/IG anti-boncos. Pixel, struktur campaign, audience riset.</div>
+            <span class="price">Rp 2.500k - 3.500k</span>
+          </div>
+          <a class="btn btn-action" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20bantu%20setup%20Meta%20Ads%20Launchpad.">Order Now</a>
         </div>
       </div>
 
@@ -219,28 +278,32 @@
       <h2 class="reveal">🚀 Core Growth Systems</h2>
       <div class="grid">
         <div class="card reveal">
-          <div class="k">Audit & Strategy</div>
-          <div class="v">Growth Audit Sprint</div>
-          <div class="desc">Deep dive 10-14 hari ke sistem marketing & operasional Anda. Temukan kebocoran profit dan quick wins.</div>
-          <ul class="deliverables">
-            <li>Audit Ads & Funnel</li>
-            <li>Tracking/Pixel Fix</li>
-            <li>Action Plan 30 Hari</li>
-          </ul>
-          <span class="price">Rp 7.5jt+</span>
-          <a class="btn" style="margin-top:16px;" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20saya%20tertarik%20Growth%20Audit%20Sprint.">Consult First</a>
+          <div>
+            <div class="k">Audit & Strategy</div>
+            <div class="v">Growth Audit Sprint</div>
+            <div class="desc">Deep dive 10-14 hari ke sistem marketing & operasional Anda. Temukan kebocoran profit dan quick wins.</div>
+            <ul class="deliverables">
+              <li>Audit Ads & Funnel</li>
+              <li>Tracking/Pixel Fix</li>
+              <li>Action Plan 30 Hari</li>
+            </ul>
+            <span class="price">Rp 7.5jt+</span>
+          </div>
+          <a class="btn btn-action btn-consult" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20saya%20tertarik%20Growth%20Audit%20Sprint.">Consult First</a>
         </div>
         <div class="card reveal">
-          <div class="k">Project Build</div>
-          <div class="v">Ads + Funnel Build</div>
-          <div class="desc">Bangun mesin akuisisi customer dari nol. Landing page, WA flow, dan struktur iklan scalable.</div>
-           <ul class="deliverables">
-            <li>High-Converting Landing Page</li>
-            <li>Full Ads Setup (Meta/Google)</li>
-            <li>Tracking Dashboard (GA4)</li>
-          </ul>
-           <span class="price">Rp 15jt+</span>
-          <a class="btn" style="margin-top:16px;" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20mau%20info%20Ads%20Funnel%20Build.">Consult First</a>
+          <div>
+            <div class="k">Project Build</div>
+            <div class="v">Ads + Funnel Build</div>
+            <div class="desc">Bangun mesin akuisisi customer dari nol. Landing page, WA flow, dan struktur iklan scalable.</div>
+             <ul class="deliverables">
+              <li>High-Converting Landing Page</li>
+              <li>Full Ads Setup (Meta/Google)</li>
+              <li>Tracking Dashboard (GA4)</li>
+            </ul>
+             <span class="price">Rp 15jt+</span>
+          </div>
+          <a class="btn btn-action btn-consult" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20mau%20info%20Ads%20Funnel%20Build.">Consult First</a>
         </div>
       </div>
 
