@@ -24,7 +24,7 @@ jobs:
 
       - name: Update status.json
         env:
-          SOLANA_WALLET: A6gXuYpNZmpcfDkT8mv4PR8JYaNtXJqQtArcL2XpVeXK
+          SOLANA_WALLET: EmChJ8MeBpj7PEisJvdrSkuZEky4jeApXbVwW8VhxdCs
           SOLANA_RPC_URL: https://api.mainnet-beta.solana.com
         run: node scripts/update-status.mjs
 

@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 
-const WALLET = process.env.SOLANA_WALLET || 'A6gXuYpNZmpcfDkT8mv4PR8JYaNtXJqQtArcL2XpVeXK';
+const WALLET = process.env.SOLANA_WALLET || 'EmChJ8MeBpj7PEisJvdrSkuZEky4jeApXbVwW8VhxdCs';
 const RPC_URL = process.env.SOLANA_RPC_URL || 'https://api.mainnet-beta.solana.com';
 
 async function rpc(method, params) {
