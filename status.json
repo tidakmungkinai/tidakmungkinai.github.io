@@ -1,10 +1,10 @@
 {
   "wallet_address": "EmChJ8MeBpj7PEisJvdrSkuZEky4jeApXbVwW8VhxdCs",
   "wallet_sol": 0.037753,
-  "updated_at": "2026-03-02T18:02:36.522Z",
+  "updated_at": "2026-03-02T18:07:53.178Z",
   "gateway_ok": true,
   "agents_count_configured": 7,
-  "last_sync_agents_at": "2026-03-02T16:08:28.364Z",
+  "last_sync_agents_at": "2026-03-02T18:07:53.177Z",
   "survival_mode": {
     "active": true,
     "target_per_agent_usd": 10,
@@ -160,25 +160,25 @@
       "rate_limit_hits_24h": 0
     },
     "cermat_zdlt_watch": {
-      "last_run_at": "2026-03-02T09:05:07.860755Z",
+      "last_run_at": "2026-03-02T17:05:07.292347Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-02T09:05:07.860755Z",
+      "last_ok_at": "2026-03-02T17:05:07.292347Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
     "cermat_btc_watch": {
-      "last_run_at": "2026-03-02T09:10:03.708077Z",
+      "last_run_at": "2026-03-02T17:10:03.837815Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-02T09:10:03.708077Z",
+      "last_ok_at": "2026-03-02T17:10:03.837815Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
     "cermat_xaut_watch": {
-      "last_run_at": "2026-03-02T09:20:04.682983Z",
+      "last_run_at": "2026-03-02T17:20:04.731368Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-02T09:20:04.682983Z",
+      "last_ok_at": "2026-03-02T17:20:04.731368Z",
       "last_error": null,
-      "rate_limit_hits_24h": 3
+      "rate_limit_hits_24h": 4
     },
     "sync_status_json": {
       "last_run_at": "2026-02-05T05:05:07.482360Z",
@@ -202,13 +202,13 @@
       "rate_limit_hits_24h": 0
     },
     "gesit_inbox": {
-      "last_run_at": "2026-03-02T16:08:28.366Z",
+      "last_run_at": "2026-03-02T18:07:53.178Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-02T16:08:28.366Z",
+      "last_ok_at": "2026-03-02T18:07:53.178Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     }
   },
   "last_error": null,
-  "rate_limit_hits_24h": 3
+  "rate_limit_hits_24h": 4
 }
