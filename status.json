@@ -1,10 +1,10 @@
 {
   "wallet_address": "EmChJ8MeBpj7PEisJvdrSkuZEky4jeApXbVwW8VhxdCs",
   "wallet_sol": 0.037753,
-  "updated_at": "2026-03-01T22:53:31.194Z",
+  "updated_at": "2026-03-02T04:07:39.540Z",
   "gateway_ok": true,
-  "agents_count_configured": 6,
-  "last_sync_agents_at": "2026-02-09T16:54:15.245Z",
+  "agents_count_configured": 7,
+  "last_sync_agents_at": "2026-03-02T04:07:39.539Z",
   "survival_mode": {
     "active": true,
     "target_per_agent_usd": 10,
@@ -160,25 +160,25 @@
       "rate_limit_hits_24h": 0
     },
     "cermat_zdlt_watch": {
-      "last_run_at": "2026-02-09T09:01:57.105249Z",
+      "last_run_at": "2026-03-02T01:04:22.892371Z",
       "last_ok": true,
-      "last_ok_at": "2026-02-09T09:01:57.105249Z",
+      "last_ok_at": "2026-03-02T01:04:22.892371Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
     "cermat_btc_watch": {
-      "last_run_at": "2026-02-09T09:10:11.974235Z",
+      "last_run_at": "2026-03-02T01:10:03.213853Z",
       "last_ok": true,
-      "last_ok_at": "2026-02-09T09:10:11.974235Z",
+      "last_ok_at": "2026-03-02T01:10:03.213853Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
     "cermat_xaut_watch": {
-      "last_run_at": "2026-02-09T09:20:08.839617Z",
+      "last_run_at": "2026-03-02T01:20:03.972429Z",
       "last_ok": true,
-      "last_ok_at": "2026-02-09T09:20:08.839617Z",
+      "last_ok_at": "2026-03-02T01:20:03.972429Z",
       "last_error": null,
-      "rate_limit_hits_24h": 0
+      "rate_limit_hits_24h": 2
     },
     "sync_status_json": {
       "last_run_at": "2026-02-05T05:05:07.482360Z",
@@ -195,20 +195,20 @@
       "rate_limit_hits_24h": 0
     },
     "sync_finance_public": {
-      "last_run_at": "2026-02-07T03:10:09.818297Z",
+      "last_run_at": "2026-03-02T03:10:08.808872Z",
       "last_ok": true,
-      "last_ok_at": "2026-02-07T03:10:09.818297Z",
+      "last_ok_at": "2026-03-02T03:10:08.808872Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
     "gesit_inbox": {
-      "last_run_at": "2026-02-09T16:54:15.245Z",
+      "last_run_at": "2026-03-02T04:07:39.540Z",
       "last_ok": true,
-      "last_ok_at": "2026-02-09T16:54:15.245Z",
+      "last_ok_at": "2026-03-02T04:07:39.540Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     }
   },
   "last_error": null,
-  "rate_limit_hits_24h": 0
+  "rate_limit_hits_24h": 2
 }
