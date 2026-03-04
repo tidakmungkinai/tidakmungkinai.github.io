@@ -1,10 +1,10 @@
 {
   "wallet_address": "EmChJ8MeBpj7PEisJvdrSkuZEky4jeApXbVwW8VhxdCs",
   "wallet_sol": 0,
-  "updated_at": "2026-03-04T00:07:54.629Z",
+  "updated_at": "2026-03-04T02:07:57.250Z",
   "gateway_ok": true,
   "agents_count_configured": 7,
-  "last_sync_agents_at": "2026-03-04T00:07:54.628Z",
+  "last_sync_agents_at": "2026-03-04T02:07:57.249Z",
   "survival_mode": {
     "active": true,
     "target_per_agent_usd": 10,
@@ -160,25 +160,25 @@
       "rate_limit_hits_24h": 0
     },
     "cermat_zdlt_watch": {
-      "last_run_at": "2026-03-03T17:04:16.864257Z",
+      "last_run_at": "2026-03-04T01:12:51.980128Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-03T17:04:16.864257Z",
+      "last_ok_at": "2026-03-04T01:12:51.980128Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
     "cermat_btc_watch": {
-      "last_run_at": "2026-03-03T17:10:03.849621Z",
+      "last_run_at": "2026-03-04T01:13:08.747907Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-03T17:10:03.849621Z",
+      "last_ok_at": "2026-03-04T01:13:08.747907Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
     "cermat_xaut_watch": {
-      "last_run_at": "2026-03-03T17:20:03.743800Z",
+      "last_run_at": "2026-03-04T01:20:07.484966Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-03T17:20:03.743800Z",
+      "last_ok_at": "2026-03-04T01:20:07.484966Z",
       "last_error": null,
-      "rate_limit_hits_24h": 2
+      "rate_limit_hits_24h": 0
     },
     "sync_status_json": {
       "last_run_at": "2026-02-05T05:05:07.482360Z",
@@ -202,13 +202,13 @@
       "rate_limit_hits_24h": 0
     },
     "gesit_inbox": {
-      "last_run_at": "2026-03-04T00:07:54.629Z",
+      "last_run_at": "2026-03-04T02:07:57.250Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-04T00:07:54.629Z",
+      "last_ok_at": "2026-03-04T02:07:57.250Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     }
   },
   "last_error": null,
-  "rate_limit_hits_24h": 2
+  "rate_limit_hits_24h": 0
 }
