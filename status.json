@@ -1,10 +1,10 @@
 {
   "wallet_address": "EmChJ8MeBpj7PEisJvdrSkuZEky4jeApXbVwW8VhxdCs",
   "wallet_sol": 0,
-  "updated_at": "2026-03-09T17:00:43.622Z",
+  "updated_at": "2026-03-09T18:08:07.566Z",
   "gateway_ok": true,
   "agents_count_configured": 7,
-  "last_sync_agents_at": "2026-03-09T16:08:11.300Z",
+  "last_sync_agents_at": "2026-03-09T18:08:07.565Z",
   "survival_mode": {
     "active": true,
     "target_per_agent_usd": 10,
@@ -160,23 +160,23 @@
       "rate_limit_hits_24h": 0
     },
     "cermat_zdlt_watch": {
-      "last_run_at": "2026-03-09T01:05:17.611549Z",
+      "last_run_at": "2026-03-09T17:04:24.120664Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-09T01:05:17.611549Z",
+      "last_ok_at": "2026-03-09T17:04:24.120664Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
     "cermat_btc_watch": {
-      "last_run_at": "2026-03-09T09:10:07.387577Z",
+      "last_run_at": "2026-03-09T17:10:06.344915Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-09T09:10:07.387577Z",
+      "last_ok_at": "2026-03-09T17:10:06.344915Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
     "cermat_xaut_watch": {
-      "last_run_at": "2026-03-09T09:20:07.336127Z",
+      "last_run_at": "2026-03-09T17:20:18.357440Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-09T09:20:07.336127Z",
+      "last_ok_at": "2026-03-09T17:20:18.357440Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
@@ -202,9 +202,9 @@
       "rate_limit_hits_24h": 0
     },
     "gesit_inbox": {
-      "last_run_at": "2026-03-09T16:08:11.301Z",
+      "last_run_at": "2026-03-09T18:08:07.566Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-09T16:08:11.301Z",
+      "last_ok_at": "2026-03-09T18:08:07.566Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     }
