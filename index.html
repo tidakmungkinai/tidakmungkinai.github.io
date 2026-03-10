@@ -303,7 +303,21 @@
             margin-bottom: 20px;
         }
         
-        .card-price {
+        .card-problem, .card-solution {
+            font-size: 0.8rem;
+            margin-bottom: 6px;
+            color: var(--text-dim);
+        }
+        
+        .card-problem strong, .card-solution strong {
+            color: var(--text);
+        }
+        
+        .card-solution {
+            margin-bottom: 12px;
+        }
+        
+        .system-pricing {
             font-family: var(--font-mono);
             font-size: 1.5rem;
             color: var(--lime);
@@ -433,9 +447,9 @@
         }
         
         /* Status Dashboard */
-        .status padding: 100px 0;
--dashboard {
-                       background: var(--obsidian-light);
+        .status-dashboard {
+            padding: 100px 0;
+            background: var(--obsidian-light);
             border-top: 1px solid var(--border);
         }
         
@@ -499,6 +513,83 @@
         .status-dot.inactive {
             background: #ff4444;
             box-shadow: 0 0 10px #ff4444;
+        }
+        
+        /* Architecture Section */
+        .architecture {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            background: var(--obsidian-light);
+        }
+        
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 32px;
+        }
+        
+        .agent-card {
+            background: var(--obsidian);
+            border: 1px solid var(--border);
+            padding: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .agent-card .agent-name {
+            font-family: var(--font-mono);
+            color: var(--lime);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .agent-card .agent-binding {
+            color: var(--text-dim);
+            font-size: 0.75rem;
+        }
+        
+        .agent-card .agent-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            font-size: 0.7rem;
+        }
+        
+        .agent-card .agent-status .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--lime);
+        }
+        
+        /* Head of Agency */
+        .head-of-agency {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        
+        .head-of-agency h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+        
+        .head-of-agency .subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+        
+        .head-of-agency .human-note {
+            margin-top: 16px;
+            padding: 12px 24px;
+            background: var(--lime-glow);
+            border: 1px solid var(--lime);
+            display: inline-block;
+            font-size: 0.8rem;
+            color: var(--lime);
         }
         
         /* Footer */
@@ -571,36 +662,46 @@
                 <div class="card">
                     <div class="card-icon">🛠️</div>
                     <h3 class="card-title">Landing Page Sprint</h3>
+                    <p class="card-problem"><strong>Problem:</strong> Website lambat, conversion rendah, bounce rate tinggi</p>
+                    <p class="card-solution"><strong>Solution:</strong> Landing page optimized dalam 7 hari dengan A/B testing</p>
                     <p class="card-desc">Landing page yang konversi dalam 7 hari. Include copy, design, & setup.</p>
-                    <div class="card-price">Rp2.5JT <span>/project</span></div>
+                    <div class="card-price">Rp 2.500.000 - Rp 4.500.000 <span>/project</span></div>
                 </div>
                 
                 <div class="card">
                     <div class="card-icon">💬</div>
                     <h3 class="card-title">WA Sales Machine</h3>
+                    <p class="card-problem"><strong>Problem:</strong> Bolak-balik jawab pertanyaan sama, فرص hilang karena tidak sempat reply</p>
+                    <p class="card-solution"><strong>Solution:</strong> Auto-reply AI + broadcast + lead qualification otomatis</p>
                     <p class="card-desc">Auto-reply, broadcast, & lead qualification pakai AI. Tanpa buka HP 24/7.</p>
-                    <div class="card-price">Rp1.5JT <span>/bulan</span></div>
+                    <div class="card-price">Rp 1.000.000 - Rp 2.500.000 <span>/bulan</span></div>
                 </div>
                 
                 <div class="card">
                     <div class="card-icon">📱</div>
                     <h3 class="card-title">Meta Ads Launchpad</h3>
+                    <p class="card-problem"><strong>Problem:</strong> Ads makan budget tapi tidak ada sales, targeting tidak tepat</p>
+                    <p class="card-solution"><strong>Solution:</strong> Campaign setup + creative + targeting expert dalam 48 jam</p>
                     <p class="card-desc">Campaign setup + creative + targeting. Langsung jalan dalam 48 jam.</p>
-                    <div class="card-price">Rp3JT <span>/bulan</span></div>
+                    <div class="card-price">Rp 2.500.000 - Rp 5.000.000 <span>/bulan</span></div>
                 </div>
                 
                 <div class="card">
                     <div class="card-icon">📍</div>
                     <h3 class="card-title">Google Business Dominator</h3>
+                    <p class="card-problem"><strong>Problem:</strong> GBP berantakan, review negatif tidak dikelola, tidak terlihat di map</p>
+                    <p class="card-solution"><strong>Solution:</strong> Optimasi GBP lengkap + review management + posting terjadwal</p>
                     <p class="card-desc">Optimasi GBP lengkap + review management + posting terjadwal.</p>
-                    <div class="card-price">Rp800RB <span>/bulan</span></div>
+                    <div class="card-price">Rp 500.000 - Rp 1.200.000 <span>/bulan</span></div>
                 </div>
                 
                 <div class="card">
                     <div class="card-icon">📊</div>
                     <h3 class="card-title">Tracking & Analytics</h3>
+                    <p class="card-problem"><strong>Problem:</strong> Tidak tahu dari mana customer datang, tidak ada data untuk optimasi</p>
+                    <p class="card-solution"><strong>Solution:</strong> Setup GA4, GTM, Meta Pixel, & conversion API lengkap</p>
                     <p class="card-desc">Setup GA4, GTM, Meta Pixel, & conversion API. Data elo, keputusan elo.</p>
-                    <div class="card-price">Rp1JT <span>/setup</span></div>
+                    <div class="card-price">Rp 750.000 - Rp 1.500.000 <span>/setup</span></div>
                 </div>
             </div>
         </div>
@@ -626,6 +727,7 @@
                             <li>Growth opportunity report</li>
                             <li>Priority roadmap</li>
                         </ul>
+                        <div class="system-pricing">Rp 7,5–25 JT <span>(one-off)</span></div>
                     </div>
                 </div>
                 
@@ -640,13 +742,14 @@
                             <li>CRM integration</li>
                             <li>A/B testing framework</li>
                         </ul>
+                        <div class="system-pricing">Rp 15–60 JT <span>(proyek)</span></div>
                     </div>
                 </div>
                 
                 <div class="system-card">
                     <div class="system-number">03</div>
                     <div class="system-content">
-                        <h3>Automation Retainer</h3>
+                        <h3>Growth + Automation Retainer</h3>
                         <p>Maintenance & improvement terus-menerus. Sistem elo semakin baik, bukan semakin rusak.</p>
                         <ul class="system-features">
                             <li>Weekly optimization</li>
@@ -654,6 +757,7 @@
                             <li>Issue detection & fix</li>
                             <li>Monthly reporting</li>
                         </ul>
+                        <div class="system-pricing">Rp 10–45 JT <span>/bulan</span></div>
                     </div>
                 </div>
             </div>
@@ -678,7 +782,7 @@
                 <div class="team-card">
                     <div class="team-avatar">G</div>
                     <div class="team-name">Gesit</div>
-                    <div class="team-role">Sales</div>
+                    <div class="team-role">Sales & CS</div>
                 </div>
                 
                 <div class="team-card">
@@ -752,6 +856,61 @@
                         <span>All agents online</span>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Architecture / Agent Bindings -->
+    <section class="architecture" id="architecture">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Infrastructure</div>
+                <h2 class="section-title">Agent Architecture</h2>
+                <p style="color: var(--text-dim); margin-top: 16px;">Last sync: 2026-02-09 14:32 WIB • Agent bindings active</p>
+            </div>
+            
+            <div class="architecture-grid">
+                <div class="agent-card">
+                    <div class="agent-name">@bang</div>
+                    <div class="agent-binding">binding: orchestrator.main</div>
+                    <div class="agent-status"><span class="dot"></span> active</div>
+                </div>
+                
+                <div class="agent-card">
+                    <div class="agent-name">@gesit</div>
+                    <div class="agent-binding">binding: sales.cs.pipeline</div>
+                    <div class="agent-status"><span class="dot"></span> active</div>
+                </div>
+                
+                <div class="agent-card">
+                    <div class="agent-name">@handal</div>
+                    <div class="agent-binding">binding: research.analytics</div>
+                    <div class="agent-status"><span class="dot"></span> active</div>
+                </div>
+                
+                <div class="agent-card">
+                    <div class="agent-name">@cermat</div>
+                    <div class="agent-binding">binding: finance.ledger</div>
+                    <div class="agent-status"><span class="dot"></span> active</div>
+                </div>
+                
+                <div class="agent-card">
+                    <div class="agent-name">@astutik</div>
+                    <div class="agent-binding">binding: engineering.devops</div>
+                    <div class="agent-status"><span class="dot"></span> active</div>
+                </div>
+                
+                <div class="agent-card">
+                    <div class="agent-name">@pedas</div>
+                    <div class="agent-binding">binding: qc.testing</div>
+                    <div class="agent-status"><span class="dot"></span> active</div>
+                </div>
+            </div>
+            
+            <div class="head-of-agency">
+                <h3>Dany Arkham</h3>
+                <p class="subtitle">Head of Agency</p>
+                <div class="human-note">Human-in-the-loop. Sensitive actions require approval.</div>
             </div>
         </div>
     </section>
