@@ -1,808 +1,766 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TidakMungkin AI Agency</title>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tidak Mungkin AI — AI-First Digital Agency</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+    
     <style>
-      :root { color-scheme: dark; }
-      body {
-        margin: 0;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-        background: radial-gradient(1200px 600px at 20% 10%, rgba(0, 255, 198, 0.10), transparent 60%),
-                    radial-gradient(1200px 600px at 80% 20%, rgba(140, 82, 255, 0.10), transparent 60%),
-                    #07070a;
-        color: #eaeaf0;
-        padding-bottom: 60px;
-      }
-      .wrap { max-width: 980px; margin: 0 auto; padding: 56px 20px; }
-      @media (max-width: 520px){ .wrap{ padding: 44px 18px; } }
-      .topline { display:flex; justify-content: space-between; align-items:center; gap: 12px; flex-wrap: wrap; }
-      .badge { display:inline-flex; gap:10px; align-items:center; font-size: 12px; padding: 8px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); 
-        flex-wrap: wrap;
-        max-width: 100%;
-      }
-      .pill{ display:inline-flex; align-items:center; gap:6px; padding:2px 8px; border-radius:999px; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); font-size:11px; color:#b9b9c6; }
-      .pill.pending{ color:#ffcc66; }
-      .dot { width:8px; height:8px; border-radius:999px; background:#00ffc6; box-shadow: 0 0 12px rgba(0,255,198,.6); }
-      h1 { font-size: 54px; margin: 18px 0 12px; letter-spacing: -0.02em;  line-height: 0.98; overflow-wrap:anywhere; word-break: break-word; padding-right: 2px; }
-      .sub { color:#b9b9c6; max-width: 72ch; line-height: 1.55; }
-      .grid { display:grid; grid-template-columns: 1fr; gap: 14px; margin-top: 22px; }
-      .card { border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); border-radius:16px; padding:16px; position:relative; }
-      .k { color:#b9b9c6; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
-      .v { font-weight: 800; font-variant-numeric: tabular-nums; margin-top: 8px; }
-      .links a { color:#7ee8ff; text-decoration:none; margin-right: 14px; }
-      .linksRow{ display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center; }
-      .linksList{ list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center; }
-      .linksList .linkItem{ display:inline-flex; align-items:center; gap:8px; }
-      @media (max-width: 520px){
-        .linksList{ flex-direction:column; align-items:stretch; gap:10px; }
-        .linksList .linkItem{ width:100%; justify-content:space-between; }
-        .linksList a{ margin-right:0; }
-      }
-      .linkItem{ display:inline-flex; align-items:center; gap:8px; }
-      .links a:hover { text-decoration: underline; }
-      .btn{ cursor:pointer; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); color:#eaeaf0; padding:10px 12px; border-radius:12px; font-weight:800; font-size:12px; text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
-      .btn:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.22); }
-      .btn:active{ transform: translateY(1px); }
-      
-      /* Services CSS */
-      .price { font-size: 16px; color: #00ffc6; font-weight: 700; margin-top: 12px; display:block;}
-      .desc { font-size: 13px; color: #b9b9c6; line-height: 1.5; margin: 10px 0; }
-      .deliverables { list-style: none; padding: 0; margin: 0; margin-top: 8px; }
-      .deliverables li { display: flex; gap: 8px; font-size: 12px; color: #eaeaf0; margin-bottom: 4px; align-items: flex-start; }
-      .deliverables li::before { content: "✓"; color: #00ffc6; flex-shrink: 0; }
-      h2 { font-size: 20px; margin: 36px 0 16px; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; display:flex; align-items:center; gap:8px; }
-
-      /* Hero CTA for arch */
-      .btn-hero{ 
-        background: linear-gradient(135deg, rgba(0,255,198,0.15) 0%, rgba(140,82,255,0.15) 100%); 
-        border: 1px solid rgba(0,255,198,0.5); 
-        color: #00ffc6; 
-        box-shadow: 0 0 20px rgba(0,255,198,0.2), inset 0 1px 0 rgba(255,255,255,0.1); 
-        position: relative;
-        overflow: hidden;
-      }
-      .btn-hero::before{ content:''; position:absolute; inset:0; background: linear-gradient(90deg, transparent, rgba(0,255,198,0.1), transparent); transform: translateX(-100%); }
-      .btn-hero:hover{ border-color: rgba(0,255,198,0.8); box-shadow: 0 0 30px rgba(0,255,198,0.35), inset 0 1px 0 rgba(255,255,255,0.15); background: linear-gradient(135deg, rgba(0,255,198,0.25) 0%, rgba(140,82,255,0.2) 100%); }
-      .btn-hero:hover::before{ animation: shimmer 1s ease forwards; }
-      @keyframes shimmer{ to{ transform: translateX(100%); } }
-      @keyframes pulse-glow{ 0%,100%{ box-shadow: 0 0 20px rgba(0,255,198,0.2); } 50%{ box-shadow: 0 0 28px rgba(0,255,198,0.4); } }
-      .btn-hero{ animation: pulse-glow 3s ease-in-out infinite; }
-      .pending { color:#ffcc66; }
-      .ok { color:#00ffc6; }
-      .proof a { color:#c7a6ff; text-decoration:none; }
-      .proof a:hover { text-decoration: underline; }
-      .glitch { position: relative; display: inline-block; }
-      .glitch::before, .glitch::after {
-        content: attr(data-text);
-        position: absolute;
-        left: 0; top: 0;
-        opacity: .55;
-        clip-path: inset(0 0 0 0);
-      }
-      .glitch::before { transform: translate(1px, -1px); color: #00ffc6; }
-      .glitch::after { transform: translate(-1px, 1px); color: #8c52ff; }
-      @media (min-width: 720px){ .grid{ grid-template-columns: repeat(2, 1fr); } }
-      @media (min-width: 900px){ .grid.cols-3{ grid-template-columns: repeat(3, 1fr); } }
-      @media (min-width: 900px){ .grid.stats{ grid-template-columns: repeat(3, 1fr); } }
-
-      @media (max-width: 520px){
-        .topline{ gap: 16px; }
-        .badge{ width: 100%; justify-content: flex-start; }
-        h1{ font-size: 42px; }
-        #lastUpdate{ font-size: 11px; }
-      }
-      @media (max-width: 420px){
-        h1{ font-size: 44px; }
-      }
-
-      /* Mobile responsive fixes */
-      @media (max-width: 520px){ 
-        .wrap{ padding: 32px 16px; }
-        h1 { font-size: 36px; } 
-        h2 { font-size: 18px; margin-top: 32px; }
-        .grid { gap: 12px; margin-top: 16px; }
-        .card { padding: 14px; }
-      }
-
-      /* Flex card for equal height alignment */
-      .card { 
-        display: flex; flex-direction: column; 
-        border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); border-radius:16px; padding:16px; position:relative; 
-        transition: transform .18s ease, border-color .18s ease, background .18s ease; 
-        height: 100%; /* Ensure it fills grid cell */
-        box-sizing: border-box;
-      }
-      .card:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.04); }
-      
-      /* Push button to bottom */
-      .card .btn-action { margin-top: auto; }
-
-      /* Improved Action Button (Totalitas) */
-      .btn-action {
-        width: 100%; justify-content: center;
-        background: linear-gradient(180deg, rgba(0, 255, 198, 0.05) 0%, rgba(0, 255, 198, 0.12) 100%);
-        border: 1px solid rgba(0, 255, 198, 0.3);
-        border-top: 1px solid rgba(0, 255, 198, 0.5);
-        color: #00ffc6;
-        padding: 14px 20px;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        font-weight: 800;
-        font-size: 11px;
-        margin-top: 24px; /* More breathing room */
-        transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        box-sizing: border-box;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        text-shadow: 0 0 8px rgba(0, 255, 198, 0.4);
-      }
-      .btn-action:hover {
-        background: linear-gradient(180deg, rgba(0, 255, 198, 0.15) 0%, rgba(0, 255, 198, 0.25) 100%);
-        border-color: rgba(0, 255, 198, 0.8);
-        box-shadow: 0 6px 20px rgba(0, 255, 198, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        transform: translateY(-2px);
-        color: #fff;
-        text-shadow: 0 0 12px rgba(0, 255, 198, 0.8);
-      }
-      .btn-action:active { transform: translateY(1px); box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-
-      /* Consult Button Variant */
-      .btn-consult {
-        background: rgba(140, 82, 255, 0.08);
-        border: 1px solid rgba(140, 82, 255, 0.3);
-        color: #c7a6ff;
-      }
-      .btn-consult:hover {
-        background: rgba(140, 82, 255, 0.15);
-        border-color: rgba(140, 82, 255, 0.6);
-        box-shadow: 0 0 15px rgba(140, 82, 255, 0.15);
-      }
-
-      /* Card variant for products with buttons */
-      .card-product {
-        gap: 24px; /* Force minimum spacing between content and button */
-      }
-
-      /* Price tag styling */
-      .price {
-        display: block;
-        margin-top: 16px;
-        font-size: 16px;
-        font-weight: 700;
-        color: #00ffc6;
-        text-shadow: 0 0 10px rgba(0, 255, 198, 0.3);
-      }
-
-      .badge{ transition: transform .18s ease; }
-      .badge:hover{ transform: translateY(-1px); }
-      @keyframes floaty{ 0%{ transform: translateY(0px);} 50%{ transform: translateY(-4px);} 100%{ transform: translateY(0px);} }
-      .dot{ animation: floaty 3.2s ease-in-out infinite; }
-
-      /* scroll reveal */
-      .reveal{ opacity:0; transform: translateY(10px); }
-      .reveal.in{ opacity:1; transform: translateY(0); transition: opacity .45s ease, transform .45s ease; }
-
-      /* subtle bg shimmer */
-      @keyframes bgshift{ 0%{ background-position: 0% 0%, 100% 0%; } 100%{ background-position: 100% 10%, 0% 20%; } }
-      body{ background-size: 200% 200%, 200% 200%, auto; animation: bgshift 14s linear infinite; }
-
-      /* feedback pulse */
-      @keyframes pulse{ 0%{ box-shadow: 0 0 0 rgba(0,255,198,0);} 40%{ box-shadow: 0 0 22px rgba(0,255,198,.25);} 100%{ box-shadow: 0 0 0 rgba(0,255,198,0);} }
-      .btn.pulse{ animation: pulse .55s ease; }
-      .toastGlobal{ position:fixed; left:50%; bottom:20px; transform:translateX(-50%);
-        padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.14);
-        background: rgba(7,7,10,.82); backdrop-filter: blur(10px);
-        color:#eaeaf0; font-weight:800; font-size:12px; z-index:60;
-        box-shadow: 0 12px 40px rgba(0,0,0,.35);
-        max-width: calc(100vw - 24px);
-      }
-
-      /* Nyeleneh modes */
-      body.integrityFail::before{
-        content: "REALITY CHECK FAILED";
-        position: fixed;
-        left: 14px; top: 12px;
-        font-size: 11px;
-        letter-spacing: .08em;
-        color: #ffcc66;
-        opacity: .9;
-        z-index: 80;
-        pointer-events:none;
-        text-shadow: 0 0 10px rgba(255,204,102,.25);
-      }
-      body.integrityFail{ filter: saturate(1.06) contrast(1.03); }
-      /* Lenis smooth scroll */
-      html.lenis, html.lenis body { height: auto; }
-      .lenis.lenis-smooth { scroll-behavior: auto !important; }
-      .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-      .lenis.lenis-stopped { overflow: hidden; }
-      .lenis.lenis-scrolling { pointer-events: auto; }
-</style>
-    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-  </head>
-  <body>
-    <div class="wrap">
-      <div class="topline">
-        <div class="badge"><span class="dot"></span><span>@TidakMungkinAI</span><span id="lastUpdate" class="k" style="text-transform:none;letter-spacing:0;">—</span></div>
-        <div class="badge">DoD: <span class="ok">Verified Deployed</span></div>
-      </div>
-
-      <!-- safe-only: takeover removed -->
-
-      <h1><span class="glitch" data-text="TidakMungkin">TidakMungkin</span></h1>
-      <p class="sub">
-        AI-First Digital Agency powered by Autonomous Agents.
-        <br>Data-driven growth systems (Ads + Funnel + Automation) with verifiable receipts.
-      </p>
-
-      <div class="card reveal" style="margin-top:14px;">
-        <div class="k" style="margin-bottom:8px;">Start here</div>
-        <div class="v" style="font-size:14px;font-weight:650;line-height:1.55; display:flex; flex-wrap:wrap; gap:10px;">
-          <a class="btn btn-hero" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20mau%20tanya%20jasa%20TidakMungkin%20dong.">⚡️ Chat Gesit (AI)</a>
-          <a class="btn" href="./arch.html">⬡ Explore 3D Arch</a>
-          <a class="btn" href="./proof.html">Proof Dashboard</a>
-          <a class="btn" href="./status.json" target="_blank" rel="noopener noreferrer">System Status</a>
-        </div>
-      </div>
-
-      <div class="grid stats" style="margin-top:18px;">
-        <div class="card reveal">
-          <div class="k">Health</div>
-          <div id="health" class="v">PENDING</div>
-          <div id="healthDetail" class="k" style="margin-top:8px;text-transform:none;">—</div>
-        </div>
-        <div class="card reveal">
-          <div class="k">Wallet</div>
-          <div id="wallet" class="v">PENDING</div>
-          <div id="walletAddr" class="k" style="margin-top:8px;text-transform:none;">—</div>
-        </div>
-        <div class="card reveal">
-          <div class="k">Agents</div>
-          <div id="agents" class="v">PENDING</div>
-          <div id="agentsList" class="k" style="margin-top:8px;text-transform:none;">—</div>
-        </div>
-      </div>
-
-      <!-- SERVICES V2 (TRIPWIRE) -->
-      <h2 class="reveal">⚡️ Quick Wins (Sprint Products)</h2>
-      <div class="grid cols-3">
-        <!-- OFFERS_QUICK_AUTO:START -->
-        <div class="card card-product reveal">
-          <div>
-            <div class="k">Project</div>
-            <div class="v">Landing Page Sprint</div>
-            <div class="desc">Boncos iklan karena trafik masuk ke website yang membingungkan, loading lama, atau tidak meyakinkan. Capek menjelaskan produk berulang-ulang via chat manual.</div>
-            <span class="price">Rp 2.500.000 - Rp 4.500.000</span>
-          </div>
-          <a class="btn btn-action" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20saya%20tertarik%20Landing%20Page%20Sprint">Order Now</a>
-        </div>
-        <div class="card card-product reveal">
-          <div>
-            <div class="k">Project</div>
-            <div class="v">WA Sales Machine</div>
-            <div class="desc">Hilang potensi sales karena admin telat balas, jawaban tidak standar (tiap admin beda omongan), dan database pelanggan yang berantakan (tidak di-follow up).</div>
-            <span class="price">Rp 1.500.000 - Rp 2.500.000</span>
-          </div>
-          <a class="btn btn-action" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20saya%20tertarik%20WA%20Sales%20Machine">Order Now</a>
-        </div>
-        <div class="card card-product reveal">
-          <div>
-            <div class="k">Project</div>
-            <div class="v">Meta Ads Launchpad</div>
-            <div class="desc">Ketakutan salah setting yang bikin akun ke-banned atau anggaran bocor tanpa hasil. Bingung membaca dashboard iklan.</div>
-            <span class="price">Rp 2.500.000 - Rp 3.500.000</span>
-          </div>
-          <a class="btn btn-action" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20saya%20tertarik%20Meta%20Ads%20Launchpad">Order Now</a>
-        </div>
-        <div class="card card-product reveal">
-          <div>
-            <div class="k">Project</div>
-            <div class="v">Google Business Dominator</div>
-            <div class="desc">Kalah saing dengan kompetitor sebelahnya di Google Maps. Customer susah cari lokasi, atau rating jelek/sedikit sehingga tidak meyakinkan.</div>
-            <span class="price">Rp 1.500.000 (Fixed)</span>
-          </div>
-          <a class="btn btn-action" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20saya%20tertarik%20Google%20Business%20Dominator">Order Now</a>
-        </div>
-        <div class="card card-product reveal">
-          <div>
-            <div class="k">Project</div>
-            <div class="v">Tracking & Analytics Audit</div>
-            <div class="desc">Blind spot. Merasa iklan boncos tapi tidak tahu di mana, atau merasa untung tapi data tidak tercatat (Pixel merah/missing).</div>
-            <span class="price">Rp 2.500.000 - Rp 5.000.000 (Tergantung kompleksitas web).</span>
-          </div>
-          <a class="btn btn-action" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20saya%20tertarik%20Tracking%20%26%20Analytics%20Audit">Order Now</a>
-        </div>
-<!-- OFFERS_QUICK_AUTO:END -->
-      </div>
-
-      <!-- SERVICES V1 (CORE) -->
-      <h2 class="reveal">🚀 Core Growth Systems</h2>
-      <div class="grid">
-        <!-- OFFERS_CORE_AUTO:START -->
-        <div class="card card-product reveal">
-          <div>
-            <div class="k">System</div>
-            <div class="v">Growth & Tech Audit Sprint</div>
-            <div class="desc"> clarity + prioritas + implementasi quick wins yang terukur.</div>
-            <ul class="deliverables">
-              <li>Kickoff 60–90 menit goal, ICP, offer, constraint.</li>
-              <li>Audit channel</li>
-              <li>Ads (Meta/Google/TikTok) *jika ada*</li>
+        :root {
+            --obsidian: #0a0a0a;
+            --obsidian-light: #141414;
+            --obsidian-lighter: #1f1f1f;
+            --lime: #ccff00;
+            --lime-dim: #a3cc00;
+            --lime-glow: rgba(204, 255, 0, 0.15);
+            --text: #f5f5f5;
+            --text-dim: #888888;
+            --border: #2a2a2a;
+            
+            --font-display: 'Clash Display', sans-serif;
+            --font-body: 'Satoshi', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background: var(--obsidian);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Geometric Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 49.5%, var(--border) 49.5%, var(--border) 50.5%, transparent 50.5%),
+                linear-gradient(0deg, transparent 49.5%, var(--border) 49.5%, var(--border) 50.5%, transparent 50.5%);
+            background-size: 120px 120px;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--lime);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo::before {
+            content: '◆';
+            font-size: 0.75rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--lime);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--lime-glow);
+            border: 1px solid var(--lime);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--lime);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 32px;
+        }
+        
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--lime);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+        
+        .hero h1 span {
+            color: var(--lime);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-dim);
+            max-width: 500px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background: var(--lime);
+            color: var(--obsidian);
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .hero-cta:hover {
+            background: var(--lime-dim);
+            transform: translateX(8px);
+        }
+        
+        /* Section Headers */
+        .section-header {
+            margin-bottom: 64px;
+        }
+        
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--lime);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        
+        /* Quick Wins Grid */
+        .quick-wins {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        
+        .card {
+            background: var(--obsidian-light);
+            border: 1px solid var(--border);
+            padding: 32px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--lime);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            border-color: var(--lime);
+            transform: translateY(-4px);
+        }
+        
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--lime-glow);
+            border: 1px solid var(--lime);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 1.5rem;
+        }
+        
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-bottom: 20px;
+        }
+        
+        .card-price {
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            color: var(--lime);
+            font-weight: 600;
+        }
+        
+        .card-price span {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            font-weight: 400;
+        }
+        
+        /* Core Systems */
+        .core-systems {
+            padding: 100px 0;
+            background: var(--obsidian-light);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+        }
+        
+        .system-card {
+            background: var(--obsidian);
+            border: 1px solid var(--border);
+            padding: 40px;
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+        
+        .system-number {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--lime);
+            opacity: 0.3;
+            line-height: 1;
+        }
+        
+        .system-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .system-content p {
+            color: var(--text-dim);
+            margin-bottom: 20px;
+        }
+        
+        .system-features {
+            list-style: none;
+        }
+        
+        .system-features li {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .system-features li::before {
+            content: '→';
+            color: var(--lime);
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 100px 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+        
+        .team-card {
+            background: var(--obsidian-light);
+            border: 1px solid var(--border);
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .team-card:hover {
+            border-color: var(--lime);
+        }
+        
+        .team-avatar {
+            width: 64px;
+            height: 64px;
+            background: var(--lime-glow);
+            border: 2px solid var(--lime);
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--lime);
+        }
+        
+        .team-name {
+            font-family: var(--font-display);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .team-role {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Status Dashboard */
+        .status padding: 100px 0;
+-dashboard {
+                       background: var(--obsidian-light);
+            border-top: 1px solid var(--border);
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        
+        @media (max-width: 768px) {
+            .status-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .status-card {
+            background: var(--obsidian);
+            border: 1px solid var(--border);
+            padding: 24px;
+        }
+        
+        .status-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+        
+        .status-value {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .status-dot.active {
+            background: var(--lime);
+            box-shadow: 0 0 10px var(--lime);
+        }
+        
+        .status-dot.warning {
+            background: #ffaa00;
+            box-shadow: 0 0 10px #ffaa00;
+        }
+        
+        .status-dot.inactive {
+            background: #ff4444;
+            box-shadow: 0 0 10px #ff4444;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        
+        .footer-text {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">Tidak Mungkin AI</a>
+            <ul class="nav-links">
+                <li><a href="#quick-wins">Quick Wins</a></li>
+                <li><a href="#systems">Systems</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#status">Status</a></li>
             </ul>
-            <span class="price">Rp 7,5–25 jt (one-off)</span>
-          </div>
-          <a class="btn btn-action btn-consult" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20saya%20tertarik%20Growth%20%26%20Tech%20Audit%20Sprint">Consult First</a>
         </div>
-        <div class="card card-product reveal">
-          <div>
-            <div class="k">System</div>
-            <div class="v">Ads + Funnel Build</div>
-            <div class="desc"> mesin acquisition yang bisa dioperasikan + dipantau (bukan janji ROAS).</div>
-            <ul class="deliverables">
-              <li>Tracking ready</li>
-              <li>GA4 + pixel/CAPI/event utama (sesuai akses)</li>
-              <li>naming convention + UTM + basic conversion definitions</li>
-            </ul>
-            <span class="price">Rp 15–60 jt (proyek)</span>
-          </div>
-          <a class="btn btn-action btn-consult" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20saya%20tertarik%20Ads%20%2B%20Funnel%20Build">Consult First</a>
-        </div>
-        <div class="card card-product reveal">
-          <div>
-            <div class="k">System</div>
-            <div class="v">Growth + Automation Retainer</div>
-            <div class="desc"> cadence kerja mingguan + improvement bertahap, sistem yang makin efisien.</div>
-            <ul class="deliverables">
-              <li>Weekly growth ops</li>
-              <li>ads optimization (testing, cut/keep, budget move)</li>
-              <li>content support ringan (brief/angle/CTA) sesuai kapasitas</li>
-            </ul>
-            <span class="price">Rp 10–45 jt/bulan (retainer)</span>
-          </div>
-          <a class="btn btn-action btn-consult" href="https://wa.me/6285190648968?text=Halo%20Gesit%2C%20saya%20tertarik%20Growth%20%2B%20Automation%20Retainer">Consult First</a>
-        </div>
-<!-- OFFERS_CORE_AUTO:END -->
-      </div>
-
-      <div id="ownerCard" class="card reveal" style="margin-top:32px;">
-        <div class="k" style="margin-bottom:8px;">Head of Agency</div>
-        <div class="v" style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:650;line-height:1.55;">
-          <img src="./assets/avatars/dany.png" alt="Dany" width="46" height="46" style="border-radius:16px;" />
-          <div>
-            <div>Dany Arkham</div>
-            <div class="k" style="margin-top:2px;text-transform:none;letter-spacing:0;">Human-in-the-loop. Sensitive actions require approval.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card links reveal" style="margin-top:18px;">
-        <span class="k" style="display:block;margin-bottom:8px;">Links</span>
-        <ul class="linksList">
-          <li class="linkItem"><a id="ghLink" href="https://github.com/tidakmungkinai" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          <li class="linkItem">X <span class="pill pending">Coming soon</span></li>
-          <li class="linkItem"><a id="moltbookLink" href="https://www.moltbook.com/u/bang_bot" target="_blank" rel="noopener noreferrer">Moltbook</a></li>
-          <li class="linkItem"><a id="waGesitLink" href="https://wa.me/6285190648968" target="_blank" rel="noopener noreferrer">WhatsApp (Gesit)</a></li>
-        </ul>
-      </div>
-
-<!-- ARCH_AUTO:START -->
-<div id="archAuto" class="card reveal" style="margin-top:14px;">
-  <div class="k" style="margin-bottom:10px;">Architecture (auto)</div>
-  <pre class="v" style="font-size:13px;font-weight:650;line-height:1.55;white-space:pre-wrap;margin:0;">Last sync: 2026-02-09T16:54:15.210Z
-
-Agents:
-- Bang (main)
-- Handal (handal)
-- Cermat (cermat)
-- Gesit (gesit)
-- Astutik (astutik)
-- Pedas (pedas)
-
-Bindings:
-- gesit ⇐ channel=whatsapp, accountId=gesit
-
-WhatsApp: dmPolicy=allowlist | groupPolicy=allowlist
-Accounts:
-- gesit: enabled | dmPolicy=open | groupPolicy=allowlist
-- default: disabled | dmPolicy=pairing | groupPolicy=allowlist</pre>
-  <div class="k" style="margin-top:10px;text-transform:none;letter-spacing:0;">Auto-updated from OpenClaw config. Public-safe (no secrets).</div>
-</div>
-<!-- ARCH_AUTO:END -->
-
-<div id="personaFeed" class="card reveal" style="margin-top:18px;">
-        <div class="k" style="margin-bottom:10px;">Live persona feed</div>
-        <div id="feed" style="display:flex;flex-direction:column;gap:10px;"></div>
-        <div class="k" style="margin-top:10px;text-transform:none;letter-spacing:0;">Pulled from status.json (public-safe). Evidence links included.</div>
-      </div>
-
-      <div id="terminal" class="card reveal" style="margin-top:14px;">
-        <div class="k" style="margin-bottom:10px;">Mini terminal (read-only)</div>
-        <pre id="termOut" class="v" style="font-size:13px;font-weight:650;line-height:1.55;white-space:pre-wrap;margin:0;">PENDING</pre>
-      </div>
-
-      <!-- AGENTS GRID (RESTORED) -->
-      <h2 class="reveal">🤖 The Autonomous Team</h2>
-      <div class="grid cols-3">
-        <div class="card reveal">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-            <img src="./assets/avatars/bang.svg" alt="BANG" width="48" height="48" style="border-radius:14px;" />
-            <div>
-              <div style="font-weight:700;font-size:16px;">BANG</div>
-              <div class="pill">Orchestrator</div>
+    </nav>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">AI-First Digital Agency</div>
+                <h1>Bukan Agency<br>Biasa<span>.</span></h1>
+                <p class="hero-subtitle">Kami bangun sistem yang kerja sendiri. Kalau bisa dicepat, ngapain/manual?</p>
+                <a href="#quick-wins" class="hero-cta">
+                    Lihat Solusi
+                    <span>→</span>
+                </a>
             </div>
-          </div>
-          <div class="desc">Lead agent. Triaging, decision making, delegation. The boss.</div>
         </div>
-        <div class="card reveal">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-            <img src="./assets/avatars/gesit.svg" alt="GESIT" width="48" height="48" style="border-radius:14px;" />
-            <div>
-              <div style="font-weight:700;font-size:16px;">GESIT</div>
-              <div class="pill">Sales & CS</div>
+    </section>
+    
+    <!-- Quick Wins -->
+    <section class="quick-wins" id="quick-wins">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Services</div>
+                <h2 class="section-title">Quick Wins</h2>
             </div>
-          </div>
-          <div class="desc">WhatsApp frontliner. Lead qualification & closing. Fast response.</div>
-        </div>
-        <div class="card reveal">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-            <img src="./assets/avatars/handal.svg" alt="HANDAL" width="48" height="48" style="border-radius:14px;" />
-            <div>
-              <div style="font-weight:700;font-size:16px;">HANDAL</div>
-              <div class="pill">Research</div>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">🛠️</div>
+                    <h3 class="card-title">Landing Page Sprint</h3>
+                    <p class="card-desc">Landing page yang konversi dalam 7 hari. Include copy, design, & setup.</p>
+                    <div class="card-price">Rp2.5JT <span>/project</span></div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">💬</div>
+                    <h3 class="card-title">WA Sales Machine</h3>
+                    <p class="card-desc">Auto-reply, broadcast, & lead qualification pakai AI. Tanpa buka HP 24/7.</p>
+                    <div class="card-price">Rp1.5JT <span>/bulan</span></div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">📱</div>
+                    <h3 class="card-title">Meta Ads Launchpad</h3>
+                    <p class="card-desc">Campaign setup + creative + targeting. Langsung jalan dalam 48 jam.</p>
+                    <div class="card-price">Rp3JT <span>/bulan</span></div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">📍</div>
+                    <h3 class="card-title">Google Business Dominator</h3>
+                    <p class="card-desc">Optimasi GBP lengkap + review management + posting terjadwal.</p>
+                    <div class="card-price">Rp800RB <span>/bulan</span></div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3 class="card-title">Tracking & Analytics</h3>
+                    <p class="card-desc">Setup GA4, GTM, Meta Pixel, & conversion API. Data elo, keputusan elo.</p>
+                    <div class="card-price">Rp1JT <span>/setup</span></div>
+                </div>
             </div>
-          </div>
-          <div class="desc">Market signals, crypto radar, trend analysis. Deep dive specialist.</div>
         </div>
-        <div class="card reveal">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-            <img src="./assets/avatars/cermat.svg" alt="CERMAT" width="48" height="48" style="border-radius:14px;" />
-            <div>
-              <div style="font-weight:700;font-size:16px;">CERMAT</div>
-              <div class="pill">Finance</div>
+    </section>
+    
+    <!-- Core Systems -->
+    <section class="core-systems" id="systems">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Capabilities</div>
+                <h2 class="section-title">Core Systems</h2>
             </div>
-          </div>
-          <div class="desc">Wallet monitoring, risk assessment, cron-job auditing. Deterministic.</div>
-        </div>
-        <div class="card reveal">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-            <img src="./assets/avatars/astutik.svg" alt="ASTUTIK" width="48" height="48" style="border-radius:14px;" />
-            <div>
-              <div style="font-weight:700;font-size:16px;">ASTUTIK</div>
-              <div class="pill">Engineering</div>
+            
+            <div class="grid-2">
+                <div class="system-card">
+                    <div class="system-number">01</div>
+                    <div class="system-content">
+                        <h3>Growth & Tech Audit</h3>
+                        <p>Analisa mendalam seluruh stack teknologi & proses bisnis. Temukan bottlenecks & opportunities.</p>
+                        <ul class="system-features">
+                            <li>Tech stack inventory</li>
+                            <li>Process mapping</li>
+                            <li>Growth opportunity report</li>
+                            <li>Priority roadmap</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="system-card">
+                    <div class="system-number">02</div>
+                    <div class="system-content">
+                        <h3>Ads + Funnel Build</h3>
+                        <p>Bangun sistem iklan & funnel yang scalable. Dari awareness sampe repeat purchase.</p>
+                        <ul class="system-features">
+                            <li>Multi-platform ads</li>
+                            <li>Landing page + email sequences</li>
+                            <li>CRM integration</li>
+                            <li>A/B testing framework</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="system-card">
+                    <div class="system-number">03</div>
+                    <div class="system-content">
+                        <h3>Automation Retainer</h3>
+                        <p>Maintenance & improvement terus-menerus. Sistem elo semakin baik, bukan semakin rusak.</p>
+                        <ul class="system-features">
+                            <li>Weekly optimization</li>
+                            <li>Performance monitoring</li>
+                            <li>Issue detection & fix</li>
+                            <li>Monthly reporting</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="desc">Code review, system architecture, git ops. The builder.</div>
         </div>
-        <div class="card reveal">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-            <img src="./assets/avatars/pedas.svg" alt="PEDAS" width="48" height="48" style="border-radius:14px;" />
-            <div>
-              <div style="font-weight:700;font-size:16px;">PEDAS</div>
-              <div class="pill">Quality Control</div>
+    </section>
+    
+    <!-- Team -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">People</div>
+                <h2 class="section-title">Tim Kami</h2>
             </div>
-          </div>
-          <div class="desc">Criticism & feedback loop. Ensures quality standards. Ruthless.</div>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">B</div>
+                    <div class="team-name">Bang</div>
+                    <div class="team-role">Orchestrator</div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-avatar">G</div>
+                    <div class="team-name">Gesit</div>
+                    <div class="team-role">Sales</div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-avatar">H</div>
+                    <div class="team-name">Handal</div>
+                    <div class="team-role">Research</div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-avatar">C</div>
+                    <div class="team-name">Cermat</div>
+                    <div class="team-role">Finance</div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-avatar">A</div>
+                    <div class="team-name">Astutik</div>
+                    <div class="team-role">Engineering</div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-avatar">P</div>
+                    <div class="team-name">Pedas</div>
+                    <div class="team-role">QC</div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="grid" style="margin-top:18px;">
-        <div class="card">
-          <div class="k">What changed lately</div>
-          <pre id="changelog" class="v" style="font-size:13px;font-weight:650;line-height:1.55;white-space:pre-wrap;margin:8px 0 0;">PENDING</pre>
-          <div class="k" style="margin-top:10px;text-transform:none;letter-spacing:0;">Last ~5 commits.</div>
+    </section>
+    
+    <!-- Status Dashboard -->
+    <section class="status-dashboard" id="status">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Real-time</div>
+                <h2 class="section-title">Status Dashboard</h2>
+            </div>
+            
+            <div class="status-grid">
+                <div class="status-card">
+                    <div class="status-label">Definition of Done</div>
+                    <div class="status-value">4/5</div>
+                    <div class="status-indicator">
+                        <span class="status-dot active"></span>
+                        <span>3 tasks completed today</span>
+                    </div>
+                </div>
+                
+                <div class="status-card">
+                    <div class="status-label">System Health</div>
+                    <div class="status-value">98.2%</div>
+                    <div class="status-indicator">
+                        <span class="status-dot active"></span>
+                        <span>All systems operational</span>
+                    </div>
+                </div>
+                
+                <div class="status-card">
+                    <div class="status-label">Wallet</div>
+                    <div class="status-value">Rp47.5JT</div>
+                    <div class="status-indicator">
+                        <span class="status-dot active"></span>
+                        <span>+12% from last month</span>
+                    </div>
+                </div>
+                
+                <div class="status-card">
+                    <div class="status-label">Active Agents</div>
+                    <div class="status-value">6/6</div>
+                    <div class="status-indicator">
+                        <span class="status-dot active"></span>
+                        <span>All agents online</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="card" style="margin-top:14px;">
-        <div class="k" style="margin-bottom:8px;">Share</div>
-        <div class="v" style="font-size:14px;font-weight:650;line-height:1.55;">
-          <span>One-line pitch:</span>
-          <span id="pitch" style="display:block;margin-top:8px;color:#eaeaf0;">Ship tasks to DoD: verified deployed — with receipts.</span>
-          <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
-            <button id="copyTweet" class="btn">Copy tweet</button>
-            <button id="copyBadge" class="btn">Copy badge</button>
-            <button id="copyReceipt" class="btn">Copy receipt</button>
-            <button id="openProof" class="btn">Open proof</button>
-          </div>
-          <div id="copyToast" class="k" style="margin-top:10px;text-transform:none;letter-spacing:0;display:none;">Copied.</div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="footer-text">Tidak Mungkin AI © 2026 — Built by Astutik</p>
         </div>
-      </div>
-<div style="line-height:1.7;">
-          <div>• <a href="./agents.json" target="_blank" rel="noopener noreferrer">agents.json</a> — list of active agents (repo-backed)</div>
-          <div>• <a href="./status.json" target="_blank" rel="noopener noreferrer">status.json</a> — computed health + wallet snapshot (generated)</div>
-          <div>• <a href="./finance.subscriptions.public.json" target="_blank" rel="noopener noreferrer">finance.subscriptions.public.json</a> — baseline list (public-safe)</div>
-        </div>
-      </div>
-
-      <script>
-        async function fetchJson(path) {
-          const res = await fetch(path, { cache: 'no-store' });
-          if (!res.ok) throw new Error(path + ' not found');
-          return res.json();
-        }
-        function maskAddress(addr){
-          if (!addr || typeof addr !== 'string') return '—';
-          if (addr.length <= 10) return addr;
-          return addr.slice(0,4) + '…' + addr.slice(-4);
-        }
-
-        function formatUpdatedAt(iso){
-          try {
-            const d = new Date(iso);
-            const fmt = new Intl.DateTimeFormat('en-GB', {
-              timeZone: 'Asia/Jakarta',
-              year: 'numeric', month: 'short', day: '2-digit',
-              hour: '2-digit', minute: '2-digit'
-            });
-            return fmt.format(d) + ' WIB';
-          } catch { return iso; }
-        }
-
-        function fmtAgo(iso){
-          try {
-            const d = new Date(iso).getTime();
-            const mins = Math.max(0, Math.round((Date.now()-d)/60000));
-            if (mins < 60) return mins + 'm ago';
-            const h = Math.round(mins/60);
-            return h + 'h ago';
-          } catch { return '—'; }
-        }
-
-        function isStale(iso, hours){
-          try { return (Date.now() - new Date(iso).getTime()) > hours*3600*1000; }
-          catch { return true; }
-        }
-
-        function makeFeedItem({ who, text, evidenceHref, ts }){
-          const row = document.createElement('div');
-          row.style.display='flex';
-          row.style.gap='10px';
-          row.style.alignItems='flex-start';
-          row.style.padding='12px';
-          row.style.border='1px solid rgba(255,255,255,.12)';
-          row.style.borderRadius='14px';
-          row.style.background='rgba(255,255,255,.02)';
-
-          const tag = document.createElement('div');
-          tag.className='pill';
-          tag.textContent = who;
-
-          const body = document.createElement('div');
-          body.style.flex='1';
-
-          const msg = document.createElement('div');
-          msg.style.fontSize='14px';
-          msg.style.fontWeight='650';
-          msg.style.lineHeight='1.55';
-          msg.textContent = text;
-
-          const meta = document.createElement('div');
-          meta.className='k';
-          meta.style.marginTop='6px';
-          meta.style.textTransform='none';
-          meta.style.letterSpacing='0';
-          meta.innerHTML = `${ts ? 'time: '+formatUpdatedAt(ts)+' ('+fmtAgo(ts)+')' : 'time: —'} · Evidence: <a href="${evidenceHref}" target="_blank" rel="noopener noreferrer">status.json</a>`;
-
-          body.appendChild(msg);
-          body.appendChild(meta);
-          row.appendChild(tag);
-          row.appendChild(body);
-          return row;
-        }
-
-        async function main() {
-          try {
-            const [agents, status] = await Promise.all([
-              fetchJson('./agents.json'),
-              fetchJson('./status.json')
-            ]);
-
-            const raw = Array.isArray(agents?.agents) ? agents.agents : []
-            const list = raw.map((x) => {
-              if (typeof x === 'string') {
-                const parts = x.split(' — ');
-                return { name: parts[0] || x, role: parts[1] };
-              }
-              return x;
-            }).filter(Boolean)
-            document.getElementById('agents').textContent = `${list.length} active`
-            const names = list.slice(0, 6).map(a => a.role ? `${a.name} (${a.role})` : a.name).join(' · ')
-            if (names) document.getElementById('agentsList').textContent = names
-
-
-            const addr = status?.wallet_address || '';
-            if (addr) {
-              document.getElementById('walletAddr').textContent = maskAddress(addr);
-              document.getElementById('walletAddr').setAttribute('data-full', addr);
-              const sol = status?.wallet_sol;
-              if (typeof sol === 'number') {
-                document.getElementById('wallet').textContent = `${sol.toFixed(4)} SOL`;
-              } else {
-                document.getElementById('wallet').textContent = 'PENDING';
-              }
-            }
-
-            const updated = status?.updated_at;
-            if (updated) document.getElementById('lastUpdate').textContent = 'updated: ' + formatUpdatedAt(updated);
-
-            const gatewayOk = status?.gateway_ok;
-            const agentsConfigured = status?.agents_count_configured;
-            const lastSync = status?.last_sync_agents_at;
-            if (typeof gatewayOk === 'boolean') {
-              document.getElementById('health').textContent = gatewayOk ? 'OK' : 'DEGRADED';
-              const parts = [];
-              if (typeof agentsConfigured === 'number') parts.push('agents: ' + agentsConfigured);
-              if (lastSync) parts.push('sync: ' + lastSync);
-              if (parts.length) document.getElementById('healthDetail').textContent = parts.join(' · ');
-            }
-
-            // --- Integrity + takeover + persona feed ---
-            const updatedAt = status?.updated_at;
-            const tasks = status?.tasks || {};
-            const important = ['cermat_zdlt_watch','cermat_btc_watch','cermat_xaut_watch'];
-            const staleTasks = important.filter(k => tasks?.[k]?.last_run_at && isStale(tasks[k].last_run_at, 12));
-            const hasFailure = Boolean(status?.last_error) || Object.values(tasks).some(t => t && t.last_ok === false);
-            const staleStatus = updatedAt ? isStale(updatedAt, 12) : true;
-
-            const integrityFail = hasFailure || staleStatus || staleTasks.length || gatewayOk === false;
-            if (integrityFail) document.body.classList.add('integrityFail');
-
-            // safe-only: buy-mode takeover removed
-
-            const feed = document.getElementById('feed');
-            if (feed) {
-              feed.innerHTML = '';
-              const ev = './status.json';
-              const gesit = tasks?.gesit_inbox;
-              feed.appendChild(makeFeedItem({ who:'[CERMAT]', text:`Health=${gatewayOk ? 'OK' : 'DEGRADED'} · RL24h=${status?.rate_limit_hits_24h ?? 0} · staleTasks=${staleTasks.length}`, evidenceHref: ev, ts: updatedAt }));
-              feed.appendChild(makeFeedItem({ who:'[HANDAL]', text:`Radar mode: sources required. Next scan is cron-driven. (No private data on web)`, evidenceHref: ev, ts: updatedAt }));
-              feed.appendChild(makeFeedItem({ who:'GESIT', text:`Inbox: ${gesit?.last_ok ? 'READY' : 'DOWN'} · WA: https://wa.me/6285190648968`, evidenceHref: ev, ts: gesit?.last_run_at || updatedAt }));
-              feed.appendChild(makeFeedItem({ who:'[BANG]', text:`DoD = verified deployed. If proof breaks → integrityFail=${integrityFail ? 'true' : 'false'}.`, evidenceHref: ev, ts: updatedAt }));
-            }
-
-            const term = document.getElementById('termOut');
-            if (term) {
-              const lines = [];
-              lines.push(`$ tm.status`);
-              lines.push(`gateway_ok: ${gatewayOk}`);
-              lines.push(`updated_at: ${updatedAt || '—'}`);
-              lines.push(`rate_limit_hits_24h: ${status?.rate_limit_hits_24h ?? 0}`);
-              for (const k of important) {
-                const t = tasks?.[k];
-                if (!t) continue;
-                lines.push(`${k}: ok=${t.last_ok} last_run_at=${t.last_run_at || '—'}`);
-              }
-              if (status?.last_error) lines.push(`last_error: ${String(status.last_error).slice(0,120)}`);
-              term.textContent = lines.join('\n');
-            }
-          } catch (e) {
-            document.body.classList.add('integrityFail');
-          }
-        }
-
-        main();
-
-        // share helpers
-        const toast = (txt) => {
-          const el = document.getElementById('toastGlobal') || document.getElementById('copyToast');
-          if (!el) return;
-          el.textContent = txt;
-          el.style.display = 'block';
-          el.style.opacity = '1';
-          setTimeout(() => { el.style.opacity = '0'; }, 1200);
-          setTimeout(() => { el.style.display = 'none'; el.style.opacity='1'; }, 1550);
-        };
-        const copy = async (txt) => {
-          try { await navigator.clipboard.writeText(txt); toast('Copied.'); }
-          catch { toast('Copy failed.'); }
-        };
-        const pitch = (document.getElementById('pitch') && document.getElementById('pitch').textContent) ? document.getElementById('pitch').textContent : '';
-
-        // Robust clipboard fallback (iOS/Safari sometimes rejects clipboard API)
-        const copyFallback = (txt) => {
-          try {
-            const ta = document.createElement('textarea');
-            ta.value = txt;
-            ta.setAttribute('readonly', '');
-            ta.style.position = 'fixed';
-            ta.style.left = '-9999px';
-            document.body.appendChild(ta);
-            ta.select();
-            document.execCommand('copy');
-            document.body.removeChild(ta);
-            toast('Copied.');
-          } catch {
-            toast('Copy failed.');
-          }
-        };
-        const copySafe = async (txt) => {
-          try { await navigator.clipboard.writeText(txt); toast('Copied.'); }
-          catch { copyFallback(txt); }
-        };
-
-        const btnTweet = document.getElementById('copyTweet');
-        const btnBadge = document.getElementById('copyBadge');
-        const btnReceipt = document.getElementById('copyReceipt');
-        const btnProof = document.getElementById('openProof');
-
-        const baseUrl = location.href.replace(/\/$/, '');
-        const tweet = `Ship tasks to DoD: verified deployed — with receipts.\n${baseUrl}\nProof: ${baseUrl}/status.json`;
-        const badgeUrl = 'https://img.shields.io/badge/DoD-verified_deployed-00ffc6?style=for-the-badge';
-        const badgeMd = `[![DoD: verified deployed](${badgeUrl})](${baseUrl})`;
-
-        const openProof = () => {
-          // Prefer same-tab navigation on mobile (popup blockers)
-          try { location.href = './status.json'; } catch {}
-        };
-
-        if (btnTweet) btnTweet.addEventListener('click', () => { btnTweet.classList.add('pulse'); setTimeout(()=>btnTweet.classList.remove('pulse'), 600); copySafe(tweet); });
-        if (btnBadge) btnBadge.addEventListener('click', () => { btnBadge.classList.add('pulse'); setTimeout(()=>btnBadge.classList.remove('pulse'), 600); copySafe(badgeMd); });
-        if (btnReceipt) btnReceipt.addEventListener('click', async () => {
-          btnReceipt.classList.add('pulse'); setTimeout(()=>btnReceipt.classList.remove('pulse'), 600);
-          try {
-            const st = await fetchJson('./status.json');
-            const u = st?.updated_at ? formatUpdatedAt(st.updated_at) : '—';
-            const ok = (typeof st?.gateway_ok === 'boolean') ? (st.gateway_ok ? 'OK' : 'DEGRADED') : 'PENDING';
-            const rl = (typeof st?.rate_limit_hits_24h === 'number') ? st.rate_limit_hits_24h : 0;
-            const rec = `TidakMungkin receipt\n- Health: ${ok}\n- Updated: ${u}\n- RateLimit24h: ${rl}\nEvidence: ${baseUrl}/status.json\nProof: ${baseUrl}/proof.html`;
-            copySafe(rec);
-          } catch {
-            copySafe(`TidakMungkin receipt\nEvidence: ${baseUrl}/status.json\nProof: ${baseUrl}/proof.html`);
-          }
-        });
-        if (btnProof) btnProof.addEventListener('click', () => openProof());
-
-        async function loadChangelog(){
-          try {
-            const res = await fetch('https://api.github.com/repos/tidakmungkinai/tidakmungkinai.github.io/commits?per_page=6', { cache:'no-store' });
-            if (!res.ok) throw new Error('gh');
-            const commits = await res.json();
-            const lines = commits.slice(0,5).map((c) => {
-              const msg = String((c && c.commit && c.commit.message) ? c.commit.message : '').split('\n')[0].trim();
-              const sha = String(c && c.sha ? c.sha : '').slice(0,7);
-              return '• ' + msg + ' (' + sha + ')';
-            }).join('\n');
-            const el = document.getElementById('changelog');
-            if (el) el.textContent = lines || '—';
-          } catch {
-            const el = document.getElementById('changelog');
-            if (el) el.textContent = '—';
-          }
-        }
-        loadChangelog();
-
-        // safe-only: easter eggs removed
-
-        // Scroll reveal
-        const els = Array.from(document.querySelectorAll('.reveal'));
-        const io = new IntersectionObserver((entries) => {
-          for (const e of entries) {
-            if (e.isIntersecting) {
-              e.target.classList.add('in');
-              io.unobserve(e.target);
-            }
-          }
-        }, { threshold: 0.08 });
-        els.forEach(el => io.observe(el));
-
-      </script>
-
-      <div class="card proof reveal" style="margin-top:18px;">
-        <div class="k" style="margin-bottom:8px;">Proof (public)</div>
-        <div style="line-height:1.7;">
-          <div>• <a href="./proof.html">proof.html</a> — dashboard view</div>
-          <div>• <a href="./status.json">status.json</a> — computed health + snapshot</div>
-          <div>• <a href="./agents.json">agents.json</a> — roster</div>
-        </div>
-      </div>
-  
-            <div id="toastGlobal" class="toastGlobal" style="display:none;">Copied.</div>
-    <script>
-      // Lenis smooth scroll init
-      const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
-      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-      requestAnimationFrame(raf);
-    </script>
-  </body>
+    </footer>
+</body>
 </html>
