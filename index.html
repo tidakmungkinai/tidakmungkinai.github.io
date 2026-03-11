@@ -117,17 +117,8 @@
             opacity: 0;
             animation: nodeFadeIn 1.5s ease-out forwards, nodePulse 3s ease-in-out infinite, nodeDrift 6s ease-in-out infinite;
         }
-        
-        @keyframes nodeFadeIn {
-            0% { opacity: 0; transform: scale(0.5); }
             100% { opacity: 0.8; transform: scale(1); }
         }
-        
-        @keyframes nodePulse {
-            0%, 100% { 
-                box-shadow: 0 0 6px var(--lime), 0 0 12px rgba(204, 255, 0, 0.4);
-                transform: scale(1);
-            }
             50% { 
                 box-shadow: 0 0 10px var(--lime), 0 0 20px rgba(204, 255, 0, 0.6), 0 0 30px rgba(204, 255, 0, 0.3);
                 transform: scale(1.2);
@@ -616,49 +607,10 @@
             background: var(--obsidian);
             z-index: 0;
         }
-        
-        .hero-grid {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background: 
-                linear-gradient(90deg, rgba(204,255,0,0.03) 1px, transparent 1px),
-                linear-gradient(rgba(204,255,0,0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            transform: perspective(500px) rotateX(60deg);
-            animation: gridMove 60s linear infinite;
-        }
-        
-        @keyframes gridMove {
-            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
             100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
         }
-        
-        .hero-nodes {
-            position: absolute;
-            inset: 0;
-        }
-        
-        .hero-node {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--lime);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--lime), 0 0 20px var(--lime);
-            opacity: 0;
-            animation: nodePulse 3s ease-in-out infinite, nodeFadeIn 1.5s ease-out forwards;
-        }
-        
-        @keyframes nodePulse {
-            0%, 100% { box-shadow: 0 0 8px var(--lime); }
             50% { box-shadow: 0 0 20px var(--lime), 0 0 30px var(--lime); }
         }
-        
-        @keyframes nodeFadeIn {
-            0% { opacity: 0; transform: scale(0); }
             100% { opacity: 0.8; transform: scale(1); }
         }
 
