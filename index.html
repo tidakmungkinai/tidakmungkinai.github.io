@@ -686,10 +686,7 @@
     
     <!-- Hero -->
     <section class="hero">
-    <div class="hero-bg">
-        <div class="hero-grid"></div>
-        <div class="hero-nodes" id="heroNodes"></div>
-    </div>
+    <div class="hero-bg"></div>
         <div class="container" style="position:relative;z-index:2;">
             <div class="hero-content">
                 <div class="hero-badge">AI-First Digital Agency</div>
@@ -991,38 +988,6 @@
         })();
     </script>
 
-    <script>
-    (function() {
-        const nodesContainer = document.getElementById('heroNodes');
-        if (!nodesContainer) return;
-        
-        const nodeCount = 20;
-        const cols = 8;
-        const rows = 5;
-        
-        for (let i = 0; i < nodeCount; i++) {
-            const node = document.createElement('div');
-            node.className = 'hero-node';
-            
-            // Position in grid pattern
-            const col = i % cols;
-            const row = Math.floor(i / cols);
-            const x = (col / (cols - 1)) * 80 + 10;
-            const y = (row / (rows - 1)) * 60 + 20;
-            
-            node.style.left = x + '%';
-            node.style.top = y + '%';
-            node.style.animationDelay = (Math.random() * 2) + 's,' + (i * 0.15) + 's';
-            
-            // Random drift
-            const driftX = (Math.random() - 0.5) * 10;
-            const driftY = (Math.random() - 0.5) * 5;
-            node.style.setProperty('--drift-x', driftX + '%');
-            node.style.setProperty('--drift-y', driftY + '%');
-            
-            nodesContainer.appendChild(node);
-        }
-    })();
-    </script>
+
 </body>
 </html>
