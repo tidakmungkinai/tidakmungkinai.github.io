@@ -1,10 +1,10 @@
 {
   "wallet_address": "EmChJ8MeBpj7PEisJvdrSkuZEky4jeApXbVwW8VhxdCs",
   "wallet_sol": 0,
-  "updated_at": "2026-03-15T22:33:50.216Z",
+  "updated_at": "2026-03-16T02:23:28.756Z",
   "gateway_ok": true,
   "agents_count_configured": 6,
-  "last_sync_agents_at": "2026-03-15T22:23:29.641Z",
+  "last_sync_agents_at": "2026-03-16T02:23:28.754Z",
   "survival_mode": {
     "active": true,
     "target_per_agent_usd": 10,
@@ -160,23 +160,23 @@
       "rate_limit_hits_24h": 0
     },
     "cermat_zdlt_watch": {
-      "last_run_at": "2026-03-15T17:04:19.043023Z",
+      "last_run_at": "2026-03-16T01:04:24.190786Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-15T17:04:19.043023Z",
+      "last_ok_at": "2026-03-16T01:04:24.190786Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
     "cermat_btc_watch": {
-      "last_run_at": "2026-03-15T17:10:08.719595Z",
+      "last_run_at": "2026-03-16T01:10:11.796128Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-15T17:10:08.719595Z",
+      "last_ok_at": "2026-03-16T01:10:11.796128Z",
       "last_error": null,
       "rate_limit_hits_24h": 1
     },
     "cermat_xaut_watch": {
-      "last_run_at": "2026-03-15T17:20:18.677325Z",
+      "last_run_at": "2026-03-16T01:20:11.583839Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-15T17:20:18.677325Z",
+      "last_ok_at": "2026-03-16T01:20:11.583839Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
@@ -202,23 +202,23 @@
       "rate_limit_hits_24h": 0
     },
     "cermat_eth_watch": {
-      "last_run_at": "2026-03-15T17:30:26.182117Z",
+      "last_run_at": "2026-03-16T01:30:34.263262Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-15T17:30:26.182117Z",
+      "last_ok_at": "2026-03-16T01:30:34.263262Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
     "cermat_sol_watch": {
-      "last_run_at": "2026-03-15T17:40:07.925871Z",
+      "last_run_at": "2026-03-16T01:40:06.450998Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-15T17:40:07.925871Z",
+      "last_ok_at": "2026-03-16T01:40:06.450998Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
     "gesit_inbox": {
-      "last_run_at": "2026-03-15T22:23:29.645Z",
+      "last_run_at": "2026-03-16T02:23:28.756Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-15T22:23:29.645Z",
+      "last_ok_at": "2026-03-16T02:23:28.756Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     }
