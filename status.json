@@ -1,10 +1,10 @@
 {
   "wallet_address": "EmChJ8MeBpj7PEisJvdrSkuZEky4jeApXbVwW8VhxdCs",
   "wallet_sol": 0,
-  "updated_at": "2026-03-18T13:24:26.926Z",
+  "updated_at": "2026-03-18T13:59:14.553Z",
   "gateway_ok": true,
   "agents_count_configured": 6,
-  "last_sync_agents_at": "2026-03-17T14:24:01.874Z",
+  "last_sync_agents_at": "2026-03-18T13:59:14.552Z",
   "survival_mode": {
     "active": true,
     "target_per_agent_usd": 10,
@@ -160,10 +160,10 @@
       "rate_limit_hits_24h": 0
     },
     "cermat_zdlt_watch": {
-      "last_run_at": "2026-03-17T09:04:23.365169Z",
+      "last_run_at": "2026-03-18T11:58:41.974656Z",
       "last_ok": false,
       "last_ok_at": "2026-03-17T01:06:45.231741Z",
-      "last_error": "/Users/danyarkham/clawd/scripts/task-runner.sh: line 48: /Users/danyarkham/clawd/scripts/zdlt-watch.mjs: Permission denied",
+      "last_error": "/Users/danyarkham/clawd/scripts/task-runner.sh: line 48: /Users/danyarkham/clawd/scripts/zdlt-watch.sh: No such file or directory",
       "rate_limit_hits_24h": 0
     },
     "cermat_btc_watch": {
@@ -174,7 +174,7 @@
       "rate_limit_hits_24h": 0
     },
     "cermat_xaut_watch": {
-      "last_run_at": "2026-03-17T09:20:32.931030Z",
+      "last_run_at": "2026-03-18T11:58:50.135676Z",
       "last_ok": false,
       "last_ok_at": "2026-03-17T01:20:07.005419Z",
       "last_error": "/Users/danyarkham/clawd/scripts/task-runner.sh: line 48: /Users/danyarkham/clawd/scripts/xaut-watch.sh: No such file or directory",
@@ -202,31 +202,31 @@
       "rate_limit_hits_24h": 0
     },
     "cermat_eth_watch": {
-      "last_run_at": "2026-03-17T09:31:37.457709Z",
+      "last_run_at": "2026-03-18T11:59:10.582954Z",
       "last_ok": false,
       "last_ok_at": "2026-03-17T01:30:09.000714Z",
       "last_error": "/Users/danyarkham/clawd/scripts/task-runner.sh: line 48: /Users/danyarkham/clawd/scripts/eth-watch.sh: No such file or directory",
       "rate_limit_hits_24h": 0
     },
     "cermat_sol_watch": {
-      "last_run_at": "2026-03-17T09:41:22.519849Z",
+      "last_run_at": "2026-03-18T11:59:37.578673Z",
       "last_ok": false,
       "last_ok_at": "2026-03-17T01:40:08.407178Z",
       "last_error": "/Users/danyarkham/clawd/scripts/task-runner.sh: line 48: /Users/danyarkham/clawd/scripts/sol-watch.sh: No such file or directory",
       "rate_limit_hits_24h": 0
     },
     "gesit_inbox": {
-      "last_run_at": "2026-03-17T14:24:01.875Z",
+      "last_run_at": "2026-03-18T13:59:14.553Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-17T14:24:01.875Z",
+      "last_ok_at": "2026-03-18T13:59:14.553Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     }
   },
   "last_error": {
     "task": "cermat_zdlt_watch",
-    "last_error": "/Users/danyarkham/clawd/scripts/task-runner.sh: line 48: /Users/danyarkham/clawd/scripts/zdlt-watch.mjs: Permission denied",
-    "last_run_at": "2026-03-17T09:04:23.365169Z"
+    "last_error": "/Users/danyarkham/clawd/scripts/task-runner.sh: line 48: /Users/danyarkham/clawd/scripts/zdlt-watch.sh: No such file or directory",
+    "last_run_at": "2026-03-18T11:58:41.974656Z"
   },
   "rate_limit_hits_24h": 0
 }
