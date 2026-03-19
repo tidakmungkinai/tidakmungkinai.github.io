@@ -1,10 +1,10 @@
 {
   "wallet_address": "EmChJ8MeBpj7PEisJvdrSkuZEky4jeApXbVwW8VhxdCs",
   "wallet_sol": 0,
-  "updated_at": "2026-03-19T19:05:32.151Z",
+  "updated_at": "2026-03-19T19:16:12.161Z",
   "gateway_ok": true,
   "agents_count_configured": 6,
-  "last_sync_agents_at": "2026-03-19T17:16:13.755Z",
+  "last_sync_agents_at": "2026-03-19T19:16:12.160Z",
   "survival_mode": {
     "active": true,
     "target_per_agent_usd": 10,
@@ -174,7 +174,7 @@
       "rate_limit_hits_24h": 0
     },
     "cermat_xaut_watch": {
-      "last_run_at": "2026-03-19T15:16:06.534308Z",
+      "last_run_at": "2026-03-19T17:20:18.721373Z",
       "last_ok": false,
       "last_ok_at": "2026-03-17T01:20:07.005419Z",
       "last_error": "/Users/danyarkham/clawd/scripts/task-runner.sh: line 48: /Users/danyarkham/clawd/scripts/xaut-watch.sh: No such file or directory",
@@ -202,23 +202,23 @@
       "rate_limit_hits_24h": 0
     },
     "cermat_eth_watch": {
-      "last_run_at": "2026-03-19T15:17:50.633260Z",
+      "last_run_at": "2026-03-19T17:30:44.278763Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-19T15:17:50.633260Z",
+      "last_ok_at": "2026-03-19T17:30:44.278763Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     },
     "cermat_sol_watch": {
-      "last_run_at": "2026-03-19T15:19:21.019793Z",
+      "last_run_at": "2026-03-19T17:40:06.345661Z",
       "last_ok": false,
       "last_ok_at": "2026-03-17T01:40:08.407178Z",
       "last_error": "/Users/danyarkham/clawd/scripts/task-runner.sh: line 48: /Users/danyarkham/clawd/scripts/sol-watch.sh: No such file or directory",
       "rate_limit_hits_24h": 0
     },
     "gesit_inbox": {
-      "last_run_at": "2026-03-19T17:16:13.756Z",
+      "last_run_at": "2026-03-19T19:16:12.161Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-19T17:16:13.756Z",
+      "last_ok_at": "2026-03-19T19:16:12.161Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     }
@@ -226,7 +226,7 @@
   "last_error": {
     "task": "cermat_xaut_watch",
     "last_error": "/Users/danyarkham/clawd/scripts/task-runner.sh: line 48: /Users/danyarkham/clawd/scripts/xaut-watch.sh: No such file or directory",
-    "last_run_at": "2026-03-19T15:16:06.534308Z"
+    "last_run_at": "2026-03-19T17:20:18.721373Z"
   },
   "rate_limit_hits_24h": 0
 }
