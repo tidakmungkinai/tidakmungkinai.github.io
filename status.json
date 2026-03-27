@@ -1,10 +1,10 @@
 {
   "wallet_address": "EmChJ8MeBpj7PEisJvdrSkuZEky4jeApXbVwW8VhxdCs",
   "wallet_sol": 0,
-  "updated_at": "2026-03-27T07:16:04.129Z",
+  "updated_at": "2026-03-27T08:08:07.133Z",
   "gateway_ok": true,
   "agents_count_configured": 6,
-  "last_sync_agents_at": "2026-03-27T06:08:01.829Z",
+  "last_sync_agents_at": "2026-03-27T08:08:07.131Z",
   "survival_mode": {
     "active": true,
     "target_per_agent_usd": 10,
@@ -216,9 +216,9 @@
       "rate_limit_hits_24h": 3
     },
     "gesit_inbox": {
-      "last_run_at": "2026-03-27T06:08:01.830Z",
+      "last_run_at": "2026-03-27T08:08:07.133Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-27T06:08:01.830Z",
+      "last_ok_at": "2026-03-27T08:08:07.133Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     }
