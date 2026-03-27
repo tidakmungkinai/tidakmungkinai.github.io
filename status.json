@@ -1,10 +1,10 @@
 {
   "wallet_address": "EmChJ8MeBpj7PEisJvdrSkuZEky4jeApXbVwW8VhxdCs",
   "wallet_sol": 0,
-  "updated_at": "2026-03-27T08:59:40.975Z",
+  "updated_at": "2026-03-27T10:07:57.914Z",
   "gateway_ok": true,
   "agents_count_configured": 6,
-  "last_sync_agents_at": "2026-03-27T08:08:07.131Z",
+  "last_sync_agents_at": "2026-03-27T10:07:57.913Z",
   "survival_mode": {
     "active": true,
     "target_per_agent_usd": 10,
@@ -160,11 +160,11 @@
       "rate_limit_hits_24h": 0
     },
     "cermat_zdlt_watch": {
-      "last_run_at": "2026-03-27T01:04:31.337822Z",
+      "last_run_at": "2026-03-27T09:02:32.866826Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-27T01:04:31.337822Z",
+      "last_ok_at": "2026-03-27T09:02:32.866826Z",
       "last_error": null,
-      "rate_limit_hits_24h": 2
+      "rate_limit_hits_24h": 0
     },
     "cermat_btc_watch": {
       "last_run_at": "2026-03-17T01:10:09.720087Z",
@@ -174,11 +174,11 @@
       "rate_limit_hits_24h": 0
     },
     "cermat_xaut_watch": {
-      "last_run_at": "2026-03-27T01:20:55.992696Z",
+      "last_run_at": "2026-03-27T09:20:18.947984Z",
       "last_ok": false,
       "last_ok_at": "2026-03-26T09:21:59.666230Z",
       "last_error": "==========================================\nSOL [INVESTMENT]\n==========================================\nfile:///Users/danyarkham/clawd/scripts/dca-watch-coingecko.mjs:37\n    throw new Error(`${url} -> ${res.status} ${res.statusText}: ${body}",
-      "rate_limit_hits_24h": 3
+      "rate_limit_hits_24h": 1
     },
     "sync_status_json": {
       "last_run_at": "2026-02-05T05:05:07.482360Z",
@@ -202,23 +202,23 @@
       "rate_limit_hits_24h": 0
     },
     "cermat_eth_watch": {
-      "last_run_at": "2026-03-27T01:33:55.108060Z",
-      "last_ok": true,
+      "last_run_at": "2026-03-27T09:30:27.581952Z",
+      "last_ok": false,
       "last_ok_at": "2026-03-27T01:33:55.108060Z",
-      "last_error": null,
-      "rate_limit_hits_24h": 0
+      "last_error": "==========================================\nSOL [INVESTMENT]\n==========================================\nfile:///Users/danyarkham/clawd/scripts/dca-watch-coingecko.mjs:37\n    throw new Error(`${url} -> ${res.status} ${res.statusText}: ${body}",
+      "rate_limit_hits_24h": 1
     },
     "cermat_sol_watch": {
-      "last_run_at": "2026-03-27T01:41:31.810457Z",
-      "last_ok": true,
+      "last_run_at": "2026-03-27T09:40:27.441035Z",
+      "last_ok": false,
       "last_ok_at": "2026-03-27T01:41:31.810457Z",
-      "last_error": null,
-      "rate_limit_hits_24h": 3
+      "last_error": "==========================================\nSOL [INVESTMENT]\n==========================================\nfile:///Users/danyarkham/clawd/scripts/dca-watch-coingecko.mjs:37\n    throw new Error(`${url} -> ${res.status} ${res.statusText}: ${body}",
+      "rate_limit_hits_24h": 1
     },
     "gesit_inbox": {
-      "last_run_at": "2026-03-27T08:08:07.133Z",
+      "last_run_at": "2026-03-27T10:07:57.914Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-27T08:08:07.133Z",
+      "last_ok_at": "2026-03-27T10:07:57.914Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     }
@@ -226,7 +226,7 @@
   "last_error": {
     "task": "cermat_xaut_watch",
     "last_error": "==========================================\nSOL [INVESTMENT]\n==========================================\nfile:///Users/danyarkham/clawd/scripts/dca-watch-coingecko.mjs:37\n    throw new Error(`${url} -> ${res.status} ${res.statusText}: ${body}",
-    "last_run_at": "2026-03-27T01:20:55.992696Z"
+    "last_run_at": "2026-03-27T09:20:18.947984Z"
   },
-  "rate_limit_hits_24h": 8
+  "rate_limit_hits_24h": 3
 }
