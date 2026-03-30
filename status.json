@@ -1,10 +1,10 @@
 {
   "wallet_address": "EmChJ8MeBpj7PEisJvdrSkuZEky4jeApXbVwW8VhxdCs",
   "wallet_sol": 0,
-  "updated_at": "2026-03-30T00:08:02.204Z",
+  "updated_at": "2026-03-30T02:08:02.146Z",
   "gateway_ok": true,
   "agents_count_configured": 6,
-  "last_sync_agents_at": "2026-03-30T00:08:02.203Z",
+  "last_sync_agents_at": "2026-03-30T02:08:02.144Z",
   "survival_mode": {
     "active": true,
     "target_per_agent_usd": 10,
@@ -209,16 +209,16 @@
       "rate_limit_hits_24h": 1
     },
     "cermat_sol_watch": {
-      "last_run_at": "2026-03-29T17:41:07.558547Z",
+      "last_run_at": "2026-03-30T01:41:25.884489Z",
       "last_ok": false,
       "last_ok_at": "2026-03-28T17:41:04.765574Z",
-      "last_error": "==========================================\nSOL [INVESTMENT]\n==========================================\n[CERMAT] [SOL] [INVESTMENT] 2026-03-29 17:41 WIB\nConfidence: High — CG series + RSI/EMA available + fresh timestamp\nEvidence: https://api",
-      "rate_limit_hits_24h": 1
+      "last_error": "==========================================\nSOL [INVESTMENT]\n==========================================\n[CERMAT] [SOL] [INVESTMENT] 2026-03-30 01:41 WIB\nConfidence: High — CG series + RSI/EMA available + fresh timestamp\nEvidence: https://api",
+      "rate_limit_hits_24h": 2
     },
     "gesit_inbox": {
-      "last_run_at": "2026-03-30T00:08:02.204Z",
+      "last_run_at": "2026-03-30T02:08:02.146Z",
       "last_ok": true,
-      "last_ok_at": "2026-03-30T00:08:02.204Z",
+      "last_ok_at": "2026-03-30T02:08:02.146Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     }
@@ -228,5 +228,5 @@
     "last_error": "==========================================\nSOL [INVESTMENT]\n==========================================\nfile:///Users/danyarkham/clawd/scripts/dca-watch-coingecko.mjs:37\n    throw new Error(`${url} -> ${res.status} ${res.statusText}: ${body}",
     "last_run_at": "2026-03-29T17:20:53.849123Z"
   },
-  "rate_limit_hits_24h": 3
+  "rate_limit_hits_24h": 4
 }
