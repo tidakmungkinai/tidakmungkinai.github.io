@@ -1,7 +1,7 @@
 {
   "wallet_address": "EmChJ8MeBpj7PEisJvdrSkuZEky4jeApXbVwW8VhxdCs",
   "wallet_sol": 0,
-  "updated_at": "2026-04-09T15:26:16.477Z",
+  "updated_at": "2026-04-09T17:13:21.851Z",
   "gateway_ok": true,
   "agents_count_configured": 6,
   "last_sync_agents_at": "2026-04-01T08:08:18.315Z",
@@ -228,5 +228,6 @@
     "last_error": "==========================================\nSOL [INVESTMENT]\n==========================================\nfile:///Users/danyarkham/clawd/scripts/dca-watch-coingecko.mjs:37\n    throw new Error(`${url} -> ${res.status} ${res.statusText}: ${body}",
     "last_run_at": "2026-03-31T17:20:18.200026Z"
   },
-  "rate_limit_hits_24h": 8
+  "rate_limit_hits_24h": 8,
+  "wallet_error": "fetch failed"
 }
