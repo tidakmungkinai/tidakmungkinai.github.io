@@ -1,10 +1,10 @@
 {
   "wallet_address": "EmChJ8MeBpj7PEisJvdrSkuZEky4jeApXbVwW8VhxdCs",
   "wallet_sol": 0,
-  "updated_at": "2026-04-16T09:24:58.108Z",
+  "updated_at": "2026-04-16T10:03:41.971Z",
   "gateway_ok": true,
   "agents_count_configured": 6,
-  "last_sync_agents_at": "2026-04-16T08:03:24.228Z",
+  "last_sync_agents_at": "2026-04-16T10:03:41.970Z",
   "survival_mode": {
     "active": true,
     "target_per_agent_usd": 10,
@@ -174,11 +174,11 @@
       "rate_limit_hits_24h": 0
     },
     "cermat_xaut_watch": {
-      "last_run_at": "2026-04-16T01:38:27.650403Z",
+      "last_run_at": "2026-04-16T09:20:36.392615Z",
       "last_ok": false,
       "last_ok_at": "2026-04-15T17:22:53.832048Z",
-      "last_error": "==========================================\nXAUT [INVESTMENT]\n==========================================\n[CERMAT] [XAUT] [INVESTMENT] 2026-04-16 01:22 WIB\nConfidence: High — CG series + RSI/EMA available + fresh timestamp\nEvidence: https://a",
-      "rate_limit_hits_24h": 0
+      "last_error": "==========================================\nXAUT [INVESTMENT]\n==========================================\nfile:///Users/danyarkham/clawd/scripts/dca-watch-coingecko.mjs:37\n    throw new Error(`${url} -> ${res.status} ${res.statusText}: ${body",
+      "rate_limit_hits_24h": 1
     },
     "sync_status_json": {
       "last_run_at": "2026-02-05T05:05:07.482360Z",
@@ -209,24 +209,24 @@
       "rate_limit_hits_24h": 1
     },
     "cermat_sol_watch": {
-      "last_run_at": "2026-04-16T01:41:48.587245Z",
-      "last_ok": true,
+      "last_run_at": "2026-04-16T09:40:36.072251Z",
+      "last_ok": false,
       "last_ok_at": "2026-04-16T01:41:48.587245Z",
-      "last_error": null,
-      "rate_limit_hits_24h": 2
+      "last_error": "==========================================\nSOL [INVESTMENT]\n==========================================\nfile:///Users/danyarkham/clawd/scripts/dca-watch-coingecko.mjs:37\n    throw new Error(`${url} -> ${res.status} ${res.statusText}: ${body}",
+      "rate_limit_hits_24h": 1
     },
     "gesit_inbox": {
-      "last_run_at": "2026-04-16T08:03:24.229Z",
+      "last_run_at": "2026-04-16T10:03:41.971Z",
       "last_ok": true,
-      "last_ok_at": "2026-04-16T08:03:24.229Z",
+      "last_ok_at": "2026-04-16T10:03:41.971Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     }
   },
   "last_error": {
     "task": "cermat_xaut_watch",
-    "last_error": "==========================================\nXAUT [INVESTMENT]\n==========================================\n[CERMAT] [XAUT] [INVESTMENT] 2026-04-16 01:22 WIB\nConfidence: High — CG series + RSI/EMA available + fresh timestamp\nEvidence: https://a",
-    "last_run_at": "2026-04-16T01:38:27.650403Z"
+    "last_error": "==========================================\nXAUT [INVESTMENT]\n==========================================\nfile:///Users/danyarkham/clawd/scripts/dca-watch-coingecko.mjs:37\n    throw new Error(`${url} -> ${res.status} ${res.statusText}: ${body",
+    "last_run_at": "2026-04-16T09:20:36.392615Z"
   },
   "rate_limit_hits_24h": 3
 }
