@@ -1,10 +1,10 @@
 {
   "wallet_address": "EmChJ8MeBpj7PEisJvdrSkuZEky4jeApXbVwW8VhxdCs",
   "wallet_sol": 0,
-  "updated_at": "2026-04-16T03:23:58.865Z",
+  "updated_at": "2026-04-16T03:39:52.435Z",
   "gateway_ok": true,
   "agents_count_configured": 6,
-  "last_sync_agents_at": "2026-04-16T01:39:51.849Z",
+  "last_sync_agents_at": "2026-04-16T03:39:52.435Z",
   "survival_mode": {
     "active": true,
     "target_per_agent_usd": 10,
@@ -209,16 +209,16 @@
       "rate_limit_hits_24h": 1
     },
     "cermat_sol_watch": {
-      "last_run_at": "2026-04-15T17:41:19.331506Z",
-      "last_ok": false,
-      "last_ok_at": "2026-03-31T17:41:01.416102Z",
-      "last_error": "==========================================\nSOL [INVESTMENT]\n==========================================\n[CERMAT] [SOL] [INVESTMENT] 2026-04-15 17:41 WIB\nConfidence: High — CG series + RSI/EMA available + fresh timestamp\nEvidence: https://api",
+      "last_run_at": "2026-04-16T01:41:48.587245Z",
+      "last_ok": true,
+      "last_ok_at": "2026-04-16T01:41:48.587245Z",
+      "last_error": null,
       "rate_limit_hits_24h": 2
     },
     "gesit_inbox": {
-      "last_run_at": "2026-04-16T01:39:51.850Z",
+      "last_run_at": "2026-04-16T03:39:52.435Z",
       "last_ok": true,
-      "last_ok_at": "2026-04-16T01:39:51.850Z",
+      "last_ok_at": "2026-04-16T03:39:52.435Z",
       "last_error": null,
       "rate_limit_hits_24h": 0
     }
